@@ -20,6 +20,6 @@
   },
   "remoteUser": "node",
   "onCreateCommand": "npm i -g npm@latest && npm i", // Update npm and install dependencies
-  "postCreateCommand": "/bin/bash -ex ./.devcontainer/setup.sh > postCreateCommand.log",
+  "postCreateCommand": "/bin/bash -ex ./.devcontainer/setup.sh > ./logs/postCreateCommand.log",
   "forwardPorts": [4200]
 }

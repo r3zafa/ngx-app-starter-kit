@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  angular-app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "4200:4200"
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ["npm", "start"]
+
+  angular-test:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      CHROME_BIN: /usr/bin/chromium-browser
+    command: ["npm", "test"]
+
+  angular-build:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ["npm", "build"]

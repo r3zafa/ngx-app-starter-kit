@@ -3,16 +3,17 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "test-project-v18": {
+    "ngx-app-starter-kit": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "standalone": true
         }
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "k",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
@@ -21,14 +22,15 @@
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "configs/polyfills.ts"
             ],
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "./configs/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/"
               }
             ],
             "styles": [
@@ -50,24 +52,36 @@
                   "maximumError": "1MB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "sourceMap": false,
+              "optimization": true,
+              "extractLicenses": true
             },
             "development": {
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "staging": {
+              "sourceMap": true,
+              "optimization": true,
+              "outputHashing": "all",
+              "extractLicenses": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "test-project-v18:build:production"
+              "buildTarget": "ngx-app-starter-kit:build:production"
             },
             "development": {
-              "buildTarget": "test-project-v18:build:development"
+              "buildTarget": "ngx-app-starter-kit:build:development"
+            },
+            "staging": {
+              "buildTarget": "ngx-app-starter-kit:build:staging"
             }
           },
           "defaultConfiguration": "development"
@@ -79,16 +93,16 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "polyfills": [
-              "zone.js",
-              "zone.js/testing"
+              "configs/polyfills.test.ts"
             ],
-            "karmaConfig": "./karma.conf.js",
-            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "configs/karma.conf.js",
+            "tsConfig": "configs/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/"
               }
             ],
             "styles": [

@@ -17,27 +17,20 @@
     "start": "ng serve --host 0.0.0.0 --poll 2000",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "postinstall": "rm -rf .git && echo 'Template setup complete!'"
+    "test": "ng test"
   },
   "files": [
     ".devcontainer",
     ".vscode",
     "bin",
+    "configs",
+    "docker",
+    "logs",
     "public",
     "src",
-    ".dockerignore",
-    ".editorconfig",
     ".gitignore",
-    "angular.json",
-    "docker-compose.yml",
-    "Dockerfile",
-    "karma.conf.js",
     "package.json",
-    "README.md",
-    "tsconfig.json",
-    "tsconfig.app.json",
-    "tsconfig.spec.json"
+    "README.md"
   ],
   "dependencies": {
     "@angular/animations": "^18.2.0",
