@@ -1,10 +1,10 @@
 {
-  "name": "Angular Dev Container",
-  "image":"mcr.microsoft.com/devcontainers/typescript-node:20-buster",
+  "name": "ngx-app-starter-kit",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:20-bookworm",
   "features": {
     "ghcr.io/devcontainers-contrib/features/angular-cli:2.0.15": {},
-    "ghcr.io/devcontainers/features/docker-in-docker:2.12.0": {},
-    "ghcr.io/devcontainers/features/github-cli:1.0.13": {}
+    "ghcr.io/devcontainers/features/docker-in-docker:2.12.2": {},
+    "ghcr.io/devcontainers/features/github-cli:1.0.14": {}
   },
   "customizations": {
     "vscode": {
@@ -19,5 +19,7 @@
     }
   },
   "remoteUser": "node",
-  "postCreateCommand": "/bin/bash -ex ./.devcontainer/setup.sh > postCreateCommand.log"
+  "onCreateCommand": "npm i -g npm@latest && npm i", // Update npm and install dependencies
+  "postCreateCommand": "/bin/bash -ex ./.devcontainer/setup.sh > postCreateCommand.log",
+  "forwardPorts": [4200]
 }

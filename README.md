@@ -1,4 +1,4 @@
-# Angular v18 boilerplate
+# ngx-app-starter-kit
 
 ## Requirements to run the project in Docker
 1) activate `WSL2` for windows

@@ -1,6 +1,6 @@
 {
-  "name": "angular-v18-boilerplate",
-  "version": "0.0.0",
+  "name": "ngx-app-starter-kit",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --poll 2000",
