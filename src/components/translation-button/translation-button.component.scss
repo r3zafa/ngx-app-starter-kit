@@ -1,0 +1,23 @@
+:host {
+    display: flex;
+    column-gap: 0.5rem;
+    justify-content: flex-end;
+    .switch-language {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        font-weight: 900;
+        background-color: #00000097;
+        color: rgb(230, 36, 36);
+        border: unset;
+        padding: 0.3rem 0.5rem;
+        border-radius: 0.2rem;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #000000;
+        }
+    }
+}

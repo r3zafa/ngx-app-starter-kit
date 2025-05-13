@@ -1,10 +1,19 @@
 :host {
     width: 100dvw;
     height: 5rem;
-    background-color: red;
-    padding: 0 1.5rem;
+    background-color: rgb(230, 36, 36);
     display: flex;
     justify-content: flex-start;
     align-items: center;
     font-size: 2.2rem;
+
+    .navbar-brand {
+        flex:1 1 90%;
+        padding: 0 1.5rem;
+    }
+
+    app-translation-button {
+        flex: 1 1 10%;
+                padding: 0 1.5rem;
+    }
 }
