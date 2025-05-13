@@ -1,7 +1,7 @@
 import { Component, inject } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { TranslateService, TranslatePipe } from "@ngx-translate/core";
-import { NavbarComponent } from "../components/navbar/navbar.component";
+import { NavbarComponent } from "./components";
 @Component({
   selector: "app-root",
   standalone: true,

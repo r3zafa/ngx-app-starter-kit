@@ -1,6 +1,6 @@
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
-import { httpLoaderFactory } from "../helpers/http-loader-factory.helper";
 import { HttpClient } from "@angular/common/http";
+import { httpLoaderFactory } from "../index";
 
 export const translationModuleProvider = [TranslateModule.forRoot({
       loader: {
