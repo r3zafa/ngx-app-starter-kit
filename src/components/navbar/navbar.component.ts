@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'k-navbar',
+  selector: 'navbar',
   standalone: true,
   imports: [],
   templateUrl: './navbar.component.html',
