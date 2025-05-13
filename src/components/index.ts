@@ -4,3 +4,4 @@
  * allowing for cleaner and more organized imports in other parts of the application.
  */
 export * from './navbar/navbar.component';
+export * from './content/content.component';

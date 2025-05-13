@@ -1,13 +1,13 @@
 import { Component, inject } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { TranslateService, TranslatePipe } from "@ngx-translate/core";
-import { NavbarComponent } from "./components";
+import { ContentComponent, NavbarComponent } from "../components";
 @Component({
   selector: "app-root",
   standalone: true,
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
-  imports: [RouterOutlet, TranslatePipe, NavbarComponent],
+  imports: [RouterOutlet, TranslatePipe, NavbarComponent, ContentComponent],
 })
 export class AppComponent {
   private translate: TranslateService = inject(TranslateService);
@@ -18,7 +18,4 @@ export class AppComponent {
     this.translate.use("en");
   }
 
-  switchLanguage(lang: string) {
-    this.translate.use(lang);
-  }
 }
