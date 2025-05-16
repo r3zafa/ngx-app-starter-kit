@@ -1,6 +1,10 @@
+@use "./components/mat-icon.scss" as mat-icon;
+@use "./m3-theme" as m3-theme;
+
+
 body {
-    width: 100dvw;
-    height: 100dvh;
-    padding: unset;
-    margin: unset;
+  width: 100dvw;
+  height: 100dvh;
+  padding: unset;
+  margin: unset;
 }

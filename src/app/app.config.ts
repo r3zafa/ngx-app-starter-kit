@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   ApplicationConfig,
   provideZoneChangeDetection,
@@ -14,5 +15,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideRouter(routes),
     importProvidersFrom(translationModuleProvider),
+    importProvidersFrom(BrowserAnimationsModule),
   ],
 };

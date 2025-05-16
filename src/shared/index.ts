@@ -6,6 +6,6 @@
 export * from './helpers';
 //export * from './interfaces';
 //export * from './pipes';
-//export * from './services';
+export * from './services';
 export * from './providers';
 export * from './types';

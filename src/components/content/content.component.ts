@@ -5,7 +5,7 @@ import { TranslatePipe } from "@ngx-translate/core";
   selector: "app-content",
   standalone: true,
   templateUrl: "./content.component.html",
-  styleUrl: "./content.component.scss",
+  styleUrls: ["./content.component.scss"],
   imports: [TranslatePipe],
 })
 export class ContentComponent {}

@@ -1,7 +1,10 @@
 import { Component, inject } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { TranslateService, TranslatePipe } from "@ngx-translate/core";
-import { ContentComponent, NavbarComponent } from "../components";
+import { NavbarComponent } from "../components/navbar/navbar.component";
+import { ContentComponent } from "../components/content/content.component";
+
+
 @Component({
   selector: "app-root",
   standalone: true,

@@ -1,6 +1,13 @@
-<span class="navbar-brand">
-  <span class="navbar-brand-prefix"> Angular </span>
-  <span class="navbar-brand-sufix"> app starter kit </span>
-</span>
-
-<app-translation-button></app-translation-button>
+<mat-toolbar>
+  <button mat-icon-button class="navbar" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My App</span>
+  <span class="navbar-spacer"></span>
+  <button mat-icon-button class="theme-icon" aria-label="Example icon-button with heart icon">
+    <theme-toggler></theme-toggler>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <translation-button></translation-button>
+  </button>
+</mat-toolbar>

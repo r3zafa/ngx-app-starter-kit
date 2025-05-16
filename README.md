@@ -66,3 +66,8 @@ you can start the project using github > `use this template` >`Open in a codespa
 4) install packages: `npm install`
 5) install Angular CLI `npm install -g @angular/cli@18.2.0`
 6) start application using `ng serve` or `ng serve --open`
+
+## generate your own theme 
+``
+ng generate @angular/material:m3-theme
+``
