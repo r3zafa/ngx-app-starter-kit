@@ -176,15 +176,14 @@ $dark-theme: mat.define-theme(
   --custom-secondary-50: #{map.get(map.get($_palettes, secondary), 50)};
 }
 
-
-
 // base styles
 html {
   color-scheme: light dark;
 }
 
 // default - light theme
-:root, html:not(.dark-theme) {
+:root,
+html:not(.dark-theme) {
   @include mat.all-component-themes($light-theme);
   & {
     color-scheme: light;
@@ -198,6 +197,10 @@ html.dark-theme {
   & {
     color-scheme: dark;
   }
+
+  .mat-pseudo-checkbox-checked {
+    color: var(--custom-secondary-50);
+  }
 }
 
 body {
@@ -208,7 +211,6 @@ body {
 @include mat.color-variants-backwards-compatibility($light-theme);
 @include mat.color-variants-backwards-compatibility($dark-theme);
 
-
 .mat-pseudo-checkbox-checked {
   color: var(--custom-secondary-50);
 }
@@ -216,10 +218,4 @@ body {
 .mat-mdc-menu-content {
   background: var(--mat-toolbar-container-background-color);
   color: var(--mat-toolbar-container-text-color);
-}
-
-html.dark-theme {
-  .mat-pseudo-checkbox-checked {
-    color: var(--custom-secondary-50);
-  }
 }

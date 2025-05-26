@@ -1,13 +1,26 @@
 <mat-toolbar>
-  <button mat-icon-button class="navbar" aria-label="Example icon-button with menu icon">
+  <button
+    mat-icon-button
+    (click)="toggleSidenav()"
+    class="navbar"
+    aria-label="Example icon-button with menu icon"
+  >
     <mat-icon>menu</mat-icon>
   </button>
   <span>My App</span>
   <span class="navbar-spacer"></span>
-  <button mat-icon-button class="theme-icon" aria-label="Example icon-button with heart icon">
+  <button
+    mat-icon-button
+    class="theme-icon"
+    aria-label="Example icon-button with heart icon"
+  >
     <theme-toggler></theme-toggler>
   </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+  >
     <translation-button></translation-button>
   </button>
 </mat-toolbar>

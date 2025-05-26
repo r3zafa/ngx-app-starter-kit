@@ -1,2 +1,28 @@
-  <h1>{{ 'HELLO' | translate }}</h1>
-  <p>{{ 'WELCOME' | translate }}</p>
+<mat-drawer-container class="content" [hasBackdrop]="hasBackdrop()">
+  <mat-drawer
+    [opened]="opened()"
+    [mode]="mode()"
+    [position]="position()"
+    [disableClose]="disableClose()"
+  >
+    add southings here. for example an menu or a list of items
+
+    <h2>{{ "MENU" | translate }}</h2>
+    <ul>
+      <li>
+        <a href="#">{{ "ITEM1" | translate }}</a>
+      </li>
+      <li>
+        <a href="#">{{ "ITEM2" | translate }}</a>
+      </li>
+      <li>
+        <a href="#">{{ "ITEM3" | translate }}</a>
+      </li>
+    </ul>
+
+  </mat-drawer>
+  <mat-drawer-content>
+    <h1>{{ "HELLO" | translate }}</h1>
+    <p>{{ "WELCOME" | translate }}</p>
+  </mat-drawer-content>
+</mat-drawer-container>

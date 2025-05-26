@@ -1,6 +1,11 @@
 @use "./components/mat-icon.scss" as mat-icon;
 @use "./m3-theme" as m3-theme;
 
+* {
+  box-sizing: border-box;
+  padding: unset;
+  margin: unset;
+}
 
 body {
   width: 100dvw;
