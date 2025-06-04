@@ -24,7 +24,7 @@ export class SidenavService {
   // signals
   // These signals are used to manage the state of the sidenav
   private opened: WritableSignal<boolean> = signal(false);
-  private mode: WritableSignal<"over" | "push" | "side"> = signal("over");
+  private mode: WritableSignal<"over" | "push" | "side"> = signal("push");
   private position: WritableSignal<"start" | "end"> = signal("start");
   private hasBackdrop: WritableSignal<boolean> = signal(true);
   private disableClose: WritableSignal<boolean> = signal(false);
