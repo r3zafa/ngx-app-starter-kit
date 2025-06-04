@@ -26,7 +26,7 @@ export class SidenavService {
   private opened: WritableSignal<boolean> = signal(false);
   private mode: WritableSignal<"over" | "push" | "side"> = signal("push");
   private position: WritableSignal<"start" | "end"> = signal("start");
-  private hasBackdrop: WritableSignal<boolean> = signal(true);
+  private hasBackdrop: WritableSignal<boolean> = signal(false);
   private disableClose: WritableSignal<boolean> = signal(false);
   private mobileWidth: WritableSignal<string> = signal("100dvw");
   private tabletWidth: WritableSignal<string> = signal("50dvw");
