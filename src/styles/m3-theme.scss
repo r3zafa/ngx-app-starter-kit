@@ -69,36 +69,30 @@ html:not(.dark-theme) {
     color-scheme: light;
   }
 
-  .mat-drawer {
-    --mat-sidenav-container-background-color: #{map.get(map.get(colors.$palettes, primary), 100)};
-  }
+  --mat-toolbar-container-background-color: #{map.get(map.get(colors.$palettes, primary), 30)};
+  --mat-toolbar-container-text-color: #{map.get(map.get(colors.$palettes, primary), 100)};
+  --mat-menu-container-color: #{map.get(map.get(colors.$palettes, primary), 100)};
+  --mat-sidenav-container-background-color: #{map.get(map.get(colors.$palettes, primary), 35)};
+  --mat-sidenav-container-shape: 0;
+  --mat-minimal-pseudo-checkbox-selected-checkmark-color: #{map.get(map.get(colors.$palettes, secondary), 60)};
 
-  .mat-toolbar {
-    --mat-toolbar-container-background-color: #{map.get(map.get(colors.$palettes, primary), 35)};
-    --mat-toolbar-container-text-color: #{map.get(map.get(colors.$palettes, primary), 100)};
-  }
 }
 
 // dark theme styles
 html.dark-theme {
-  // @include mat.all-component-themes($dark-theme);
   @include mat.all-component-colors($dark-theme);
+
   & {
     color-scheme: dark;
   }
 
-  .mat-pseudo-checkbox-checked {
-    color: var(--custom-secondary-50);
-  }
+  --mat-toolbar-container-background-color: #{map.get(map.get(colors.$palettes, neutral), 10)};
+  --mat-toolbar-container-text-color: #{map.get(map.get(colors.$palettes, primary), 100)};
+  --mat-menu-container-color: #{map.get(map.get(colors.$palettes, neutral), 20)};
+  --mat-sidenav-container-background-color: #{map.get(map.get(colors.$palettes, neutral), 20)};
+  --mat-sidenav-container-shape: 0;
+  --mat-minimal-pseudo-checkbox-selected-checkmark-color: #{map.get(map.get(colors.$palettes, secondary), 60)};
 
-  .mat-drawer {
-    background: #{map.get(map.get(colors.$palettes, primary), 0)};
-  }
-
-  .mat-toolbar {
-    --mat-toolbar-container-background-color: #{map.get(map.get(colors.$palettes, primary), 20)};
-    --mat-toolbar-container-text-color: #{map.get(map.get(colors.$palettes, primary), 100)};
-  }
 }
 
 body {
@@ -106,19 +100,27 @@ body {
   color: var(--mat-sys-on-surface);
 }
 
-@include mat.color-variants-backwards-compatibility($light-theme);
-@include mat.color-variants-backwards-compatibility($dark-theme);
-
-.mat-pseudo-checkbox-checked {
-  color: var(--custom-secondary-50);
+.mat-drawer {
+  border-radius: unset;
 }
-
-.mat-mdc-menu-content {
-  background: var(--mat-toolbar-container-background-color);
-  color: var(--mat-toolbar-container-text-color);
-}
-
 
 .mat-drawer-container {
   height: 100%;
 }
+
+.mat-drawer-content {
+  padding: 1rem
+}
+
+div.mat-mdc-menu-content {
+  padding: 0;
+}
+
+.mat-mdc-menu-panel {
+  margin-top: 0.4rem
+}
+
+
+
+@include mat.color-variants-backwards-compatibility($light-theme);
+@include mat.color-variants-backwards-compatibility($dark-theme);
