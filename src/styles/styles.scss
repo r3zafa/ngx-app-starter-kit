@@ -1,5 +1,6 @@
-@use "./components/mat-icon.scss" as mat-icon;
 @use "./m3-theme" as m3-theme;
+@use "./components/mat-icon.scss";
+@use "./components/navbar.scss";
 
 * {
   box-sizing: border-box;

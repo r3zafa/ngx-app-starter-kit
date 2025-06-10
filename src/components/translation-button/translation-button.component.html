@@ -1,15 +1,26 @@
-<mat-icon [matMenuTriggerFor]="menu" aria-label="select language">language</mat-icon>
+<mat-icon
+  [matMenuTriggerFor]="menu"
+  aria-label="select language"
+  class="translation-btn"
+>
+  language
+</mat-icon>
 
-<mat-menu #menu="matMenu" class="language-menu">
+<mat-menu #menu="matMenu" class="translation-menu">
   @for (language of languages; track language) {
-    <button mat-menu-item (click)="switchLanguage(language)">
-      <span>
-        {{ language | uppercase }}
-      </span>
-      @if(language === selectedLanguage) {
-        <mat-pseudo-checkbox state="checked" aria-hidden="true" appearance="minimal" class="">
-      </mat-pseudo-checkbox>
-      }
-    </button>
+  <button mat-menu-item (click)="switchLanguage(language)">
+    <span>
+      {{ language | uppercase }}
+    </span>
+    @if(language === selectedLanguage) {
+    <mat-pseudo-checkbox
+      state="checked"
+      aria-hidden="true"
+      appearance="minimal"
+      class=""
+    >
+    </mat-pseudo-checkbox>
+    }
+  </button>
   }
 </mat-menu>
