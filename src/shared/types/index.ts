@@ -4,3 +4,4 @@
  * allowing for cleaner and more organized imports in other parts of the application.
  */
 export * from './http-loader-factory.type';
+export * from './mat-icon.type';
