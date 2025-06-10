@@ -1,73 +1,68 @@
 # ngx-app-starter-kit
 
-## Requirements to run the project in Docker
-1) activate `WSL2` for windows
-2) remove docker desktop and docker-engine from your pc if already installed.
-3) install Rancher Desktop by SUSE 
-link: https://rancherdesktop.io/
-4) modify Dockerfile, .dockerignore, docker-compose.yml if needed.
-5) modify devcontainer if needed.
+A modern Angular 18 starter kit with Docker, devcontainer, and Angular Material integration for rapid, scalable web app development.
 
-### RUN USING DOCKER-COMPOSE
-- clear
-  ``` 
-  docker-compose down 
-  ```
-- build 
-  ```
-  docker-compose build --no-cache
-  ```
-- start:corrent docker-compose will run at  `localhost:4200`
-  ```
-  docker-compose up
-  ```
-- build and start at once: This forces Docker to rebuild the image with the updated configuration. corrent docker-compose will run at  `localhost:4200`
-  ```
-  docker-compose up --build
-  ```
+[![GitHub Repo](https://img.shields.io/badge/GitHub-ngx--app--starter--kit-blue?logo=github)](https://github.com/r3zafa/ngx-app-starter-kit)
 
-### USING DEVCONTAINER
-you can start the project using github > `use this template` >`Open in a codespace` OR USING vs code in your system **`WSL2` and `DOCKER` are REQUIRED**
+## Features
 
-## USING WSL2 (WINDOWS SUBSYSTEM FOR LINUX)
-1) activate `WSL2`
-2) clone this repository inside your `WSL2 machine`
-    ```
-    git clone https://github.com/r3zafa/angular-v18-test-project.git
-    ```
-3) install `node.js` inside  `WSL2 machine`
+- **Angular 18**: Built with the latest Angular framework for modern web development.
+- **Dockerized Development**: Includes Docker and Docker Compose for consistent development environments.
+- **Devcontainer Support**: Optimized for GitHub Codespaces and VS Code Remote Containers.
+- **Angular Material**: Pre-configured with Material 3 (M3) theming.
+- **Translation Support**: Integrated with `@ngx-translate` for multi-language support.
+- **Theming**: Dynamic light and dark theme toggling.
+- **Component-Based Architecture**: Modular and reusable components for scalable development.
+- **Quick Start Scripts**: Predefined scripts for building, testing, and serving the application.
 
-    ```    
-    sudo apt update && sudo apt upgrade
-    sudo apt-get install curl
-    ```
-    ```
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
-    ```
-    ```
-    command -v nvm
-    nvm ls
-    ```
-    ```
-    nvm install --lts
-    nvm ls
-    ```
-  - Verify that Node.js is installed and the currently default version with: `node --version`. Then verify that you have npm as well, with: `npm --version` (You can also use which node or `which npm` to see the path used for the default versions).
-  - To change the version of Node.js you would like to use for a project, create a new project directory `mkdir NodeTest`, and enter the directory `cd NodeTest`, then enter `nvm use node` to switch to the Current version, or `nvm use --lts` to switch to the LTS version. You can also use the specific number for any additional versions you've installed, like  `nvm use v8.2.1`. (To list all of the versions of Node.js available, use the command: `nvm ls-remote`).
+## Using This Starter Kit via `npx`
 
-  - read more: [original instruction](https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl)
-4) go to project folder: `cd angular-v18-test-project`
-4) install packages: `npm install`
-5) install Angular CLI `npm install -g @angular/cli@18.2.0`
-6) start application using `ng serve` or `ng serve --open`
+You can quickly scaffold a new project using this template with `npx`:
 
-## Running on your pc without Dockerization
-1) install `Node.js v20.18.0 (LTS)` from [node.js website | download](https://nodejs.org/en/download/package-manager)
-4) install packages: `npm install`
-5) install Angular CLI `npm install -g @angular/cli@18.2.0`
-6) start application using `ng serve` or `ng serve --open`
+```sh
+npx create-app my-new-app
+cd my-new-app
+npm install
+```
 
-## generate your own theme 
-``
-ng generate @angular/material:m3-theme
-``
+Replace `my-new-app` with your desired project name.
+
+## Project Structure
+
+The project is organized as follows:
+
+- **`src/`**: Contains the main application code.
+  - **`app/`**: Core application components and configuration.
+    - `app.component.*`: Root component files.
+    - `app.config.ts`: Application-wide configuration.
+    - `app.routes.ts`: Application routing configuration.
+  - **`components/`**: Reusable UI components.
+    - **`content/`**: Content display component.
+    - **`navbar/`**: Navigation bar component.
+    - **`theme-toggler/`**: Component for toggling between light and dark themes.
+    - **`translation-button/`**: Component for switching languages.
+  - **`shared/`**: Shared utilities, services, and types.
+    - **`helpers/`**: Helper functions (e.g., `http-loader-factory.helper.ts`).
+    - **`interfaces/`**: Shared TypeScript interfaces.
+    - **`providers/`**: Dependency injection providers (e.g., translation module provider).
+    - **`services/`**: Application services (e.g., theme and sidenav services).
+    - **`types/`**: Shared TypeScript types.
+  - **`styles/`**: Global and component-specific styles.
+    - `_animation.scss`: Animation styles.
+    - `_palettes.scss`: Color palette definitions.
+    - `m3-theme.scss`: Material 3 theme configuration.
+    - `styles.scss`: Global styles.
+- **`configs/`**: Configuration files for TypeScript, Karma, and polyfills.
+- **`public/`**: Public assets such as icons and translation files.
+  - **`i18n/`**: Translation files (e.g., `en.json`, `de.json`).
+- **`docker/`**: Docker and Docker Compose configuration.
+- **`bin/`**: Custom scripts (e.g., `create-app.cjs` for scaffolding new projects).
+- **`.devcontainer/`**: Devcontainer configuration for VS Code Remote Containers.
+
+## Demo Components
+
+The project includes demo components such as `content`, `navbar`, `theme-toggler`, and `translation-button`. These components are provided as examples and can be replaced or customized to suit your application's needs.
+
+---
+
+For more details, see [Angular CLI Docs](https://angular.io/cli), [Angular Material](https://material.angular.io/), and the [ngx-app-starter-kit GitHub repo](https://github.com/r3zafa/ngx-app-starter-kit).
