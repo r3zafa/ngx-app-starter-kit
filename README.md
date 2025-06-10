@@ -2,11 +2,13 @@
 
 A modern Angular 18 starter kit with Docker, devcontainer, and Angular Material integration for rapid, scalable web app development.
 
+> **Note:** This template will be migrated to Angular 19 and 20 soon to ensure compatibility with the latest Angular features and improvements.
+
 [![GitHub Repo](https://img.shields.io/badge/GitHub-ngx--app--starter--kit-blue?logo=github)](https://github.com/r3zafa/ngx-app-starter-kit)
 
 ## Features
 
-- **Angular 18**: Built with the latest Angular framework for modern web development.
+- **Angular 18**
 - **Dockerized Development**: Includes Docker and Docker Compose for consistent development environments.
 - **Devcontainer Support**: Optimized for GitHub Codespaces and VS Code Remote Containers.
 - **Angular Material**: Pre-configured with Material 3 (M3) theming.
