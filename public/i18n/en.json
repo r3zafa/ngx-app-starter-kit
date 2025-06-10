@@ -1,6 +1,6 @@
 {
-  "HELLO": "Hello",
-  "WELCOME": "Welcome to our application!",
+  "HELLO": "start page",
+  "WELCOME": "this is a demo application that helps you explore the features and capabilities of the ngx app starter kit.",
   "GOODBYE": "Goodbye",
   "THANK_YOU": "Thank you",
   "PLEASE_WAIT": "Please wait",

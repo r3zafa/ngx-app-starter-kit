@@ -58,21 +58,20 @@ $dark-theme: mat.define-theme(
 
   // dark theme variables
   --navbar-bkg-dark-color: #{map.get(map.get(c.$palettes, primary), 10)};
-  --sidenav-bkg-dark-color: #{darken(map.get(map.get(c.$palettes, primary), 20), 2)};
+  --sidenav-bkg-dark-color: #{darken(map.get(map.get(c.$palettes, primary), 20),2)};
   --navbar-text-dark-color: #{map.get(map.get(c.$palettes, primary), 100)};
 
+  // navbar and sidnav variables
+  --navbar-sidenav-toggle-bkg-color-on-hover: rgba(0, 0, 0, 0.25);
+  --navbar-action-hover-bkg-color: #{map.get(map.get(c.$palettes, secondary),80)};
   --navbar-standard-height: 4.5rem;
+  --navbar-standard-height-mobile: 4.5rem;
   --navbar-title-text-size: 1.7rem;
-
-  // sidenav toggle button variables
-  --sidenav-toggle-bkg-color-on-hover: rgba(0, 0, 0, 0.25);
-
-  // navbar action hover background color
-  --navbar-action-hover-bkg-color: #{map.get(map.get(c.$palettes, secondary), 80)};
-
-  --navbar-action-size: 2rem;
+  --navbar-sidenav-toggle-size: 3rem;
+  --navbar-action-size: 2.2rem;
+  --navbar-action-size-mobile: 2.2rem;
+  --navbar-action-width-mobile: 3.5rem;
 }
-
 
 :root,
 html:not(.dark-theme) {
@@ -87,13 +86,12 @@ html:not(.dark-theme) {
   --mat-toolbar-container-text-color: var(--navbar-text-light-color);
   // others
   --mat-sidenav-container-shape: 0;
-  --mat-minimal-pseudo-checkbox-selected-checkmark-color: #{map.get(map.get(c.$palettes, secondary), 60)};
-
+  --mat-minimal-pseudo-checkbox-selected-checkmark-color: #{map.get(map.get(c.$palettes, secondary),60)};
   // navbar variables
   --mat-toolbar-standard-height: var(--navbar-standard-height);
   --mat-toolbar-title-text-size: var(--navbar-title-text-size);
-  
   --mdc-icon-button-state-layer-size: var(--navbar-standard-height);
+  --mat-toolbar-mobile-height: var(--navbar-standard-height-mobile);
 }
 
 html.dark-theme {
@@ -108,15 +106,14 @@ html.dark-theme {
   --mat-toolbar-container-text-color: var(--navbar-text-dark-color);
   // others
   --mat-sidenav-container-shape: 0;
-  --mat-minimal-pseudo-checkbox-selected-checkmark-color: #{map.get(map.get(c.$palettes, secondary), 60)};
-
+  --mat-minimal-pseudo-checkbox-selected-checkmark-color: #{map.get(map.get(c.$palettes, secondary),60)};
   // navbar variables
   --mat-toolbar-standard-height: var(--navbar-standard-height);
   --mat-toolbar-title-text-size: var(--navbar-title-text-size);
-
   --mdc-icon-button-state-layer-size: var(--navbar-standard-height);
-  --sidenav-toggle-bkg-color-on-hover: rgba(255, 255, 255, 0.07);
-  --navbar-action-hover-bkg-color: #{map.get(map.get(c.$palettes, secondary), 70)};
+  --mat-toolbar-mobile-height: var(--navbar-standard-height-mobile);
+  --navbar-sidenav-toggle-bkg-color-on-hover: rgba(255, 255, 255, 0.07);
+  --navbar-action-hover-bkg-color: #{map.get(map.get(c.$palettes, secondary),70)};
 }
 
 body {
@@ -133,7 +130,7 @@ body {
 }
 
 .mat-drawer-content {
-  padding: 1rem
+  padding: 1rem;
 }
 
 div.mat-mdc-menu-content {
@@ -141,6 +138,5 @@ div.mat-mdc-menu-content {
 }
 
 .mat-mdc-menu-panel {
-  margin-top: 0.4rem
+  margin-top: 0.4rem;
 }
-

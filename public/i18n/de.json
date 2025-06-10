@@ -1,6 +1,6 @@
 {
-  "HELLO": "Moin",
-  "WELCOME": "Willkommen in unserer Anwendung!",
+  "HELLO": "startseite",
+  "WELCOME": "dies ist eine Demo-Anwendung, die Ihnen hilft, die Funktionen und Möglichkeiten des NGX App Starter Kits zu erkunden.",
   "GOODBYE": "Auf Wiedersehen",
   "THANK_YOU": "Danke",
   "PLEASE_WAIT": "Bitte warten",
