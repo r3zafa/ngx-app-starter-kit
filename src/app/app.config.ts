@@ -7,7 +7,7 @@ import {
 import { provideRouter } from "@angular/router";
 import { routes } from "./app.routes";
 import { provideHttpClient } from "@angular/common/http";
-import { translationModuleProvider } from "../shared";
+import { translationModuleProvider } from "./shared";
 
 export const appConfig: ApplicationConfig = {
   providers: [

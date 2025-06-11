@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { TranslateService, TranslatePipe } from "@ngx-translate/core";
-import { NavbarComponent } from "../components/navbar/navbar.component";
-import { ContentComponent } from "../components/content/content.component";
+import { NavbarComponent } from "./components/navbar/navbar.component";
+import { ContentComponent } from "./components/content/content.component";
 
 
 @Component({

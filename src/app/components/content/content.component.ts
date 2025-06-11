@@ -1,4 +1,5 @@
-import { SidenavService } from "./../../shared/services/sidenav/sidenav.service";
+import { RouterOutlet } from '@angular/router';
+import { SidenavService } from "../../shared/services/sidenav/sidenav.service";
 import { Component, inject, signal } from "@angular/core";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MatButtonModule } from "@angular/material/button";
@@ -17,6 +18,7 @@ import { MatSidenavModule } from "@angular/material/sidenav";
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
+    RouterOutlet
   ],
 })
 export class ContentComponent {
