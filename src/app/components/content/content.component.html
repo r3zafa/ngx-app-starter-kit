@@ -1,4 +1,6 @@
 <mat-drawer-container class="content" [hasBackdrop]="hasBackdrop()">
+
+  <!-- drawer content -->
   <mat-drawer
     [opened]="opened()"
     [mode]="mode()"
@@ -6,12 +8,11 @@
     [disableClose]="disableClose()"
   >
 
-  <!-- todo -->
-
   </mat-drawer>
+
+  <!-- main content -->
   <mat-drawer-content>
-    <h1>{{ "HELLO" | translate }}</h1>
-    <p>{{ "WELCOME" | translate }}</p>
     <router-outlet></router-outlet>
   </mat-drawer-content>
+
 </mat-drawer-container>
