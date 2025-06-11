@@ -6,12 +6,15 @@
 }
 
 .mdc-icon-button.navbar-sidenav-toggle {
+  transition: all 0.5s ease-out;
   padding: unset;
   border-radius: 0%;
   padding-top: 0.3rem;
 
   &:hover {
+    transition: all 0.3s ease-in;
     background-color: var(--navbar-sidenav-toggle-bkg-color-on-hover);
+    color: var(--navbar-action-hover-bkg-color);
   }
 }
 
@@ -56,12 +59,12 @@
 
     &:hover {
       animation: shake 0.7s;
-      transition: color 0.2s ease-in;
       color: var(--navbar-action-hover-bkg-color);
-      transition: color 0.4s ease-out;
+      transition: all 0.5s ease-out;
 
       @media (max-width: 599px) {
         animation: unset;
+        transition: all 0.5s ease-in;
         background-color: var(--navbar-sidenav-toggle-bkg-color-on-hover);
       }
       
