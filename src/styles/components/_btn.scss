@@ -1,0 +1,24 @@
+    .mat-mdc-icon-button.custom-icon-button-1 {
+        transition: all 0.5s ease-out;
+        padding: unset;
+        border-radius: 0%;
+        padding-top: 0.3rem;
+
+        &:hover {
+            transition: all 0.3s ease-in;
+            background-color: var(--navbar-sidenav-toggle-bkg-color-on-hover);
+            color: var(--navbar-action-hover-bkg-color);
+            border-radius: 0%;
+        }
+
+        .mat-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--navbar-sidenav-toggle-size);
+            width: var(--navbar-sidenav-toggle-size);
+            height: var(--navbar-sidenav-toggle-size);
+            text-align: center;
+        }
+
+    }

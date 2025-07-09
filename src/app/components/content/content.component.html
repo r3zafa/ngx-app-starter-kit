@@ -1,12 +1,17 @@
 <mat-drawer-container class="content" [hasBackdrop]="hasBackdrop()">
 
   <!-- drawer content -->
-  <mat-drawer
-    [opened]="opened()"
-    [mode]="mode()"
-    [position]="position()"
-    [disableClose]="disableClose()"
-  >
+  <mat-drawer [opened]="opened()" [mode]="mode()" [position]="position()" [disableClose]="disableClose()" [style.width]="width()">
+
+    @if (!isColapsed()) {
+      <mat-icon (click)="toggleIsColapsed()" class="toggle-is-colapsed expanded">
+        {{isColapsed() ? icon.arrow_forward_ios : icon.arrow_back_ios}}
+      </mat-icon>
+    } @else {
+      <mat-icon (click)="toggleIsColapsed()" class="toggle-is-colapsed">
+        {{isColapsed() ? icon.arrow_forward_ios : icon.arrow_back_ios}}
+      </mat-icon>
+    }
 
   </mat-drawer>
 

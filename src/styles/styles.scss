@@ -1,6 +1,8 @@
 @use "./m3-theme" as m3-theme;
 @use "./components/mat-icon.scss";
+@use "./components/btn.scss";
 @use "./components/navbar.scss";
+@use "./components/drawer.scss";
 
 * {
   box-sizing: border-box;
@@ -13,4 +15,9 @@ body {
   height: 100dvh;
   padding: unset;
   margin: unset;
+}
+
+.m-top-auto {
+  margin-top: auto;
+  align-self: flex-end;
 }

@@ -1,0 +1,28 @@
+@use "../animation" as animation;
+
+.mat-drawer {
+  border-radius: unset;
+  transition: width 0.3s ease-in-out
+}
+
+.mat-drawer-container {
+  height: 100%;
+}
+
+.mat-drawer-content {
+  padding: 1rem;
+}
+
+div.mat-mdc-menu-content {
+  padding: 0;
+}
+
+.mat-mdc-menu-panel {
+  margin-top: 0.4rem;
+}
+
+.mat-drawer .mat-drawer-inner-container {
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}

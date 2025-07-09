@@ -23,23 +23,23 @@ export class SidenavService {
 
   // signals
   // These signals are used to manage the state of the sidenav
-  private opened: WritableSignal<boolean> = signal(false);
-  private mode: WritableSignal<"over" | "push" | "side"> = signal("push");
+  private opened: WritableSignal<boolean> = signal(true);
+  private mode: WritableSignal<"over" | "push" | "side"> = signal("side");
   private position: WritableSignal<"start" | "end"> = signal("start");
   private hasBackdrop: WritableSignal<boolean> = signal(false);
   private disableClose: WritableSignal<boolean> = signal(false);
   private mobileWidth: WritableSignal<string> = signal("100dvw");
-  private tabletWidth: WritableSignal<string> = signal("50dvw");
-  private desktopWidth: WritableSignal<string> = signal("16rem");
-  private height: WritableSignal<string> = signal("100%");
+  private desktopWidth: WritableSignal<string> = signal("24rem");
+  private colapsedWidth: WritableSignal<string> = signal("4.5rem");
+  private isColapsed: WritableSignal<boolean> = signal(true);
 
   // computed properties
   // This computed property determines the width of the sidenav based on the current breakpoint
   private width = computed(() => {
-    const bp = this.breakpoints().breakpoints;
-    if (bp[Breakpoints.XSmall] || bp[Breakpoints.Small]) return this.mobileWidth();
-    else if (bp[Breakpoints.Medium]) return this.tabletWidth();
-    else return this.desktopWidth();
+    const isMobile = !!this.breakpoints().breakpoints[Breakpoints.XSmall];
+    return this.isColapsed() ?
+      this.colapsedWidth() : isMobile ?
+        this.mobileWidth() : this.desktopWidth();
   });
 
   // methods
@@ -50,20 +50,20 @@ export class SidenavService {
 
   // getters
 
+  getIsColapsed(): WritableSignal<boolean> {
+    return this.isColapsed;
+  }
+
+  getColapsedWidth(): WritableSignal<string> {
+    return this.colapsedWidth;
+  }
+
   getWidth(): Signal<string> {
     return this.width;
   }
 
-  getHeight(): WritableSignal<string> {
-    return this.height;
-  }
-
   getMobileWidth(): WritableSignal<string> {
     return this.mobileWidth;
-  }
-
-  getTabletWidth(): WritableSignal<string> {
-    return this.tabletWidth;
   }
 
   getDesktopWidth(): WritableSignal<string> {
@@ -111,19 +111,20 @@ export class SidenavService {
     this.position.set(position);
   }
 
-  setHeight(height: string): void {
-    this.height.set(height);
-  }
-
   setMobileWidth(width: string): void {
     this.mobileWidth.set(width);
-  }
-
-  setTabletWidth(width: string): void {
-    this.tabletWidth.set(width);
   }
 
   setDesktopWidth(width: string): void {
     this.desktopWidth.set(width);
   }
+
+  setColapsedWidth(width: string): void {
+    this.colapsedWidth.set(width);
+  }
+
+  setIsColapsed(isColapsed: boolean): void {
+    this.isColapsed.set(isColapsed);
+  }
+
 }

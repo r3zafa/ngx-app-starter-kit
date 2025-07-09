@@ -5,26 +5,6 @@
   gap: 0.5rem;
 }
 
-.mdc-icon-button.navbar-sidenav-toggle {
-  transition: all 0.5s ease-out;
-  padding: unset;
-  border-radius: 0%;
-  padding-top: 0.3rem;
-
-  &:hover {
-    transition: all 0.3s ease-in;
-    background-color: var(--navbar-sidenav-toggle-bkg-color-on-hover);
-    color: var(--navbar-action-hover-bkg-color);
-  }
-}
-
-.mdc-icon-button.navbar-sidenav-toggle .mat-icon {
-  font-size: var(--navbar-sidenav-toggle-size);
-  width: var(--navbar-sidenav-toggle-size);
-  height: var(--navbar-sidenav-toggle-size);
-  line-height: var(--navbar-sidenav-toggle-size);
-}
-
 .navbar-actions {
   margin-left: auto;
   padding: 0.2rem 1.5rem;
@@ -48,7 +28,19 @@
     width: var(--navbar-action-size);
     height: var(--navbar-action-size);
     font-size: var(--navbar-action-size);
-    transition: transform 0.2s, color 0.2s;
+    transition: all 0.5s ease-out;
+
+    &:hover {
+      color: var(--navbar-action-hover-bkg-color);
+      transition: all 0.3s ease-in;
+
+      @media (max-width: 599px) {
+        animation: unset;
+        transition: all 0.5s ease-in;
+        background-color: var(--navbar-sidenav-toggle-bkg-color-on-hover);
+      }
+
+    }
 
     @media (max-width: 599px) {
       height: 100%;
@@ -57,17 +49,6 @@
       line-height: var(--navbar-action-size-mobile);
     }
 
-    &:hover {
-      animation: shake 0.7s;
-      color: var(--navbar-action-hover-bkg-color);
-      transition: all 0.5s ease-out;
-
-      @media (max-width: 599px) {
-        animation: unset;
-        transition: all 0.5s ease-in;
-        background-color: var(--navbar-sidenav-toggle-bkg-color-on-hover);
-      }
-      
-    }
   }
+
 }
