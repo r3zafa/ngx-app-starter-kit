@@ -71,6 +71,8 @@ $dark-theme: mat.define-theme(
   --navbar-action-size: 2.2rem;
   --navbar-action-size-mobile: 2.2rem;
   --navbar-action-width-mobile: 3.5rem;
+
+  --mat-icon-color: #{map.get(map.get(c.$palettes, primary), 100)};
 }
 
 :root,
@@ -92,6 +94,8 @@ html:not(.dark-theme) {
   --mat-toolbar-title-text-size: var(--navbar-title-text-size);
   --mdc-icon-button-state-layer-size: var(--navbar-standard-height);
   --mat-toolbar-mobile-height: var(--navbar-standard-height-mobile);
+
+  --mat-icon-color: #{map.get(map.get(c.$palettes, primary), 100)};
 }
 
 html.dark-theme {

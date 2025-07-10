@@ -29,21 +29,20 @@ export class ContentComponent {
   public icon: Record<MatIconType, MatIconType>  = matIconRecord;
 
   // Injecting the SidenavService to manage the sidenav state
-  private SidenavService: SidenavService = inject(SidenavService);
+  private sns: SidenavService = inject(SidenavService);
 
   // Using signals to manage the state of the sidenav
-  protected opened = this.SidenavService.getOpened();
-  protected mode = this.SidenavService.getMode();
-  protected position = this.SidenavService.getPosition();
-  protected hasBackdrop = this.SidenavService.getHasBackdrop();
-  protected disableClose = this.SidenavService.getDisableClose();
-  protected width = this.SidenavService.getWidth();
-  protected isColapsed = this.SidenavService.getIsColapsed();
+  protected opened = this.sns.getOpened();
+  protected mode = this.sns.getMode();
+  protected position = this.sns.getPosition();
+  protected hasBackdrop = this.sns.getHasBackdrop();
+  protected disableClose = this.sns.getDisableClose();
+  protected width = this.sns.getWidth();
+  protected isColapsed = this.sns.getIsColapsed();
 
   // setter
   protected toggleIsColapsed(): void {
-    this.SidenavService.setIsColapsed(!this.isColapsed());
+    this.sns.setIsColapsed(!this.isColapsed());
   }
-
 
 }

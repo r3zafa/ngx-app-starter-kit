@@ -28,10 +28,10 @@ export class SidenavService {
   private position: WritableSignal<"start" | "end"> = signal("start");
   private hasBackdrop: WritableSignal<boolean> = signal(false);
   private disableClose: WritableSignal<boolean> = signal(false);
+  private isColapsed: WritableSignal<boolean> = signal(true);
   private mobileWidth: WritableSignal<string> = signal("100dvw");
   private desktopWidth: WritableSignal<string> = signal("24rem");
   private colapsedWidth: WritableSignal<string> = signal("4.5rem");
-  private isColapsed: WritableSignal<boolean> = signal(true);
 
   // computed properties
   // This computed property determines the width of the sidenav based on the current breakpoint
@@ -41,6 +41,7 @@ export class SidenavService {
       this.colapsedWidth() : isMobile ?
         this.mobileWidth() : this.desktopWidth();
   });
+
 
   // methods
 
