@@ -24,7 +24,7 @@ export class SidenavService {
   // signals
   // These signals are used to manage the state of the sidenav
   private opened: WritableSignal<boolean> = signal(true);
-  private mode: WritableSignal<"over" | "push" | "side"> = signal("side");
+  private mode: WritableSignal<"over" | "push" | "side"> = signal("push");
   private position: WritableSignal<"start" | "end"> = signal("start");
   private hasBackdrop: WritableSignal<boolean> = signal(false);
   private disableClose: WritableSignal<boolean> = signal(false);
@@ -42,6 +42,16 @@ export class SidenavService {
         this.mobileWidth() : this.desktopWidth();
   });
 
+  private contentMargin = computed(() => {
+    const isMobile = !!this.breakpoints().breakpoints[Breakpoints.XSmall];
+    return !this.opened ? '0': this.isColapsed() ?
+      this.colapsedWidth() : this.desktopWidth();
+  });
+
+
+  getContentMargin(): Signal<string> {
+    return this.contentMargin;
+  }
 
   // methods
 

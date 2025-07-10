@@ -1,8 +1,8 @@
 import { RouterOutlet } from '@angular/router';
 import { SidenavService } from "../../shared/services/sidenav/sidenav.service";
-import { Component, inject } from "@angular/core";
+import { Component, computed, inject } from "@angular/core";
 import { TranslatePipe } from "@ngx-translate/core";
-import { MatButtonModule} from "@angular/material/button";
+import { MatButtonModule } from "@angular/material/button";
 import { MatDrawer, MatDrawerContainer, MatDrawerContent } from "@angular/material/sidenav";
 import { matIconRecord } from '../../shared/constants/mat-icon-record.constant';
 import { MatIcon } from '@angular/material/icon';
@@ -24,25 +24,27 @@ import { MatIconType } from '../../shared/types/mat-icon.type';
   ],
 })
 export class ContentComponent {
-
   // Importing the matIconRecord constant to use in the template
-  public icon: Record<MatIconType, MatIconType>  = matIconRecord;
-
+  public icon: Record<MatIconType, MatIconType> = matIconRecord;
   // Injecting the SidenavService to manage the sidenav state
-  private sns: SidenavService = inject(SidenavService);
-
+  private sidenavService: SidenavService = inject(SidenavService);
   // Using signals to manage the state of the sidenav
-  protected opened = this.sns.getOpened();
-  protected mode = this.sns.getMode();
-  protected position = this.sns.getPosition();
-  protected hasBackdrop = this.sns.getHasBackdrop();
-  protected disableClose = this.sns.getDisableClose();
-  protected width = this.sns.getWidth();
-  protected isColapsed = this.sns.getIsColapsed();
+  protected opened = this.sidenavService.getOpened();
+  protected mode = this.sidenavService.getMode();
+  protected position = this.sidenavService.getPosition();
+  protected hasBackdrop = this.sidenavService.getHasBackdrop();
+  protected disableClose = this.sidenavService.getDisableClose();
+  protected width = this.sidenavService.getWidth();
+  protected contentMargin = this.sidenavService.getContentMargin();
+  protected isColapsed = this.sidenavService.getIsColapsed();
 
-  // setter
+  // methods
   protected toggleIsColapsed(): void {
-    this.sns.setIsColapsed(!this.isColapsed());
+    this.sidenavService.setIsColapsed(!this.isColapsed());
   }
+
+  // computed
+  protected pushReverseContentMargin = computed(() => this.opened() ? `-${this.contentMargin()}` : '0');
+  protected pushContentMargin = computed(() => this.opened() ? this.contentMargin() : '0');
 
 }

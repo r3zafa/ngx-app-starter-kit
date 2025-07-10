@@ -17,8 +17,13 @@
   </mat-drawer>
 
   <!-- main content -->
-  <mat-drawer-content [style.margin-left]="width()">
+  <mat-drawer-content
+    [style.margin-left]="mode() !== 'over' ? pushContentMargin() : null"
+    [style.margin-right]="mode() === 'push' ? pushReverseContentMargin() : null">
     <router-outlet></router-outlet>
   </mat-drawer-content>
+
+  <!-- style="margin-left: 72px; margin-right: -72px;"  -->
+
 
 </mat-drawer-container>
