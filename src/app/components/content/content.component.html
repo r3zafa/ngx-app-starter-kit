@@ -11,13 +11,13 @@
 
     <!-- expand btn -->
     @if (!isColapsed()) {
-    <mat-icon (click)="toggleIsColapsed()" class="toggle-is-colapsed expanded">
-      {{isColapsed() ? icon.arrow_forward_ios : icon.arrow_back_ios}}
-    </mat-icon>
+      <button mat-mini-fab (click)="toggleIsColapsed()" class="toggler-position">
+        <mat-icon  [style.width]="'14px'">{{icon.arrow_back_ios}}</mat-icon>
+      </button>
     } @else {
-    <mat-icon (click)="toggleIsColapsed()" class="toggle-is-colapsed">
-      {{isColapsed() ? icon.arrow_forward_ios : icon.arrow_back_ios}}
-    </mat-icon>
+      <button mat-mini-fab (click)="toggleIsColapsed()" class="toggler-position">
+        <mat-icon>{{icon.arrow_forward_ios}}</mat-icon>
+      </button>
     }
 
   </mat-drawer>

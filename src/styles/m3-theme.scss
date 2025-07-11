@@ -16,42 +16,35 @@ $_rest: (
 $_primary: map.merge(map.get(c.$palettes, primary), $_rest);
 $_tertiary: map.merge(map.get(c.$palettes, tertiary), $_rest);
 
-$light-theme: mat.define-theme((
-  color: (theme-type: light,
-    primary: $_primary,
-    tertiary: $_tertiary,
-  ),
-  typography: (
-    plain-family: Poppins,
-    brand-family: Montserrat,
-    bold-weight: 700,
-    medium-weight: 500,
-    regular-weight: 400,
-    use-system-variables: false,
-  ),
-  density: (
-    scale: -1,
-  ),
-));
+$light-theme: mat.define-theme((color: (theme-type: light,
+        primary: $_primary,
+        tertiary: $_tertiary,
+      ),
+      typography: (plain-family: Poppins,
+        brand-family: Montserrat,
+        bold-weight: 700,
+        medium-weight: 500,
+        regular-weight: 400,
+        use-system-variables: false,
+      ),
+      density: (scale: -1,
+      ),
+    ));
 
-$dark-theme: mat.define-theme((
-  color: (
-    theme-type: dark,
-    primary: $_primary,
-    tertiary: $_tertiary,
-  ),
-  typography: (
-    plain-family: Poppins,
-    brand-family: Montserrat,
-    bold-weight: 700,
-    medium-weight: 500,
-    regular-weight: 400,
-    use-system-variables: false,
-  ),
-  density: (
-    scale: -1,
-  ),
-));
+$dark-theme: mat.define-theme((color: (theme-type: dark,
+        primary: $_primary,
+        tertiary: $_tertiary,
+      ),
+      typography: (plain-family: Poppins,
+        brand-family: Montserrat,
+        bold-weight: 700,
+        medium-weight: 500,
+        regular-weight: 400,
+        use-system-variables: false,
+      ),
+      density: (scale: -1,
+      ),
+    ));
 
 :root {
 
@@ -83,41 +76,50 @@ $dark-theme: mat.define-theme((
 html.light-theme {
   color-scheme: light;
   @include mat.all-component-themes($light-theme);
-  // background colors
-  --mat-toolbar-container-background-color: var(--navbar-bkg-light-color);
-  --mat-sidenav-container-background-color: var(--sidenav-bkg-light-color);
-  --mat-menu-container-color: #{map.get(map.get(c.$palettes, primary), 100)};
-  // text colors
-  --mat-toolbar-container-text-color: var(--navbar-text-light-color);
-  // others
-  --mat-sidenav-container-shape: 0;
-  --mat-minimal-pseudo-checkbox-selected-checkmark-color: #{map.get(map.get(c.$palettes, secondary),60)};
-  // navbar variables
-  --mat-toolbar-standard-height: var(--navbar-standard-height);
-  --mat-toolbar-title-text-size: var(--navbar-title-text-size);
-  --mdc-icon-button-state-layer-size: var(--navbar-standard-height);
-  --mat-toolbar-mobile-height: var(--navbar-standard-height-mobile);
+
+  .mat-toolbar.navbar,
+  .mat-drawer {
+    --mat-minimal-pseudo-checkbox-selected-checkmark-color: #{map.get(map.get(c.$palettes, secondary),60)};
+    
+    --mat-sidenav-container-shape: 0;
+    // background colors
+    --mat-toolbar-container-background-color: var(--navbar-bkg-light-color);
+    --mat-sidenav-container-background-color: var(--sidenav-bkg-light-color);
+    --mat-menu-container-color: #{map.get(map.get(c.$palettes, primary), 100)};
+    // text colors
+    --mat-toolbar-container-text-color: var(--navbar-text-light-color);
+    // navbar variables
+    --mat-toolbar-standard-height: var(--navbar-standard-height);
+    --mat-toolbar-title-text-size: var(--navbar-title-text-size);
+    --mdc-icon-button-state-layer-size: var(--navbar-standard-height);
+    --mat-toolbar-mobile-height: var(--navbar-standard-height-mobile);
+  }
 }
 
 html.dark-theme {
   color-scheme: dark;
   @include mat.all-component-colors($dark-theme);
-  // background colors
-  --mat-toolbar-container-background-color: var(--navbar-bkg-dark-color);
-  --mat-sidenav-container-background-color: var(--sidenav-bkg-dark-color);
-  --mat-menu-container-color: #{map.get(map.get(c.$palettes, neutral), 20)};
-  // text colors
-  --mat-toolbar-container-text-color: var(--navbar-text-dark-color);
-  // others
-  --mat-sidenav-container-shape: 0;
-  --mat-minimal-pseudo-checkbox-selected-checkmark-color: #{map.get(map.get(c.$palettes, secondary),60)};
-  // navbar variables
-  --mat-toolbar-standard-height: var(--navbar-standard-height);
-  --mat-toolbar-title-text-size: var(--navbar-title-text-size);
-  --mdc-icon-button-state-layer-size: var(--navbar-standard-height);
-  --mat-toolbar-mobile-height: var(--navbar-standard-height-mobile);
-  --navbar-sidenav-toggle-bkg-color-on-hover: rgba(255, 255, 255, 0.07);
-  --navbar-action-hover-bkg-color: #{map.get(map.get(c.$palettes, secondary),70)};
+
+  .mat-toolbar.navbar,
+  .mat-drawer {
+    // background colors
+    --mat-toolbar-container-background-color: var(--navbar-bkg-dark-color);
+    --mat-sidenav-container-background-color: var(--sidenav-bkg-dark-color);
+    --mat-menu-container-color: #{map.get(map.get(c.$palettes, neutral), 20)};
+    // text colors
+    --mat-toolbar-container-text-color: var(--navbar-text-dark-color);
+    // others
+    --mat-sidenav-container-shape: 0;
+    --mat-minimal-pseudo-checkbox-selected-checkmark-color: #{map.get(map.get(c.$palettes, secondary),60)};
+    // navbar variables
+    --mat-toolbar-standard-height: var(--navbar-standard-height);
+    --mat-toolbar-title-text-size: var(--navbar-title-text-size);
+    --mdc-icon-button-state-layer-size: var(--navbar-standard-height);
+    --mat-toolbar-mobile-height: var(--navbar-standard-height-mobile);
+    --navbar-sidenav-toggle-bkg-color-on-hover: rgba(255, 255, 255, 0.07);
+    --navbar-action-hover-bkg-color: #{map.get(map.get(c.$palettes, secondary),70)};
+  }
+
 }
 
 body {

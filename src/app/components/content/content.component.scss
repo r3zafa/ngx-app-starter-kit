@@ -9,33 +9,9 @@
     justify-content: stretch;
     align-items: stretch;
 
-
-    .toggle-is-colapsed {
-        color: var(--mat-icon-color);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        height: 2.5rem;
-        background-color: unset;
-        border: unset;
-        cursor: pointer;
-        width: 4rem;
-        margin: 0.25rem;
-        border-radius: 0.8rem;
+    .toggler-position {
         position: absolute;
-        bottom: 0;
-        right: 0;
-
-        &.expanded {
-            width:2.5rem;
-            padding-left: 0.5rem;
-        }
-
-        &:hover {
-            transition: all 0.3s ease-in;
-            background-color: var(--navbar-sidenav-toggle-bkg-color-on-hover);
-            color: var(--navbar-action-hover-bkg-color);
-        }
-    
+        bottom: 1rem;
+        left: 1rem;
     }
 }
