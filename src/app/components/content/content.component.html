@@ -4,6 +4,12 @@
   <mat-drawer [opened]="opened()" [mode]="mode()" [position]="position()" [disableClose]="disableClose()"
     [style.width]="width()">
 
+
+    <!-- content list -->
+     <app-content-list [itemList]="contentList()" />
+
+
+    <!-- expand btn -->
     @if (!isColapsed()) {
     <mat-icon (click)="toggleIsColapsed()" class="toggle-is-colapsed expanded">
       {{isColapsed() ? icon.arrow_forward_ios : icon.arrow_back_ios}}
@@ -22,8 +28,5 @@
     [style.margin-right]="mode() === 'push' ? pushReverseContentMargin() : null">
     <router-outlet></router-outlet>
   </mat-drawer-content>
-
-  <!-- style="margin-left: 72px; margin-right: -72px;"  -->
-
 
 </mat-drawer-container>

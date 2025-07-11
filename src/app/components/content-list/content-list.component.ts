@@ -1,19 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, input, InputSignal } from '@angular/core';
+import { ContentListItem } from '../../shared/interfaces/content-list-item.interface';
+import { ContentListItemComponent } from '../content-list-item/content-list-item.component';
 
 @Component({
   selector: 'app-content-list',
   standalone: true,
-  imports: [],
+  imports: [ContentListItemComponent],
   templateUrl: './content-list.component.html',
   styleUrl: './content-list.component.scss'
 })
 export class ContentListComponent {
-
-  items: string[] = [
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4'
-];
-
+  itemList: InputSignal<ContentListItem[]>  = input<ContentListItem[]>([]);
 }

@@ -16,54 +16,59 @@ $_rest: (
 $_primary: map.merge(map.get(c.$palettes, primary), $_rest);
 $_tertiary: map.merge(map.get(c.$palettes, tertiary), $_rest);
 
-$light-theme: mat.define-theme(
-  (
-    color: (
-      theme-type: light,
-      primary: $_primary,
-      tertiary: $_tertiary,
-      use-system-variables: true,
-    ),
-    typography: (
-      use-system-variables: true,
-    ),
-    density: (
-      scale: -1,
-    ),
-  )
-);
+$light-theme: mat.define-theme((
+  color: (theme-type: light,
+    primary: $_primary,
+    tertiary: $_tertiary,
+  ),
+  typography: (
+    plain-family: Poppins,
+    brand-family: Montserrat,
+    bold-weight: 700,
+    medium-weight: 500,
+    regular-weight: 400,
+    use-system-variables: false,
+  ),
+  density: (
+    scale: -1,
+  ),
+));
 
-$dark-theme: mat.define-theme(
-  (
-    color: (
-      theme-type: dark,
-      primary: $_primary,
-      tertiary: $_tertiary,
-      use-system-variables: true,
-    ),
-    typography: (
-      use-system-variables: true,
-    ),
-    density: (
-      scale: -1,
-    ),
-  )
-);
+$dark-theme: mat.define-theme((
+  color: (
+    theme-type: dark,
+    primary: $_primary,
+    tertiary: $_tertiary,
+  ),
+  typography: (
+    plain-family: Poppins,
+    brand-family: Montserrat,
+    bold-weight: 700,
+    medium-weight: 500,
+    regular-weight: 400,
+    use-system-variables: false,
+  ),
+  density: (
+    scale: -1,
+  ),
+));
 
 :root {
-  // light theme variables
+
+  // navbar variables
   --navbar-bkg-light-color: #{map.get(map.get(c.$palettes, primary), 30)};
-  --sidenav-bkg-light-color: #{map.get(map.get(c.$palettes, primary), 40)};
+  --navbar-bkg-dark-color: #{map.get(map.get(c.$palettes, primary), 10)};
+  --navbar-text-dark-color: #{map.get(map.get(c.$palettes, primary), 100)};
   --navbar-text-light-color: #{map.get(map.get(c.$palettes, primary), 100)};
 
-  // dark theme variables
-  --navbar-bkg-dark-color: #{map.get(map.get(c.$palettes, primary), 10)};
+  // sidenav variables
   --sidenav-bkg-dark-color: #{darken(map.get(map.get(c.$palettes, primary), 20),2)};
-  --navbar-text-dark-color: #{map.get(map.get(c.$palettes, primary), 100)};
+  --sidenav-bkg-light-color: #{map.get(map.get(c.$palettes, primary), 40)};
 
   // navbar and sidnav variables
   --navbar-sidenav-toggle-bkg-color-on-hover: rgba(0, 0, 0, 0.25);
   --navbar-action-hover-bkg-color: #{map.get(map.get(c.$palettes, secondary),80)};
+
   --navbar-standard-height: 4.5rem;
   --navbar-standard-height-mobile: 4.5rem;
   --navbar-title-text-size: 1.7rem;
@@ -72,14 +77,12 @@ $dark-theme: mat.define-theme(
   --navbar-action-size-mobile: 2.2rem;
   --navbar-action-width-mobile: 3.5rem;
 
-  --mat-icon-color: #{map.get(map.get(c.$palettes, primary), 100)};
 }
 
 :root,
-html:not(.dark-theme) {
+html.light-theme {
   color-scheme: light;
   @include mat.all-component-themes($light-theme);
-  @include mat.color-variants-backwards-compatibility($light-theme);
   // background colors
   --mat-toolbar-container-background-color: var(--navbar-bkg-light-color);
   --mat-sidenav-container-background-color: var(--sidenav-bkg-light-color);
@@ -94,14 +97,11 @@ html:not(.dark-theme) {
   --mat-toolbar-title-text-size: var(--navbar-title-text-size);
   --mdc-icon-button-state-layer-size: var(--navbar-standard-height);
   --mat-toolbar-mobile-height: var(--navbar-standard-height-mobile);
-
-  --mat-icon-color: #{map.get(map.get(c.$palettes, primary), 100)};
 }
 
 html.dark-theme {
   color-scheme: dark;
   @include mat.all-component-colors($dark-theme);
-  @include mat.color-variants-backwards-compatibility($dark-theme);
   // background colors
   --mat-toolbar-container-background-color: var(--navbar-bkg-dark-color);
   --mat-sidenav-container-background-color: var(--sidenav-bkg-dark-color);

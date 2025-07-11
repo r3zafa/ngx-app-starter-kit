@@ -1,1 +1,9 @@
-<p>content-list works!</p>
+<section title="content-list" class="content-list">
+    @if (itemList().length > 0) {
+        @for (item of itemList(); track item) {
+            <app-content-list-item [item]="item" />
+        }
+    } @else {
+        <p class="empty-list">No items found</p>
+    }
+</section>

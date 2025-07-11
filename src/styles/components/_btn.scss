@@ -6,9 +6,12 @@
 
         &:hover {
             transition: all 0.3s ease-in;
-            background-color: var(--navbar-sidenav-toggle-bkg-color-on-hover);
             color: var(--navbar-action-hover-bkg-color);
             border-radius: 0%;
+
+            .mat-icon {
+                color: var(--navbar-action-hover-bkg-color);
+            }
         }
 
         .mat-icon {
@@ -19,6 +22,10 @@
             width: var(--navbar-sidenav-toggle-size);
             height: var(--navbar-sidenav-toggle-size);
             text-align: center;
+        }
+
+        .mat-mdc-button-persistent-ripple {
+            border-radius: 0;
         }
 
     }
