@@ -1,8 +1,0 @@
-@if(item() !== undefined) {
-    <button mat-fab extended [routerLink]="item()?.route">
-        <mat-icon>{{item()?.icon}}</mat-icon>
-        @if(!isColapsed()){
-            {{item()?.title}}
-        }   
-    </button>
-}

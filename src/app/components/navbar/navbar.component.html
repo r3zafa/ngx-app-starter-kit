@@ -1,17 +1,11 @@
 <mat-toolbar class="navbar">
-  <button
-    mat-icon-button
-    class="custom-icon-button-1"
-    (click)="toggleSidenav()"
-    aria-label="Toggle sidenav"
-  >
-    <mat-icon>menu</mat-icon>
-  </button>
 
-  <span class="navbar-app-title">My App</span>
+  <sidenav-toggler />
+
+  <span class="navbar-title">My App</span>
 
   <span class="navbar-actions">
-      <theme-toggler></theme-toggler>
-      <translation-button></translation-button>
+      <theme-toggler />
+      <translation-button />
   </span>
 </mat-toolbar>

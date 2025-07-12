@@ -1,12 +1,12 @@
 import { Component, inject, effect } from '@angular/core';
-import { MatIconButton } from '@angular/material/button';
+import { MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { ThemeService } from '../../shared';
 
 @Component({
   selector: 'theme-toggler',
   standalone: true,
-  imports: [MatIconButton, MatIcon],
+  imports: [MatButtonModule, MatIcon],
   templateUrl: './theme-toggler.component.html',
   styleUrls: ['./theme-toggler.component.scss']
 })

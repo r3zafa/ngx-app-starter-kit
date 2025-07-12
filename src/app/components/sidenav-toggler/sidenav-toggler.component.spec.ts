@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContentListItemComponent } from './content-list-item.component';
+import { MenuTogglerComponent } from './menu-toggler.component';
 
-describe('ContentListItemComponent', () => {
-  let component: ContentListItemComponent;
-  let fixture: ComponentFixture<ContentListItemComponent>;
+describe('MenuTogglerComponent', () => {
+  let component: MenuTogglerComponent;
+  let fixture: ComponentFixture<MenuTogglerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ContentListItemComponent]
+      imports: [MenuTogglerComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ContentListItemComponent);
+    fixture = TestBed.createComponent(MenuTogglerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

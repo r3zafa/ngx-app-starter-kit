@@ -16,7 +16,7 @@ export abstract class WithSidenavAndIcons {
     protected disableClose = this.sidenavService.getDisableClose();
     protected width = this.sidenavService.getWidth();
     protected contentMargin = this.sidenavService.getContentMargin();
-    protected isColapsed = this.sidenavService.getIsColapsed();
+    protected isCollapsed = this.sidenavService.getIsCollapsed();
 
 
     contentList: WritableSignal<ContentListItem[]> = signal([
@@ -31,4 +31,6 @@ export abstract class WithSidenavAndIcons {
             icon: this.icon.info,
         }
     ]);
+
+    
 }

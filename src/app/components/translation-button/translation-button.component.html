@@ -1,10 +1,8 @@
-<mat-icon
-  [matMenuTriggerFor]="menu"
+<button mat-icon-button   [matMenuTriggerFor]="menu"
   aria-label="select language"
-  class="translation-btn"
->
-  language
-</mat-icon>
+  class="translation-btn">
+    <mat-icon>language</mat-icon>
+</button>
 
 <mat-menu #menu="matMenu" class="translation-menu">
   @for (language of languages; track language) {

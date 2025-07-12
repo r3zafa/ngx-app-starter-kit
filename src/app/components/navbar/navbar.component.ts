@@ -1,26 +1,22 @@
-import { MatIcon } from "@angular/material/icon";
-import { Component, inject } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { TranslationButtonComponent } from "../translation-button/translation-button.component";
 import { ThemeTogglerComponent } from "../theme-toggler/theme-toggler.component";
 import { MatToolbar } from "@angular/material/toolbar";
-import { MatButton, MatButtonModule } from "@angular/material/button";
-import { SidenavService } from "../../shared/services/sidenav/sidenav.service";
+import { SidenavTogglerComponent } from "../sidenav-toggler/sidenav-toggler.component";
 
 @Component({
   selector: "app-navbar",
   standalone: true,
+  encapsulation:ViewEncapsulation.None,
   templateUrl: "./navbar.component.html",
   styleUrls: ["./navbar.component.scss"],
   imports: [
+    MatToolbar,
     TranslationButtonComponent,
     ThemeTogglerComponent,
-    MatToolbar,
-    MatIcon,
-    MatButton,
-    MatButtonModule,
+    SidenavTogglerComponent,
   ],
 })
 export class NavbarComponent {
-  private SidenavService: SidenavService = inject(SidenavService);
-  protected toggleSidenav = this.SidenavService.toggle.bind(this.SidenavService);
+
 }

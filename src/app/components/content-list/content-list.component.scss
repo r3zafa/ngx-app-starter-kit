@@ -1,0 +1,66 @@
+@use "sass:map" as map;
+@use "../../../styles/palettes" as c;
+@use "@angular/material" as mat;
+
+$item-text-color: map.get(map.get(c.$palettes, primary), 100);
+
+.app-content-list {
+  height: calc(100% - 4.3rem);
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.mdc-list.content-list {
+  width: 100%;
+  height: 100%;
+  padding: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+    --mat-menu-item-label-text-color: #{$item-text-color};
+  --mat-menu-item-icon-color: #{$item-text-color};
+}
+
+html.light-theme {
+  --selected-item-bkg-color: rgba(0, 0, 0, 0.4);
+}
+
+html.dark-theme {
+  --selected-item-bkg-color: rgba(255, 255, 255, 0.15);
+}
+
+.selected {
+  @include mat.elevation(4);
+  background-color: var(--selected-item-bkg-color);
+}
+
+.mat-mdc-menu-item {
+  min-height: 4rem;
+
+  .mat-icon {
+    margin-left: 0.6rem;
+    font-size: 1.7rem;
+    height: 1.7rem;
+    width: 1.7rem;
+  }
+
+}
+
+.mat-mdc-menu-item.collapsed {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .mat-icon {
+    margin-left: unset;
+    margin-right: unset;
+  }
+
+}

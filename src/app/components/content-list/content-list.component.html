@@ -1,9 +1,14 @@
-<section title="content-list" class="content-list">
-    @if (itemList().length > 0) {
+@if (itemList().length > 0) {
+    <mat-nav-list class="content-list">
         @for (item of itemList(); track item) {
-            <app-content-list-item [item]="item" />
+            <button mat-menu-item  class="{{!isCollapsed() ? null : 'collapsed'}}"
+                    [routerLink]="item?.route"
+                    routerLinkActive="selected">
+                <mat-icon>{{item?.icon}}</mat-icon>
+                @if(!isCollapsed()){
+                    <span>{{item?.title}}</span>
+                }
+            </button>
         }
-    } @else {
-        <p class="empty-list">No items found</p>
-    }
-</section>
+    </mat-nav-list>
+}

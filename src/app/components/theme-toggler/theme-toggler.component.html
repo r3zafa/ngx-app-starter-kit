@@ -1,7 +1,3 @@
-<mat-icon
-  (click)="toggleTheme()"
-  class="theme-toggler"
-  aria-label="Toggle theme"
->
-  {{ isDarkMode ? "dark_mode" : "light_mode" }}
-</mat-icon>
+<button mat-icon-button (click)="toggleTheme()" class="theme-toggler">
+    <mat-icon>{{ isDarkMode ? "dark_mode" : "light_mode" }}</mat-icon>
+</button>

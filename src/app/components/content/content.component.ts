@@ -1,17 +1,19 @@
 import { RouterOutlet } from '@angular/router';
-import { Component, computed, inject } from "@angular/core";
+import { Component, computed, ViewEncapsulation } from "@angular/core";
 import { TranslatePipe } from "@ngx-translate/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDrawer, MatDrawerContainer, MatDrawerContent } from "@angular/material/sidenav";
 import { MatIcon } from '@angular/material/icon';
 import { WithSidenavAndIcons } from '../../shared/classes/with-sidenav-and-icons';
 import { ContentListComponent } from '../content-list/content-list.component';
+import { SidenavExpandTogglerComponent } from '../sidenav-expand-toggler/sidenav-expand-toggler.component';
 
 @Component({
   selector: "app-content",
   standalone: true,
   templateUrl: "./content.component.html",
   styleUrls: ["./content.component.scss"],
+  encapsulation: ViewEncapsulation.None,
   imports: [
     TranslatePipe,
     MatDrawer,
@@ -20,15 +22,11 @@ import { ContentListComponent } from '../content-list/content-list.component';
     MatButtonModule,
     RouterOutlet,
     MatIcon,
-    ContentListComponent
+    ContentListComponent,
+    SidenavExpandTogglerComponent
   ],
 })
 export class ContentComponent extends WithSidenavAndIcons {
-
-  // methods
-  protected toggleIsColapsed(): void {
-    this.sidenavService.setIsColapsed(!this.isColapsed());
-  }
 
   // computed
   protected pushReverseContentMargin = computed(() => this.opened() ? `-${this.contentMargin()}` : '0');

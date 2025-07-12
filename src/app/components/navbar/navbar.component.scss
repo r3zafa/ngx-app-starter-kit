@@ -1,0 +1,53 @@
+@use "sass:map";
+@use "../../../styles/palettes" as c;
+
+// navbar SCSS variables for palette colors
+$navbar-bkg-light-color: map.get(map.get(c.$palettes, primary), 40);
+$navbar-bkg-dark-color: map.get(map.get(c.$palettes, primary), 10);
+$navbar-text-dark-color: map.get(map.get(c.$palettes, primary), 100);
+$navbar-text-light-color: map.get(map.get(c.$palettes, primary), 100);
+
+:root {
+    // navbar variables
+    --navbar-bkg-light-color: #{$navbar-bkg-light-color};
+    --navbar-bkg-dark-color: #{$navbar-bkg-dark-color};
+    --navbar-text-dark-color: #{$navbar-text-dark-color};
+    --navbar-text-light-color: #{$navbar-text-light-color};
+    // Navbar dimensions
+    --navbar-standard-height: 4rem;
+    --navbar-standard-height-mobile: 4rem;
+
+}
+
+html .mat-toolbar.navbar {
+    // Material toolbar variables
+    --mat-toolbar-standard-height: var(--navbar-standard-height);
+    --mat-toolbar-mobile-height: var(--navbar-standard-height-mobile);
+
+    padding: 0 0.5rem;
+
+    .navbar-actions {
+        margin-left: auto;
+    }
+
+    .navbar-title {
+        font-weight: 200;
+        margin-left: 1.8rem;
+    }
+
+}
+
+html.light-theme .mat-toolbar.navbar {
+    --mat-toolbar-container-background-color: var(--navbar-bkg-light-color);
+    --mat-toolbar-container-text-color: var(--navbar-text-light-color);
+    --mdc-icon-button-icon-color: var(--navbar-text-light-color);
+
+    .mdc-icon-button:hover .mat-mdc-button-persistent-ripple {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+html.dark-theme .mat-toolbar.navbar {
+    --mat-toolbar-container-background-color: var(--navbar-bkg-dark-color);
+    --mat-toolbar-container-text-color: var(--navbar-text-dark-color);
+}

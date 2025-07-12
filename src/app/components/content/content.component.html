@@ -1,32 +1,27 @@
 <mat-drawer-container class="content" [hasBackdrop]="hasBackdrop()">
 
   <!-- drawer content -->
-  <mat-drawer [opened]="opened()" [mode]="mode()" [position]="position()" [disableClose]="disableClose()"
+  <mat-drawer class="content-sidenav" 
+    [opened]="opened()" 
+    [mode]="mode()"
+    [position]="position()" 
+    [disableClose]="disableClose()" 
     [style.width]="width()">
 
-
     <!-- content list -->
-     <app-content-list [itemList]="contentList()" />
-
-
-    <!-- expand btn -->
-    @if (!isColapsed()) {
-      <button mat-mini-fab (click)="toggleIsColapsed()" class="toggler-position">
-        <mat-icon  [style.width]="'14px'">{{icon.arrow_back_ios}}</mat-icon>
-      </button>
-    } @else {
-      <button mat-mini-fab (click)="toggleIsColapsed()" class="toggler-position">
-        <mat-icon>{{icon.arrow_forward_ios}}</mat-icon>
-      </button>
-    }
+    <app-content-list [itemList]="contentList()" />
+    <!-- sidenav expand toggler -->
+    <app-sidenav-expand-toggler />
 
   </mat-drawer>
 
-  <!-- main content -->
-  <mat-drawer-content
+  <mat-drawer-content class="content-body" 
     [style.margin-left]="mode() !== 'over' ? pushContentMargin() : null"
     [style.margin-right]="mode() === 'push' ? pushReverseContentMargin() : null">
-    <router-outlet></router-outlet>
+
+    <!-- main content -->
+    <router-outlet />
+
   </mat-drawer-content>
 
 </mat-drawer-container>
