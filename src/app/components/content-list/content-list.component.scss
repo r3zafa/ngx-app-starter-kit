@@ -2,7 +2,6 @@
 @use "../../../styles/palettes" as c;
 @use "@angular/material" as mat;
 
-$item-text-color: map.get(map.get(c.$palettes, primary), 100);
 
 .app-content-list {
   height: calc(100% - 4.3rem);
@@ -13,6 +12,7 @@ $item-text-color: map.get(map.get(c.$palettes, primary), 100);
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.5rem;
+  padding: 0.5rem;
 }
 
 .mdc-list.content-list {
@@ -23,44 +23,64 @@ $item-text-color: map.get(map.get(c.$palettes, primary), 100);
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-    --mat-menu-item-label-text-color: #{$item-text-color};
-  --mat-menu-item-icon-color: #{$item-text-color};
+  gap: 0.2rem;
 }
 
-html.light-theme {
-  --selected-item-bkg-color: rgba(0, 0, 0, 0.4);
-}
 
-html.dark-theme {
-  --selected-item-bkg-color: rgba(255, 255, 255, 0.15);
-}
-
-.selected {
-  @include mat.elevation(4);
-  background-color: var(--selected-item-bkg-color);
-}
-
-.mat-mdc-menu-item {
-  min-height: 4rem;
-
-  .mat-icon {
-    margin-left: 0.6rem;
-    font-size: 1.7rem;
-    height: 1.7rem;
-    width: 1.7rem;
-  }
-
-}
-
-.mat-mdc-menu-item.collapsed {
+.mdc-list-item {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  --mdc-list-list-item-one-line-container-height: 3rem;
 
-  .mat-icon {
-    margin-left: unset;
-    margin-right: unset;
+  .mdc-list-item__content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    .mdc-list-item__primary-text {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+          gap: 0.5rem;
+    }
   }
 
+
+  &.collapsed {
+
+    .mdc-list-item__content {
+      justify-content: center;
+    }
+
+    .mdc-list-item__primary-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+  }
+}
+
+
+html.light-theme {
+  .mdc-list-item {
+    &.selected {
+      --mdc-list-list-item-label-text-color:  #{map.get(map.get(c.$palettes, secondary), 40)};
+      --mdc-list-list-item-hover-label-text-color: #{map.get(map.get(c.$palettes, secondary), 35)};
+      --mdc-list-list-item-focus-label-text-color: #{map.get(map.get(c.$palettes, secondary), 30)};
+    }
+  }
+}
+
+html.dark-theme {
+  .mdc-list-item {
+    &.selected {
+      --mat-list-active-indicator-color: #{map.get(map.get(c.$palettes, secondary), 20)};
+      --mdc-list-list-item-label-text-color:  #{map.get(map.get(c.$palettes, secondary), 70)};
+      --mdc-list-list-item-hover-label-text-color: #{map.get(map.get(c.$palettes, secondary), 80)};
+      --mdc-list-list-item-focus-label-text-color: #{map.get(map.get(c.$palettes, secondary), 80)};
+    }
+  }
 }

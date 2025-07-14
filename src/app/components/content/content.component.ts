@@ -7,6 +7,7 @@ import { MatIcon } from '@angular/material/icon';
 import { WithSidenavAndIcons } from '../../shared/classes/with-sidenav-and-icons';
 import { ContentListComponent } from '../content-list/content-list.component';
 import { SidenavExpandTogglerComponent } from '../sidenav-expand-toggler/sidenav-expand-toggler.component';
+import { expandCollapseAnimation } from '../../shared/animation/expand-collapse.animation';
 
 @Component({
   selector: "app-content",
@@ -14,6 +15,9 @@ import { SidenavExpandTogglerComponent } from '../sidenav-expand-toggler/sidenav
   templateUrl: "./content.component.html",
   styleUrls: ["./content.component.scss"],
   encapsulation: ViewEncapsulation.None,
+  animations: [
+    expandCollapseAnimation
+  ],
   imports: [
     TranslatePipe,
     MatDrawer,

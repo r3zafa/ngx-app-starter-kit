@@ -30,7 +30,7 @@ export class SidenavService {
   private disableClose: WritableSignal<boolean> = signal(false);
   private isCollapsed: WritableSignal<boolean> = signal(true);
   private mobileWidth: WritableSignal<string> = signal("100dvw");
-  private desktopWidth: WritableSignal<string> = signal("24rem");
+  private desktopWidth: WritableSignal<string> = signal("16rem");
   private collapsedWidth: WritableSignal<string> = signal("4.5rem");
 
   // computed properties

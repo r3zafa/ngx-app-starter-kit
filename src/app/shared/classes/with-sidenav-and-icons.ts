@@ -3,10 +3,16 @@ import { matIconRecord } from '../../shared/constants/mat-icon-record.constant';
 import { MatIconType } from '../../shared/types/mat-icon.type';
 import { inject, signal, WritableSignal } from "@angular/core";
 import { ContentListItem } from "../interfaces/content-list-item.interface";
+import { Router } from "@angular/router";
 
 export abstract class WithSidenavAndIcons {
+
+    // constants
     public icon: Record<MatIconType, MatIconType> = matIconRecord;
+
+    // injctions
     protected sidenavService: SidenavService = inject(SidenavService);
+    private router: Router = inject(Router);
 
     // Using signals to manage the state of the sidenav
     protected opened = this.sidenavService.getOpened();
@@ -19,6 +25,7 @@ export abstract class WithSidenavAndIcons {
     protected isCollapsed = this.sidenavService.getIsCollapsed();
 
 
+    // content list
     contentList: WritableSignal<ContentListItem[]> = signal([
         {
             title: 'Home',
@@ -32,5 +39,15 @@ export abstract class WithSidenavAndIcons {
         }
     ]);
 
-    
+
+
+    // route active check
+    public isRouteActive(route: string | undefined): boolean {
+        return route ? this.router.isActive(route, {
+            paths: 'subset',
+            queryParams: 'subset',
+            fragment: 'ignored',
+            matrixParams: 'ignored'
+        }) : false;
+    }
 }

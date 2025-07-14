@@ -14,7 +14,8 @@ $_rest: (
 $_primary: map.merge(map.get(c.$palettes, primary), $_rest);
 $_tertiary: map.merge(map.get(c.$palettes, tertiary), $_rest);
 
-$light-theme: mat.define-theme((color: (theme-type: light,
+$light-theme: mat.define-theme((color: (
+        theme-type: light,
         primary: $_primary,
         tertiary: $_tertiary,
       ),

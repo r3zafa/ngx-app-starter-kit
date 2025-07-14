@@ -2,8 +2,8 @@
 @use "../../../styles/palettes" as c;
 @use "../../../styles/animation" as animation;
 
-$sidenav-bkg-dark-color : darken(map.get(map.get(c.$palettes, primary), 10), 5);
-$sidenav-bkg-light-color: map.get(map.get(c.$palettes, primary), 25);
+$sidenav-bkg-dark-color : map.get(map.get(c.$palettes, primary), 30);
+$sidenav-bkg-light-color: map.get(map.get(c.$palettes, primary), 60);
 $mat-sidenav-container-shape: 0;
 
 :host {
@@ -21,11 +21,11 @@ $mat-sidenav-container-shape: 0;
 
 
 html.light-theme .content .content-sidenav {
-    --mat-sidenav-container-background-color: #{$sidenav-bkg-light-color};
+   --mat-sidenav-container-divider-color: #{$sidenav-bkg-light-color};
 }
 
 html.dark-theme .content .content-sidenav {
-    --mat-sidenav-container-background-color: #{$sidenav-bkg-dark-color};
+   --mat-sidenav-container-divider-color: #{$sidenav-bkg-dark-color};
 }
 
 

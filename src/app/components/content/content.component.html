@@ -6,7 +6,17 @@
     [mode]="mode()"
     [position]="position()" 
     [disableClose]="disableClose()" 
-    [style.width]="width()">
+    [style.width]="width()"
+    [@expandCollapse]="{
+      value:isCollapsed() ? 'collapsed' : 'expanded', 
+      params: { 
+        expandedWidth: width(), 
+        collapsedWidth: width(),
+        expandDuration: '300ms',
+        collapseDuration: '200ms',
+        fadeDelay: '300ms'
+      }
+      }">
 
     <!-- content list -->
     <app-content-list [itemList]="contentList()" />

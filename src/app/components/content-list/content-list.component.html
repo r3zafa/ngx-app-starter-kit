@@ -1,14 +1,17 @@
 @if (itemList().length > 0) {
     <mat-nav-list class="content-list">
         @for (item of itemList(); track item) {
-            <button mat-menu-item  class="{{!isCollapsed() ? null : 'collapsed'}}"
+            <mat-list-item mat-list-item  class="{{!isCollapsed() ? null : 'collapsed'}}"
+                    [matTooltip]="isCollapsed() ? item?.title : null"
+                    matTooltipPosition='right'
+                    [activated]="isRouteActive(item?.route)"
                     [routerLink]="item?.route"
                     routerLinkActive="selected">
                 <mat-icon>{{item?.icon}}</mat-icon>
                 @if(!isCollapsed()){
                     <span>{{item?.title}}</span>
                 }
-            </button>
+            </mat-list-item>
         }
     </mat-nav-list>
 }
