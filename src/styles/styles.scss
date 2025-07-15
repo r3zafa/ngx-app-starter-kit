@@ -25,6 +25,10 @@ body {
   align-self: flex-end;
 }
 
+html.light-theme {
+  --mat-text-button-hover-state-layer-opacity:0.15;
+}
+
 button.mdc-button {
   display: inline-flex;
   justify-content: center;
