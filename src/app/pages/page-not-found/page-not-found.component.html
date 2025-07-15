@@ -1,1 +1,10 @@
-404 not found
+@if(isMobile404()) {
+<app-err-404-mobile [theme]="currentTheme()" />
+} @else {
+<app-err-404-desktop [theme]="currentTheme()" />
+}
+
+ <button mat-flat-button (click)="goBack()">
+    <mat-icon>{{icon.chevron_left}}</mat-icon>
+    go back
+</button>

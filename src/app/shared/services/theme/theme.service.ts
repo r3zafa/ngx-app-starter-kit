@@ -1,8 +1,7 @@
 // theme.service.ts
-import { Injectable, PLATFORM_ID, inject, signal } from "@angular/core";
+import { Injectable, PLATFORM_ID, Signal, inject, signal } from "@angular/core";
 import { isPlatformBrowser } from "@angular/common";
-
-type ThemeType = "light" | "dark";
+import { ThemeType } from "../../types";
 
 const THEME_KEY = "theme-preference";
 
@@ -92,7 +91,7 @@ export class ThemeService {
    * Get the current active theme as a signal
    * @returns Signal of 'light' or 'dark'.
    */
-  public getCurrentTheme() {
+  public getCurrentTheme(): Signal<ThemeType> {
     return this.currentThemeSignal.asReadonly();
   }
 

@@ -1,12 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, inject, Signal } from '@angular/core';
+import { LayoutService, ThemeService } from '../../shared/services';
+import { Err404DesktopComponent, Err404MobileComponent } from './components';
+import { MatIconType, ThemeType } from '../../shared/types';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { matIconRecord } from '../../shared/constants';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-page-not-found',
   standalone: true,
-  imports: [],
+  imports: [Err404DesktopComponent, Err404MobileComponent, MatButton, MatIcon],
   templateUrl: './page-not-found.component.html',
   styleUrl: './page-not-found.component.scss'
 })
 export class PageNotFoundComponent {
+
+  // constants
+  public icon: Record<MatIconType, MatIconType> = matIconRecord;
+
+  // injects
+  private layoutService = inject(LayoutService);
+  private themeService = inject(ThemeService);
+  private location = inject(Location);
+
+  readonly currentTheme: Signal<ThemeType> = this.themeService.getCurrentTheme();  // theme state
+  readonly isMobile404 = this.layoutService.isPortrait;  // 404 layout
+
+
+  goBack = () => this.location.back();
 
 }

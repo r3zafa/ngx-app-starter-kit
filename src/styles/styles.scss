@@ -24,3 +24,17 @@ body {
   margin-top: auto;
   align-self: flex-end;
 }
+
+button.mdc-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+
+  .mat-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size:calc(var(--mdc-filled-button-label-text-size) * 2);
+  }
+}
