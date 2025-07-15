@@ -14,8 +14,8 @@ $navbar-text-light-color: map.get(map.get(c.$palettes, primary), 100);
     --navbar-text-dark-color: #{$navbar-text-dark-color};
     --navbar-text-light-color: #{$navbar-text-light-color};
     // Navbar dimensions
-    --navbar-standard-height: 4rem;
-    --navbar-standard-height-mobile: 4rem;
+    --navbar-standard-height: 3.5rem;
+    --navbar-standard-height-mobile: 3.5rem;
 
 }
 
@@ -31,8 +31,9 @@ html .mat-toolbar.navbar {
     }
 
     .navbar-title {
-        font-weight: 200;
-        margin-left: 1.8rem;
+        font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        font-weight: 500;
+        margin-left: 0.5rem;
     }
 
 }
@@ -42,6 +43,7 @@ html.light-theme .mat-toolbar.navbar {
     --mat-toolbar-container-text-color: var(--navbar-text-light-color);
     --mdc-icon-button-icon-color: var(--navbar-text-light-color);
 
+    .mdc-button:hover .mat-mdc-button-persistent-ripple,
     .mdc-icon-button:hover .mat-mdc-button-persistent-ripple {
         background-color: rgba(0, 0, 0, 0.1);
     }
