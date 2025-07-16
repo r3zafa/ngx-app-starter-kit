@@ -1,0 +1,36 @@
+@if (countriesStore.error()) {
+<p class="error">Error loading countries: {{ countriesStore.error() }}</p>
+}
+
+<h1>Countries</h1>
+
+@if("debug") {
+<div class="debug-info">
+    <p>Selected Region: {{ countriesStore.selectedRegion() || 'All' }}</p>
+    <p>Showing {{ countriesStore.filteredCountries().length }} of {{ countriesStore.countries().length }} countries</p>
+</div>
+}
+
+
+<button (click)="countriesStore.loadCountries()">Load Countries</button>
+
+@if(countriesStore.loading()) {
+<p>Loading countries...</p>
+} @else {
+
+<select #regionSelect (change)="countriesStore.setRegion(regionSelect.value || null)">
+    <option value="">All Regions</option>
+    @for (region of countriesStore.regions(); track region) {
+    <option [value]="region">{{ region }}</option>
+    }
+</select>
+
+<ul>
+    @for(country of countriesStore.filteredCountries(); track country.name.common) {
+    <li>
+        <img [src]="country.flags.png" width="30" alt="Flag">
+        {{ country.name.common }} ({{ country.region }})
+    </li>
+    }
+</ul>
+}

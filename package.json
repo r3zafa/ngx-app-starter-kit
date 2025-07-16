@@ -43,6 +43,7 @@
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
     "@colsen1991/ngx-translate-extract-marker": "^3.0.1",
+    "@ngrx/signals": "^18.1.1",
     "@ngx-translate/core": "^16.0.4",
     "@ngx-translate/http-loader": "^16.0.1",
     "degit": "^2.8.4",

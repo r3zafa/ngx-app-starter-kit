@@ -4,6 +4,7 @@ import { MatIconType } from '../../shared/types/mat-icon.type';
 import { inject, signal, WritableSignal } from "@angular/core";
 import { ContentListItem } from "../interfaces/content-list-item.interface";
 import { Router } from "@angular/router";
+import { routePaths } from "../../app.routes";
 
 export abstract class WithSidenavAndIcons {
 
@@ -29,13 +30,23 @@ export abstract class WithSidenavAndIcons {
     contentList: WritableSignal<ContentListItem[]> = signal([
         {
             title: 'Home',
-            route: '/home',
+            route: routePaths.home,
             icon: this.icon.home,
         },
         {
             title: 'About Us',
-            route: '/about-us',
+            route: routePaths.aboutUs,
             icon: this.icon.info,
+        },
+        {
+            title: 'Posts',
+            route: routePaths.posts,
+            icon: this.icon.message
+        },
+        {
+            title: 'Countries',
+            route: routePaths.countries,
+            icon: this.icon.flag
         }
     ]);
 

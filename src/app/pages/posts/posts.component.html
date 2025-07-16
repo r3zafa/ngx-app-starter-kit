@@ -1,0 +1,21 @@
+@if (postsStore.error()) {
+  <p class="error">Error loading posts: {{ postsStore.error() }}</p>
+}
+
+<h1>Posts</h1>
+
+<button (click)="postsStore.loadPosts()">Load Posts</button>
+
+@if(postsStore.loading()) {
+Loading posts...
+} @else {
+<ul>
+    @for(post of postsStore.posts(); track post.id) {
+    <li (click)="postsStore.selectPost(post.id)" [class.selected]="postsStore.selectedPostId() === post.id">
+        {{ post.title }}
+    </li>
+    }
+</ul>
+
+<p> Total posts: {{ postsStore.postsCount() }}</p>
+}
