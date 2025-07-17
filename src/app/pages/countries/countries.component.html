@@ -1,36 +1,69 @@
+<!-- countries.component.html -->
 @if (countriesStore.error()) {
-<p class="error">Error loading countries: {{ countriesStore.error() }}</p>
+<mat-card class="error-card">
+    <mat-card-content>
+        <p class="error">Error loading countries: {{ countriesStore.error() }}</p>
+    </mat-card-content>
+</mat-card>
 }
 
 <h1>Countries</h1>
 
-@if("debug") {
+
 <div class="debug-info">
-    <p>Selected Region: {{ countriesStore.selectedRegion() || 'All' }}</p>
+    <p>Selected Regions: {{ countriesStore.selectedRegions().join(', ') || 'All Regions' }}</p>
     <p>Showing {{ countriesStore.filteredCountries().length }} of {{ countriesStore.countries().length }} countries</p>
+</div>
+
+
+<!-- Search input -->
+<mat-form-field appearance="outline">
+    <mat-label>Search Countries</mat-label>
+    <input matInput type="text" (input)="handleSearch($event)" placeholder="Search by name or capital">
+</mat-form-field>
+
+<!-- Region selector -->
+<mat-form-field appearance="outline">
+    <mat-label>Filter by Regions</mat-label>
+    <mat-select multiple (selectionChange)="onRegionsChange($event.value)" [value]="countriesStore.selectedRegions()">
+        @for (region of countriesStore.regionsForSelect(); track region) {
+        <mat-option [value]="region === 'All Regions' ? '' : region">
+            {{ region }}
+        </mat-option>
+        }
+    </mat-select>
+</mat-form-field>
+
+@if (countriesStore.loading()) {
+<div class="loading-spinner">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Loading countries...</p>
 </div>
 }
 
-
-<button (click)="countriesStore.loadCountries()">Load Countries</button>
-
-@if(countriesStore.loading()) {
-<p>Loading countries...</p>
-} @else {
-
-<select #regionSelect (change)="countriesStore.setRegion(regionSelect.value || null)">
-    <option value="">All Regions</option>
-    @for (region of countriesStore.regions(); track region) {
-    <option [value]="region">{{ region }}</option>
+<div class="country-grid">
+    @for (country of countriesStore.sortedCountries(); track country.cca3) {
+    <mat-card class="country-card" appearance="outlined" (click)="countriesStore.selectCountry(country)"
+        [class.selected]="countriesStore.selectedCountry()?.cca3 === country.cca3">
+        <mat-card-header>
+            <mat-card-title-group>
+                <mat-card-title>{{ country.name.common }}</mat-card-title>
+                <mat-card-subtitle>{{ country.region }}</mat-card-subtitle>
+                <img mat-card-md-image [src]="country.flags.png" [style.height]="'unset'"
+                [alt]="'Flag of ' + country.name.common">
+            </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+            <p>Capital: {{ country.capital?.[0] || 'N/A' }}</p>
+            <p>Population: {{ country.population | number }}</p>
+        </mat-card-content>
+    </mat-card>
     }
-</select>
+</div>
 
-<ul>
-    @for(country of countriesStore.filteredCountries(); track country.name.common) {
-    <li>
-        <img [src]="country.flags.png" width="30" alt="Flag">
-        {{ country.name.common }} ({{ country.region }})
-    </li>
-    }
-</ul>
+@if (countriesStore.selectedCountryDetails()) {
+<div class="country-details">
+    <h2>Details: {{ countriesStore.selectedCountryDetails()!.name.common }}</h2>
+    <!-- Add detailed view content here -->
+</div>
 }
