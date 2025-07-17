@@ -36,6 +36,11 @@
             "styles": [
               "src/styles/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -53,7 +58,8 @@
                 }
               ],
               "outputHashing": "all",
-              "sourceMap": false,
+              "sourceMap": true,
+              "namedChunks": false,
               "optimization": true,
               "extractLicenses": true
             },
