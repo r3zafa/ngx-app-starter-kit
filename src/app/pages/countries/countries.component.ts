@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CountriesStore } from '../../stores';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
+import { CountryCardComponent } from '../../components/country-card/country-card.component';
 
 @Component({
   selector: 'app-countries',
@@ -22,7 +23,8 @@ import { MatOptionModule } from '@angular/material/core';
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatOptionModule
+    MatOptionModule,
+    CountryCardComponent
   ],
   templateUrl: './countries.component.html',
   styleUrl: './countries.component.scss'
@@ -30,14 +32,16 @@ import { MatOptionModule } from '@angular/material/core';
 export class CountriesComponent {
   readonly countriesStore = inject(CountriesStore);
 
-  // Properly typed search handler
   handleSearch(event: Event) {
     const target = event.target as HTMLInputElement;
     this.countriesStore.setSearchQuery(target.value);
   }
 
-  // Region change handler
   onRegionsChange(regions: string[]) {
     this.countriesStore.setRegions(regions);
+  }
+
+  onSortChange(sortOption: 'alphabetical' | 'reverse-alphabetical' | 'region') {
+    this.countriesStore.setSortOption(sortOption);
   }
 }

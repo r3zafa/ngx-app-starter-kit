@@ -1,4 +1,3 @@
-<!-- countries.component.html -->
 @if (countriesStore.error()) {
 <mat-card class="error-card">
     <mat-card-content>
@@ -9,30 +8,43 @@
 
 <h1>Countries</h1>
 
-
 <div class="debug-info">
     <p>Selected Regions: {{ countriesStore.selectedRegions().join(', ') || 'All Regions' }}</p>
+    <p>Sorting by: {{ countriesStore.sortOption() }}</p>
     <p>Showing {{ countriesStore.filteredCountries().length }} of {{ countriesStore.countries().length }} countries</p>
 </div>
 
+<div class="country-filter-grid">
+    <!-- Search input -->
+    <mat-form-field appearance="outline">
+        <mat-label>Search Countries</mat-label>
+        <input matInput type="text" (input)="handleSearch($event)" placeholder="Search by name or capital">
+    </mat-form-field>
 
-<!-- Search input -->
-<mat-form-field appearance="outline">
-    <mat-label>Search Countries</mat-label>
-    <input matInput type="text" (input)="handleSearch($event)" placeholder="Search by name or capital">
-</mat-form-field>
+    <!-- Region selector -->
+    <mat-form-field appearance="outline">
+        <mat-label>Filter by Regions</mat-label>
+        <mat-select multiple (selectionChange)="onRegionsChange($event.value)"
+            [value]="countriesStore.selectedRegions()">
+            @for (region of countriesStore.regionsForSelect(); track region) {
+            <mat-option [value]="region === 'All Regions' ? '' : region">
+                {{ region }}
+            </mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
 
-<!-- Region selector -->
-<mat-form-field appearance="outline">
-    <mat-label>Filter by Regions</mat-label>
-    <mat-select multiple (selectionChange)="onRegionsChange($event.value)" [value]="countriesStore.selectedRegions()">
-        @for (region of countriesStore.regionsForSelect(); track region) {
-        <mat-option [value]="region === 'All Regions' ? '' : region">
-            {{ region }}
-        </mat-option>
-        }
-    </mat-select>
-</mat-form-field>
+    <!-- Sort selector -->
+    <mat-form-field appearance="outline">
+        <mat-label>Sort By</mat-label>
+        <mat-select (selectionChange)="onSortChange($event.value)" 
+                   [value]="countriesStore.sortOption()">
+            <mat-option value="alphabetical">A → Z</mat-option>
+            <mat-option value="reverse-alphabetical">Z → A</mat-option>
+            <mat-option value="region">By Region</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
 
 @if (countriesStore.loading()) {
 <div class="loading-spinner">
@@ -43,27 +55,6 @@
 
 <div class="country-grid">
     @for (country of countriesStore.sortedCountries(); track country.cca3) {
-    <mat-card class="country-card" appearance="outlined" (click)="countriesStore.selectCountry(country)"
-        [class.selected]="countriesStore.selectedCountry()?.cca3 === country.cca3">
-        <mat-card-header>
-            <mat-card-title-group>
-                <mat-card-title>{{ country.name.common }}</mat-card-title>
-                <mat-card-subtitle>{{ country.region }}</mat-card-subtitle>
-                <img mat-card-md-image [src]="country.flags.png" [style.height]="'unset'"
-                [alt]="'Flag of ' + country.name.common">
-            </mat-card-title-group>
-        </mat-card-header>
-        <mat-card-content>
-            <p>Capital: {{ country.capital?.[0] || 'N/A' }}</p>
-            <p>Population: {{ country.population | number }}</p>
-        </mat-card-content>
-    </mat-card>
+    <app-country-card [country]="country" />
     }
 </div>
-
-@if (countriesStore.selectedCountryDetails()) {
-<div class="country-details">
-    <h2>Details: {{ countriesStore.selectedCountryDetails()!.name.common }}</h2>
-    <!-- Add detailed view content here -->
-</div>
-}

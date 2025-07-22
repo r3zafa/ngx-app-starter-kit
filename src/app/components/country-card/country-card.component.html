@@ -1,0 +1,15 @@
+<!-- country-card.component.html -->
+<mat-card class="country-card" appearance="outlined" (click)="openCountryDialog()" [class.selected]="isSelected()">
+    <mat-card-header>
+        <mat-card-title-group>
+            <mat-card-title>{{ country().name.common }}</mat-card-title>
+            <mat-card-subtitle>{{ country().region }}</mat-card-subtitle>
+            <img mat-card-md-image [src]="country().flags.png" [style.height]="'70px'"
+                [alt]="'Flag of ' + country().name.common">
+        </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+        <p>Capital: {{ country().capital }}</p>
+        <p>Population: {{ country().population | number:'1.0-0' }}</p>
+    </mat-card-content>
+</mat-card>
