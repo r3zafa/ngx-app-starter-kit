@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, HostBinding, ViewEncapsulation } from '@angular/core';
 import { WithSidenavAndIcons } from '../../shared/classes/with-sidenav-and-icons';
 import { MatIcon } from '@angular/material/icon';
 import { MatMiniFabButton } from '@angular/material/button';
@@ -10,13 +10,18 @@ import { MatMiniFabButton } from '@angular/material/button';
   imports: [MatIcon, MatMiniFabButton],
   templateUrl: './sidenav-expand-toggler.component.html',
   styleUrl: './sidenav-expand-toggler.component.scss',
-  host:{
+  host: {
     class: 'sidenav-expand-toggler'
   }
 })
 export class SidenavExpandTogglerComponent extends WithSidenavAndIcons {
 
-    // methods
+  @HostBinding('class.collapsed') get collapsedClass() {
+    return this.isCollapsed();
+  }
+
+
+  // methods
   protected toggleIsColapsed(): void {
     this.sidenavService.setIsCollapsed(!this.isCollapsed());
   }

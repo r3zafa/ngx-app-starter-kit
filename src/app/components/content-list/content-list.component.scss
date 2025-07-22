@@ -24,42 +24,51 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.2rem;
-}
 
-
-.mdc-list-item {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  --mdc-list-list-item-one-line-container-height: 3rem;
-
-  .mdc-list-item__content {
+  .mdc-list-item {
+    --mdc-list-list-item-one-line-container-height: max-content;
+    --mat-list-active-indicator-shape: var(--mdc-fab-small-container-shape);
+    min-height: 4rem;
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
 
-    .mdc-list-item__primary-text {
+    .mdc-list-item__content {
       display: flex;
       align-items: center;
       justify-content: flex-start;
-          gap: 0.5rem;
-    }
-  }
 
+      .mdc-list-item__primary-text {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.5rem;
+      }
 
-  &.collapsed {
-
-    .mdc-list-item__content {
-      justify-content: center;
-    }
-
-    .mdc-list-item__primary-text {
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
+
+    &.collapsed {
+      --mdc-list-list-item-one-line-container-height: max-content;
+      padding: 0;
+      min-height: 4rem;
+
+      .mdc-list-item__content {
+        justify-content: center;
+      }
+
+      .mdc-list-item__primary-text {
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.1rem;
+
+        .collapsed {
+          font-size: 0.55rem;
+        }
+      }
+
+    }
   }
 }
 
@@ -67,7 +76,7 @@
 html.light-theme {
   .mdc-list-item {
     &.selected {
-      --mdc-list-list-item-label-text-color:  #{map.get(map.get(c.$palettes, secondary), 40)};
+      --mdc-list-list-item-label-text-color: #{map.get(map.get(c.$palettes, secondary), 40)};
       --mdc-list-list-item-hover-label-text-color: #{map.get(map.get(c.$palettes, secondary), 35)};
       --mdc-list-list-item-focus-label-text-color: #{map.get(map.get(c.$palettes, secondary), 30)};
     }
@@ -78,7 +87,7 @@ html.dark-theme {
   .mdc-list-item {
     &.selected {
       --mat-list-active-indicator-color: #{map.get(map.get(c.$palettes, secondary), 20)};
-      --mdc-list-list-item-label-text-color:  #{map.get(map.get(c.$palettes, secondary), 70)};
+      --mdc-list-list-item-label-text-color: #{map.get(map.get(c.$palettes, secondary), 70)};
       --mdc-list-list-item-hover-label-text-color: #{map.get(map.get(c.$palettes, secondary), 80)};
       --mdc-list-list-item-focus-label-text-color: #{map.get(map.get(c.$palettes, secondary), 80)};
     }

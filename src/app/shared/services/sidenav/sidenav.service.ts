@@ -31,7 +31,7 @@ export class SidenavService {
   private isCollapsed: WritableSignal<boolean> = signal(true);
   private mobileWidth: WritableSignal<string> = signal("100dvw");
   private desktopWidth: WritableSignal<string> = signal("16rem");
-  private collapsedWidth: WritableSignal<string> = signal("4.5rem");
+  private collapsedWidth: WritableSignal<string> = signal("5rem");
 
   // computed properties
   // This computed property determines the width of the sidenav based on the current breakpoint
