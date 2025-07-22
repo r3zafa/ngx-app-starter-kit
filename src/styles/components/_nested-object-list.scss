@@ -1,0 +1,55 @@
+/* Base list styling */
+.nested-list {
+  list-style-type: none;
+  margin: unset;
+  line-height: 1.5;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+}
+
+/* List items */
+.nested-list li {
+  position: relative;
+}
+
+/* Nested lists */
+.nested-list ul {
+  list-style-type: none;
+  padding-left: .7rem;
+  padding-top: unset;
+  padding-bottom: unset;
+}
+
+/* NA values */
+.na {
+  font-style: italic;
+}
+
+/* Depth-based styling */
+.nested-list .level-0 > strong {
+  font-weight: 700;
+}
+
+.nested-list .level-0 > .nested-list {
+  padding-top: .5rem;
+}
+
+.nested-list .level-1 > strong {
+  font-weight: 600;
+}
+
+.nested-list .level-2 > strong {
+  font-weight: 500;
+}
+
+.nested-list .level-3 > strong,
+.nested-list .level-4 > strong,
+.nested-list .level-5 > strong {
+  font-weight: 400;
+}
+
+/* Add padding between items at higher levels */
+.nested-list .level-0:not(:last-child),
+.nested-list .level-1:not(:last-child) {
+  padding-bottom: 0.5rem;
+}

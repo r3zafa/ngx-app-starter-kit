@@ -1,6 +1,7 @@
 @use "./m3-theme" as m3-theme;
 @use "./typography" as typography;
 @use "./material-icons" as material-icons;
+@use "./components";
 
 * {
   box-sizing: border-box;
