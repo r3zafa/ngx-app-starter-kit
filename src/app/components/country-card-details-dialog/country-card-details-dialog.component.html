@@ -1,254 +1,36 @@
-<!-- country-card-details-dialog.component.html -->
 <h1 mat-dialog-title>
-  <img [src]="data.country.flags?.png" [alt]="'Flag of ' + data.country.name.common" class="flag-icon">
-  {{ data.country.name.common }}
+  {{ countriesStore.selectedCountryWithDetails()?.name?.common }}
+  <span class="flag-emoji">{{ countriesStore.selectedCountryWithDetails()?.flag }}</span>
 </h1>
 
 <div mat-dialog-content>
-  <mat-accordion multi>
-    <!-- Basic Information -->
-    <mat-expansion-panel expanded>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon>info</mat-icon> Basic Information
-        </mat-panel-title>
-      </mat-expansion-panel-header>
+  <div class="flag-container">
+    <img [style.height]="'100px'"
+    [src]="countriesStore.selectedCountryWithDetails()?.flags?.png" 
+    [alt]="'Flag of ' + countriesStore.selectedCountryWithDetails()?.name?.common" 
+    class="flag-icon">
+    <img [style.height]="'70px'"
+    [attr.src]="countriesStore.selectedCountryWithDetails()?.coatOfArms?.png" 
+    alt="Coat of Arms" 
+    class="coat-of-arms">
+  </div>
 
-      <mat-list>
-        <mat-list-item>
-          <mat-icon matListItemIcon>description</mat-icon>
-          <div matListItemTitle>Official Name</div>
-          <div matListItemLine>{{ data.country.name.official }}</div>
-        </mat-list-item>
+  <table mat-table [dataSource]="countriesStore.selectedCountryTableDataSource()" class="country-table">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Property</th>
+      <td mat-cell *matCellDef="let element">{{element.name}}</td>
+    </ng-container>
 
-        <mat-list-item>
-          <mat-icon matListItemIcon>account_balance</mat-icon>
-          <div matListItemTitle>Capital</div>
-          <div matListItemLine>
-            {{ data.country.capital ? data.country.capital.join(', ') : 'None' }}
-            {{ getCapitalCoordinates() }}
-          </div>
-        </mat-list-item>
+    <!-- Value Column -->
+    <ng-container matColumnDef="value">
+      <th mat-header-cell *matHeaderCellDef>Value</th>
+      <td mat-cell *matCellDef="let element" [innerHTML]="element.value"></td>
+    </ng-container>
 
-        <mat-list-item>
-          <mat-icon matListItemIcon>public</mat-icon>
-          <div matListItemTitle>Region</div>
-          <div matListItemLine>
-            {{ data.country.region }}
-            @if (data.country.subregion) {
-            ({{ data.country.subregion }})
-            }
-          </div>
-        </mat-list-item>
-
-        <mat-list-item>
-          <mat-icon matListItemIcon>tag</mat-icon>
-          <div matListItemTitle>Country Codes</div>
-          <div matListItemLine>
-            {{ data.country.cca3 }}
-          </div>
-        </mat-list-item>
-      </mat-list>
-    </mat-expansion-panel>
-
-    <!-- Geography -->
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon>map</mat-icon> Geography
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-
-      <mat-list>
-        <mat-list-item>
-          <mat-icon matListItemIcon>square_foot</mat-icon>
-          <div matListItemTitle>Area</div>
-          <div matListItemLine>{{ data.country.area?.toLocaleString() || 'Unknown' }} km²</div>
-        </mat-list-item>
-
-        <mat-list-item>
-          <mat-icon matListItemIcon>location_on</mat-icon>
-          <div matListItemTitle>Coordinates</div>
-          <div matListItemLine>
-            @if (data.country.latlng) {
-            {{ data.country.latlng[0] | number:'1.2-2' }}°N,
-            {{ data.country.latlng[1] | number:'1.2-2' }}°E
-            } @else {
-            Unknown
-            }
-          </div>
-        </mat-list-item>
-
-        <mat-list-item>
-          <mat-icon matListItemIcon>landscape</mat-icon>
-          <div matListItemTitle>Borders</div>
-          <div matListItemLine>
-            @if (data.country.borders?.length) {
-            {{ data.country.borders }}
-            } @else {
-            None
-            }
-          </div>
-        </mat-list-item>
-
-        <mat-list-item>
-          <mat-icon matListItemIcon>schedule</mat-icon>
-          <div matListItemTitle>Timezones</div>
-          <div matListItemLine>
-            @if (data.country.timezones?.length) {
-            {{ data.country.timezones }}
-            } @else {
-            Unknown
-            }
-          </div>
-        </mat-list-item>
-      </mat-list>
-    </mat-expansion-panel>
-
-    <!-- People & Society -->
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon>people</mat-icon> People & Society
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-
-      <mat-list>
-        <mat-list-item>
-          <mat-icon matListItemIcon>groups</mat-icon>
-          <div matListItemTitle>Population</div>
-          <div matListItemLine>{{ data.country.population?.toLocaleString() || 'Unknown' }}</div>
-        </mat-list-item>
-
-        @if (hasValue(data.country.languages)) {
-        <mat-list-item>
-          <mat-icon matListItemIcon>translate</mat-icon>
-          <div matListItemTitle>Languages</div>
-          <div matListItemLine>
-            @for (lang of data.country.languages | keyvalue; track lang.key) {
-            {{ lang.value }}@if (!$last) {, }
-            }
-          </div>
-        </mat-list-item>
-        }
-      </mat-list>
-    </mat-expansion-panel>
-
-    <!-- Government -->
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon>account_balance</mat-icon> Government
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-
-      <mat-list>
-        <mat-list-item>
-          <mat-icon matListItemIcon>verified</mat-icon>
-          <div matListItemTitle>Status</div>
-          <div matListItemLine>
-            {{ data.country.status || 'N/A' }}
-            @if (data.country.unMember) { (UN Member) }
-            @if (data.country.independent) { (Independent) }
-          </div>
-        </mat-list-item>
-
-        @if (hasValue(data.country.currencies)) {
-        <mat-list-item>
-          <mat-icon matListItemIcon>paid</mat-icon>
-          <div matListItemTitle>Currencies</div>
-          <div matListItemLine>
-            @for (curr of data.country.currencies | keyvalue; track curr.key) {
-            {{ curr.value.name }} ({{ curr.value.symbol || 'No symbol' }})@if (!$last) {, }
-            }
-          </div>
-        </mat-list-item>
-        }
-      </mat-list>
-    </mat-expansion-panel>
-
-    <!-- Communications -->
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon>call</mat-icon> Communications
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-
-      <mat-list>
-        @if (hasValue(data.country.idd)) {
-        <mat-list-item>
-          <mat-icon matListItemIcon>dialpad</mat-icon>
-          <div matListItemTitle>Calling Code</div>
-          <div matListItemLine>
-            {{ data.country.idd?.root }}
-            @for (suffix of data.country.idd?.suffixes; track suffix) {
-            {{ suffix }}@if (!$last) {, }
-            }
-          </div>
-        </mat-list-item>
-        }
-
-        @if (hasValue(data.country.tld)) {
-        <mat-list-item>
-          <mat-icon matListItemIcon>language</mat-icon>
-          <div matListItemTitle>Top Level Domain</div>
-          <div matListItemLine>
-            @for (domain of data.country.tld; track domain) {
-            {{ domain }}@if (!$last) {, }
-            }
-          </div>
-        </mat-list-item>
-        }
-      </mat-list>
-    </mat-expansion-panel>
-
-    <!-- Symbols -->
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon>flag</mat-icon> Symbols
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-
-      <div class="symbols-container">
-        <div class="flag-container">
-          <h3>Flag</h3>
-          <img [src]="data.country.flags?.svg || data.country.flags?.png" [alt]="'Flag of ' + data.country.name.common"
-            class="symbol-image">
-        </div>
-
-        @if (data.country.coatOfArms?.svg || data.country.coatOfArms?.png) {
-        <div class="coat-of-arms-container">
-          <h3>Coat of Arms</h3>
-          <img [src]="data.country.coatOfArms?.svg || data.country.coatOfArms?.png"
-            [alt]="'Coat of arms of ' + data.country.name.common" class="symbol-image">
-        </div>
-        }
-      </div>
-    </mat-expansion-panel>
-
-    <!-- Maps -->
-    @if (data.country.maps) {
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon>map</mat-icon> Maps
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-
-      <div class="maps-container">
-        <a mat-raised-button [href]="data.country.maps.googleMaps" target="_blank" color="primary">
-          <mat-icon>map</mat-icon> Google Maps
-        </a>
-
-        <a mat-raised-button [href]="data.country.maps.openStreetMaps" target="_blank" color="primary">
-          <mat-icon>map</mat-icon> OpenStreetMap
-        </a>
-      </div>
-    </mat-expansion-panel>
-    }
-  </mat-accordion>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </div>
 
 <div mat-dialog-actions align="end">

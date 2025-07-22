@@ -10,6 +10,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import { CountryCardComponent } from '../../components/country-card/country-card.component';
+import { MatIcon } from '@angular/material/icon';
+import { MatDivider } from '@angular/material/divider';
 
 @Component({
   selector: 'app-countries',
@@ -24,7 +26,9 @@ import { CountryCardComponent } from '../../components/country-card/country-card
     MatButtonModule,
     MatFormFieldModule,
     MatOptionModule,
-    CountryCardComponent
+    CountryCardComponent,
+    MatIcon,
+    MatDivider
   ],
   templateUrl: './countries.component.html',
   styleUrl: './countries.component.scss'
@@ -38,10 +42,11 @@ export class CountriesComponent {
   }
 
   onRegionsChange(regions: string[]) {
-    this.countriesStore.setRegions(regions);
+      this.countriesStore.setRegions(regions);
   }
 
   onSortChange(sortOption: 'alphabetical' | 'reverse-alphabetical' | 'region') {
     this.countriesStore.setSortOption(sortOption);
   }
+
 }

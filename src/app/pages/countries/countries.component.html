@@ -6,45 +6,58 @@
 </mat-card>
 }
 
-<h1>Countries</h1>
-
-<div class="debug-info">
-    <p>Selected Regions: {{ countriesStore.selectedRegions().join(', ') || 'All Regions' }}</p>
-    <p>Sorting by: {{ countriesStore.sortOption() }}</p>
+<diV>
+    <h1>Countries</h1>
     <p>Showing {{ countriesStore.filteredCountries().length }} of {{ countriesStore.countries().length }} countries</p>
-</div>
+</diV>
+
 
 <div class="country-filter-grid">
-    <!-- Search input -->
-    <mat-form-field appearance="outline">
-        <mat-label>Search Countries</mat-label>
+    <!-- Search Section -->
+    <mat-form-field appearance="outline" class="full-width">
         <input matInput type="text" (input)="handleSearch($event)" placeholder="Search by name or capital">
+        <mat-icon matPrefix>search</mat-icon>
     </mat-form-field>
 
-    <!-- Region selector -->
-    <mat-form-field appearance="outline">
-        <mat-label>Filter by Regions</mat-label>
+
+    <!-- Filter Section -->
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Select Regions</mat-label>
         <mat-select multiple (selectionChange)="onRegionsChange($event.value)"
             [value]="countriesStore.selectedRegions()">
             @for (region of countriesStore.regionsForSelect(); track region) {
-            <mat-option [value]="region === 'All Regions' ? '' : region">
-                {{ region }}
+                <mat-option [value]="region"> {{ region }} </mat-option>
+            }   
+        </mat-select>
+        
+        <mat-icon matPrefix>filter_list</mat-icon>
+    </mat-form-field>
+
+
+    <!-- sort section -->
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Sort By</mat-label>
+        <mat-select (selectionChange)="onSortChange($event.value)" [value]="countriesStore.sortOption()">
+            <mat-option value="alphabetical">
+                <span class="option-with-icon">
+                    A → Z
+                </span>
             </mat-option>
-            }
+            <mat-option value="reverse-alphabetical">
+                <span class="option-with-icon">
+                    Z → A
+                </span>
+            </mat-option>
+            <mat-option value="region">
+                <span class="option-with-icon">
+                    By Region
+                </span>
+            </mat-option>
         </mat-select>
     </mat-form-field>
 
-    <!-- Sort selector -->
-    <mat-form-field appearance="outline">
-        <mat-label>Sort By</mat-label>
-        <mat-select (selectionChange)="onSortChange($event.value)" 
-                   [value]="countriesStore.sortOption()">
-            <mat-option value="alphabetical">A → Z</mat-option>
-            <mat-option value="reverse-alphabetical">Z → A</mat-option>
-            <mat-option value="region">By Region</mat-option>
-        </mat-select>
-    </mat-form-field>
 </div>
+
 
 @if (countriesStore.loading()) {
 <div class="loading-spinner">
