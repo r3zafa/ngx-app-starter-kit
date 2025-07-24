@@ -179,44 +179,37 @@ export const formatObjectAsHtmlList = (
     }
 
     if (Array.isArray(value)) {
-      return `<ul class="nested-list">${
-        value.map(v => `<li class="level-${depth + 1}">${formatValue(v, depth + 1)}</li>`).join('')
-      }</ul>`;
+      return `<ul class="nested-list">${value.map(v => `<li class="level-${depth + 1}">${formatValue(v, depth + 1)}</li>`).join('')
+        }</ul>`;
     }
 
     if (isRecord(value)) {
       const hasChildren = Object.keys(value).length > 0;
-      return `<ul class="nested-list">${
-        Object.entries(value)
-          .map(([k, v]) => 
-            `<li class="level-${depth + 1}">
+      return `<ul class="nested-list">${Object.entries(value)
+        .map(([k, v]) =>
+          `<li class="level-${depth + 1}">
               <strong>${k.toUpperCase()}:</strong> ${formatValue(v, depth + 1)}
             </li>`
-          ).join('')
-      }</ul>`;
+        ).join('')
+        }</ul>`;
     }
 
     return String(value);
   };
 
-  return `<ul class="nested-list">${
-    Object.entries(obj)
-      .map(([key, value]) => {
-        const hasChildren = isRecord(value) && Object.keys(value).length > 0;
-        return `<li class="level-0">
+  return `<ul class="nested-list">${Object.entries(obj)
+    .map(([key, value]) => {
+      const hasChildren = isRecord(value) && Object.keys(value).length > 0;
+      return `<li class="level-0">
           <strong>${key.toUpperCase()}:</strong> ${formatValue(value, 0)}
         </li>`;
-      })
-      .join('')
-  }</ul>`;
+    })
+    .join('')
+    }</ul>`;
 };
-// Type guard for Record<string, unknown>
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value);
-}
 
 /**
- * Formats nested object values as HTML table
+ * Formats nested object values as HTML table with nested properties as columns
  * @param obj - The object to format
  * @param valueKey - Optional specific key to extract
  * @returns HTML table string
@@ -233,36 +226,78 @@ export const formatObjectAsHtmlTable = (
     }
 
     if (Array.isArray(value)) {
-      return `<ul class="nested-list">${value.map(v => `<li>${formatValue(v)}</li>`).join('')}</ul>`;
+      return `<div class="chip-container">${value.map(v => `<span class="mat-chip">${formatValue(v)}</span>`).join('')
+        }</div>`;
     }
 
     if (isRecord(value)) {
-      return `<ul class="nested-list">${
-        Object.entries(value)
-          .map(([k, v]) => `<li><strong>${k}:</strong> ${formatValue(v)}</li>`)
-          .join('')
-      }</ul>`;
+      return Object.entries(value)
+        .map(([k, v]) => `<div><strong>${k}:</strong> ${formatValue(v)}</div>`)
+        .join('');
     }
 
     return String(value);
   };
 
-  return `<table class="nested-object-table">
-    <thead>
-      <tr>
-        <th>Key</th>
-        <th>Value</th>
-      </tr>
-    </thead>
-    <tbody>${
-      Object.entries(obj)
-        .map(([key, value]) => `
+  const hasNestedObjects = Object.values(obj).some(val => isRecord(val) && !Array.isArray(val));
+
+  if (hasNestedObjects) {
+    // Get all unique child keys from nested objects
+    const childKeys = Array.from(new Set(
+      Object.values(obj)
+        .filter(val => isRecord(val))
+        .flatMap(val => Object.keys(val as Record<string, unknown>))
+    ));
+
+    return `<div class="nested-object-table-container">
+    <table class="nested-object-table">
+      <thead>
+        <tr>
+          <th></th>
+          ${childKeys.map(key => `<th>${key.toUpperCase()}</th>`).join('')}
+        </tr>
+      </thead>
+      <tbody>${Object.entries(obj)
+        .map(([key, value]) => {
+          if (isRecord(value) && !Array.isArray(value)) {
+            return `
+                <tr>
+                  <th class="table-key">${key.toUpperCase()}</th>
+                  ${childKeys.map(childKey => `
+                    <td class="table-value">${childKey in value ? formatValue(value[childKey]) : '<span class="na">N/A</span>'
+              }</td>
+                  `).join('')}
+                </tr>`;
+          }
+          return `
+              <tr>
+                <th class="table-key">${key.toUpperCase()}</th>
+                <td class="table-value" colspan="${childKeys.length}">${formatValue(value)}</td>
+              </tr>`;
+        })
+        .join('')
+      }</tbody>
+    </table>
+    </div>
+    `;
+  }
+
+  // Fallback to simple key-value table if no nested objects
+  return `<div class="nested-object-table-container">
+  <table class="nested-object-table">
+    <tbody>${Object.entries(obj)
+      .map(([key, value]) => `
           <tr>
-            <th class="table-key">${key.toUpperCase()}</th>
+            <th class="table-key">${key.toUpperCase()}</td>
             <td class="table-value">${formatValue(value)}</td>
           </tr>`
-        )
-        .join('')
+      )
+      .join('')
     }</tbody>
-  </table>`;
+  </table>
+  </div>`;
 };
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}

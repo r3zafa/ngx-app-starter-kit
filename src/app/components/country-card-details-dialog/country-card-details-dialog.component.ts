@@ -9,6 +9,7 @@ import { CountriesStore } from '../../stores';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MapComponent } from '../map/map.component';
 
 @Component({
   selector: 'app-country-card-details-dialog',
@@ -22,7 +23,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatTableModule,
     MatCardModule,
     MatButtonToggleModule,
-    MatIcon
+    MatIcon,
+    MapComponent
   ],
   templateUrl: './country-card-details-dialog.component.html',
   styleUrl: './country-card-details-dialog.component.scss'

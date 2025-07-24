@@ -43,12 +43,12 @@ export const routes: Routes = [
   {
     path: routePaths.posts,
     component: PostsComponent,
-    title: routeTitles.aboutUs,
+    title: routeTitles.posts,
   },
   {
     path: routePaths.countries,
     component: CountriesComponent,
-    title: routeTitles.aboutUs,
+    title: routeTitles.countries,
   },
   /* ----------------------------- */
   {

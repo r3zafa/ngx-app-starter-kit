@@ -5,7 +5,21 @@ import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap, catchError, map, of, forkJoin } from 'rxjs';
 import { Country, CountriesState, CountrySortOptionType } from './countries.interfaces';
 import { BASIC_FIELDS, DETAIL_FIELDS_GROUP1, DETAIL_FIELDS_GROUP2, DETAIL_FIELDS_GROUP3, initialState } from './countries.constants';
-import { capitalizeFirstLetter, createEmptyCountry, createLink, formatObjectAsHtmlList, formatObjectAsHtmlTable, formatObjectValues, getCurrencies, getGiniCoefficient, getInternationalDialing, mapValues, sortCountriesAlphabetically, sortCountriesByRegion, sortCountriesReverseAlphabetically } from './countries.helpers';
+import {LayoutService} from '../../shared';
+import {
+  capitalizeFirstLetter,
+  createEmptyCountry,
+  createLink,
+  formatObjectAsHtmlList,
+  formatObjectAsHtmlTable,
+  getCurrencies,
+  getGiniCoefficient,
+  getInternationalDialing,
+  mapValues,
+  sortCountriesAlphabetically,
+  sortCountriesByRegion,
+  sortCountriesReverseAlphabetically
+} from './countries.helpers';
 
 
 /**
@@ -134,7 +148,7 @@ export const CountriesStore = signalStore(
 
   })),
 
-  withComputed((store) => {
+  withComputed((store , layout = inject(LayoutService)) => {
 
     const regions = computed(() => {
       const regions = new Set(store.countries().map((c: Country) => c.region));
@@ -182,20 +196,34 @@ export const CountriesStore = signalStore(
 
     const selectedCountryTableDataSource = computed(() => {
       const country = selectedCountryWithDetails();
+      const isPc = layout.layoutPC().matches;
       if (!country) return [];
 
       return [
         { name: 'Official Name', value: country.name.official },
         { name: 'Common Name', value: country.name.common },
-        { name: 'Native Name', value: formatObjectAsHtmlList(country.name.nativeName) },
+        { name: 'Native Name', value: isPc ? formatObjectAsHtmlTable(country.name.nativeName) : formatObjectAsHtmlList(country.name.nativeName) },
         { name: 'Capital', value: country.capital?.join(', ') || 'N/A' },
+        { name: 'Continents', value: country.continents?.join(', ') || 'N/A' },
         { name: 'Region', value: country.region },
         { name: 'Subregion', value: country.subregion || 'N/A' },
         { name: 'Area', value: `${country.area?.toLocaleString() || 'N/A'} km²` },
         { name: 'Population', value: country.population?.toLocaleString() || 'N/A' },
         { name: 'Time Zones', value: country.timezones?.join(', ') || 'N/A' },
-        { name: 'Continents', value: country.continents?.join(', ') || 'N/A' },
-        { name: 'Country Codes', value: `CCA2: ${country.cca2 || 'N/A'}, CCA3: ${country.cca3}, CCN3: ${country.ccn3 || 'N/A'}, CIOC: ${country.cioc || 'N/A'}` },
+        { name: 'Start of Week', value: country.startOfWeek ? capitalizeFirstLetter(country.startOfWeek) : 'N/A' },
+        {
+          name: 'Country Codes', value: isPc ? formatObjectAsHtmlTable({
+            CCA2: country.cca2 || 'N/A',
+            CCA3: country.cca3 || 'N/A',
+            CCN3: country.ccn3 || 'N/A',
+            CIOC: country.cioc || 'N/A'
+          }) : formatObjectAsHtmlList({
+            CCA2: country.cca2 || 'N/A',
+            CCA3: country.cca3 || 'N/A',
+            CCN3: country.ccn3 || 'N/A',
+            CIOC: country.cioc || 'N/A'
+          })
+        },
         { name: 'Top Level Domain', value: country.tld?.join(', ') || 'N/A' },
         { name: 'Independent', value: country.independent ? 'Yes' : 'No' },
         { name: 'Status', value: country.status || 'N/A' },
@@ -204,11 +232,10 @@ export const CountriesStore = signalStore(
         { name: 'International Dialing', value: getInternationalDialing(country.idd) },
         { name: 'Alternative spellings', value: country.altSpellings?.join(', ') || 'N/A' },
         { name: 'Languages', value: mapValues(country.languages) },
-        { name: 'Coordinates', value: country.latlng?.join(', ') || 'N/A' },
         { name: 'Landlocked', value: country.landlocked ? 'Yes' : 'No' },
         { name: 'Bordering Countries', value: country.borders?.join(', ') || 'None' },
-        { name: 'Demonyms', value: formatObjectAsHtmlList(country.demonyms) },
-        { name: 'Translations', value: formatObjectAsHtmlList(country.translations) },
+        { name: 'Coordinates', value: country.latlng?.join(' , ') || 'N/A' },
+        { name: 'Capital city coordinates', value: country.capitalInfo?.latlng?.join(' , ') || 'N/A' },
         { name: 'Google Maps', value: country.maps?.googleMaps ? createLink(country.maps.googleMaps, 'Google Maps') : 'N/A' },
         { name: 'OpenStreetMap', value: country.maps?.openStreetMaps ? createLink(country.maps.openStreetMaps, 'OpenStreetMap') : 'N/A' },
         { name: 'Gini Coefficient', value: getGiniCoefficient(country.gini) || 'N/A' },
@@ -217,7 +244,8 @@ export const CountriesStore = signalStore(
         { name: 'License plate country codes', value: country.car?.signs?.join(', ').toUpperCase() || 'N/A' },
         { name: 'Postal Code Format', value: country.postalCode?.format || 'N/A' },
         { name: 'Capital city coordinates', value: country.capitalInfo?.latlng?.join(', ') || 'N/A' },
-        { name: 'Start of Week', value: country.startOfWeek ? capitalizeFirstLetter(country.startOfWeek) : 'N/A' },
+        { name: 'Demonyms', value: isPc ? formatObjectAsHtmlTable(country.demonyms) : formatObjectAsHtmlList(country.demonyms) },
+        { name: 'Translations', value: isPc ? formatObjectAsHtmlTable(country.translations) : formatObjectAsHtmlList(country.translations)},
       ];
     });
 

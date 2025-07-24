@@ -1,24 +1,40 @@
-/* For lists */
-ul.nested-object {
-  list-style-type: none;
-  padding-left: 1em;
-}
-ul.nested-object li {
-  margin: 0.3em 0;
+/* For tables */
+
+.nested-object-table-container {
+  max-width: 100%;        /* Don't exceed parent width */
+  overflow-x: auto;       /* Horizontal scroll when needed */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+  padding: 0.7rem 0;
 }
 
-/* For tables */
+
+
 table.nested-object-table {
+  overflow-x: auto;
+  width: auto;            /* Table grows to fit content */
+  min-width: auto;        /* But at least full container width */
   border-collapse: collapse;
-  width: 100%;
+  white-space: nowrap;    /* Prevent text wrapping */
 }
+
 table.nested-object-table th {
   text-align: left;
-  padding: 0.5em;
-  background: #f5f5f5;
+  font-weight: 500;
+  padding-right: 0.7rem;
 }
+
 table.nested-object-table td {
-  padding: 0.5em;
-  border-bottom: 1px solid #eee;
+  padding-right: 0.7rem;
 }
-.na { color: #999; font-style: italic; }
+
+.na { 
+  font-style: italic; 
+}
+
+/* Fixed width for keys */
+th.table-key {
+  width: max-content;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}

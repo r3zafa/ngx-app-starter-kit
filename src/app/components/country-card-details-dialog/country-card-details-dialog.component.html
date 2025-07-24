@@ -4,7 +4,7 @@
     {{ countriesStore.selectedCountryWithDetails()?.flag }}
   </span>
 
-  @if (!countriesStore.errorDetails()) {
+  @if (countriesStore.errorDetails()) {
   <mat-card class="error-card" appearance="outlined">
     <mat-card-content class="error-content">
       {{ countriesStore.errorDetails() }} kk
@@ -23,7 +23,6 @@
     </mat-button-toggle-group>
   </div>
 
-
 </div>
 
 
@@ -31,7 +30,7 @@
 <div mat-dialog-content class="dialog-content-flex">
 
   @if(selectedToggle === 'map') {
-
+    <app-map />
   } @else {
   <section class="dialog-content-tab-flex">
     <div class="dialog-flag-grid">
