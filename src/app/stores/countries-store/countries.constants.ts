@@ -121,7 +121,9 @@ export const DETAIL_FIELDS_GROUP3 = [
 export const initialState: CountriesState = {
   countries: [],
   loading: false,
+  loadingDetails:false,
   error: null,
+  errorDetails:null,
   selectedRegions: [],
   searchQuery: '',
   selectedCountry: null,

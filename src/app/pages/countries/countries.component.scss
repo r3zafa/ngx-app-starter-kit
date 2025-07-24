@@ -23,7 +23,7 @@
 
         // Large desktop (1440px and up) - 4 columns
         @media (min-width: 1440px) {
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(4, 1fr);
         }
     }
 
@@ -46,7 +46,7 @@
 
         // Desktop (1024px and up) - 3 columns
         @media (min-width: 1024px) {
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(4, 1fr);
 
             .filter-section:first-child {
                 grid-column: span 1;

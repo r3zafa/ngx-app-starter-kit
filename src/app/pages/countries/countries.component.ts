@@ -34,6 +34,7 @@ import { MatDivider } from '@angular/material/divider';
   styleUrl: './countries.component.scss'
 })
 export class CountriesComponent {
+  
   readonly countriesStore = inject(CountriesStore);
 
   handleSearch(event: Event) {

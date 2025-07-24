@@ -1,3 +1,5 @@
+@use "sass:map" as map;
+@use "./palettes" as c;
 @use "./m3-theme" as m3-theme;
 @use "./typography" as typography;
 @use "./material-icons" as material-icons;
@@ -26,10 +28,6 @@ body {
   align-self: flex-end;
 }
 
-html.light-theme {
-  --mat-text-button-hover-state-layer-opacity:0.15;
-}
-
 button.mdc-button {
   display: inline-flex;
   justify-content: center;
@@ -55,5 +53,44 @@ button.mdc-button {
     }
   }
 
+
+}
+
+.mdc-card.error-card {
+  margin-top: 0.7rem;
+
+  .error-content {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+}
+
+
+
+html.light-theme {
+  --mat-text-button-hover-state-layer-opacity: 0.15;
+
+  .mdc-card.error-card {
+    --mdc-outlined-card-outline-color:#{map.get(map.get(c.$palettes, error), 90)};
+    --mdc-outlined-card-container-color:#{map.get(map.get(c.$palettes, error), 90)};
+
+    .error-content {
+      color: #{map.get(map.get(c.$palettes, error), 25)};
+    }
+  }
+
+}
+
+html.dark-theme {
+
+  .mdc-card.error-card {
+    --mdc-outlined-card-outline-color:#{map.get(map.get(c.$palettes, error), 20)};
+    --mdc-outlined-card-container-color:#{map.get(map.get(c.$palettes, error), 20)};
+
+    .error-content {
+      color: #{map.get(map.get(c.$palettes, error), 70)};
+    }
+  }
 
 }

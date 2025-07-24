@@ -102,7 +102,7 @@ export const CountriesStore = signalStore(
   withMethods((store) => ({
 
     selectCountry: rxMethod<Country | null>(pipe(
-      tap(country => patchState(store, { selectedCountry: country, loading: country !== null })),
+      tap(country => patchState(store, { errorDetails: null, selectedCountry: country, loadingDetails: country !== null })),
       switchMap(country => {
         if (!country?.cca3) return of(null);
 
@@ -110,26 +110,18 @@ export const CountriesStore = signalStore(
         const hasCompleteDetails = country.subregion && country.borders && country.translations;
 
         if (hasCompleteDetails) {
-          patchState(store, { loading: false });
+          patchState(store, { loadingDetails: false });
           return of(country);
         }
 
         return store.loadCountryDetails(country.cca3).pipe(
           tap({
             next: (details) => {
-              if (details) {
-                patchState(store, {
-                  selectedCountry: { ...country, ...details },
-                  loading: false
-                });
-              }
+              if (details) patchState(store, { selectedCountry: { ...country, ...details }, loadingDetails: false });
             },
             error: (error) => {
               console.error('Error loading country details:', error);
-              patchState(store, {
-                error: 'Failed to load country details',
-                loading: false
-              });
+              patchState(store, { errorDetails: 'Failed to load country details', loadingDetails: false });
             }
           })
         );

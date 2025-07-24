@@ -7,6 +7,7 @@ import { CountryCardDetailsDialogComponent } from '../country-card-details-dialo
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDivider } from '@angular/material/divider';
+import { LayoutService } from '../../shared/services/layout/layout.service';
 
 @Component({
   selector: 'app-country-card',
@@ -26,17 +27,34 @@ import { MatDivider } from '@angular/material/divider';
 export class CountryCardComponent {
   readonly countriesStore = inject(CountriesStore);
   private dialog = inject(MatDialog);
+  private layoutService = inject(LayoutService);
 
   country: InputSignal<Country> = input.required<Country>();
-  
+
   isSelected = computed(() => this.countriesStore.selectedCountry()?.cca3 === this.country().cca3);
 
   openCountryDialog() {
     this.countriesStore.selectCountry(this.country());
 
-    this.dialog.open(CountryCardDetailsDialogComponent, {
-      autoFocus: false
-    });
+    const CONFIG_1 = {
+      autoFocus: false,
+      width: '50dvw',
+      minWidth:'800px',
+      height:'90dvh'
+    }
+
+    const CONFIG_2 = {
+      autoFocus: false,
+      width: '90dvw',
+      minWidth:'75dvw',
+      height:'90dvh'
+    }
+
+    const dialogConfig = this.layoutService.layoutPC().matches ? CONFIG_1 : CONFIG_2;
+
+    this.dialog.open(CountryCardDetailsDialogComponent, dialogConfig);
+
+
   }
 
 }

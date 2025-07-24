@@ -26,10 +26,10 @@
         <mat-select multiple (selectionChange)="onRegionsChange($event.value)"
             [value]="countriesStore.selectedRegions()">
             @for (region of countriesStore.regionsForSelect(); track region) {
-                <mat-option [value]="region"> {{ region }} </mat-option>
-            }   
+            <mat-option [value]="region"> {{ region }} </mat-option>
+            }
         </mat-select>
-        
+
         <mat-icon matPrefix>filter_list</mat-icon>
     </mat-form-field>
 
@@ -56,15 +56,15 @@
         </mat-select>
     </mat-form-field>
 
+
+    @if (countriesStore.loading()) {
+    <div class="loading-spinner">
+        <mat-spinner diameter="30"></mat-spinner>
+        <p>Loading countries...</p>
+    </div>
+    }
 </div>
 
-
-@if (countriesStore.loading()) {
-<div class="loading-spinner">
-    <mat-spinner diameter="50"></mat-spinner>
-    <p>Loading countries...</p>
-</div>
-}
 
 <div class="country-grid">
     @for (country of countriesStore.sortedCountries(); track country.cca3) {

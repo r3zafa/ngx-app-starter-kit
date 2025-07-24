@@ -296,6 +296,7 @@ export interface Country extends CountryBase, CountryDetails { }
  * Represents the state structure of the countries store:
  * @property countries - Array of all loaded countries
  * @property loading - Loading status indicator
+ * @property loadingDetails - Loading status indicator
  * @property error - Error message if API requests fail
  * @property selectedRegions - Currently selected regions for filtering
  * @property searchQuery - Current search query for filtering
@@ -305,7 +306,9 @@ export interface Country extends CountryBase, CountryDetails { }
 export interface CountriesState {
   countries: Country[];
   loading: boolean;
+  loadingDetails: boolean;
   error: string | null;
+  errorDetails: string | null;
   selectedRegions: string[];
   searchQuery: string;
   selectedCountry: Country | null;

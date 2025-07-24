@@ -1,38 +1,88 @@
-<h1 mat-dialog-title>
+<div mat-dialog-title>
   {{ countriesStore.selectedCountryWithDetails()?.name?.common }}
-  <span class="flag-emoji">{{ countriesStore.selectedCountryWithDetails()?.flag }}</span>
-</h1>
+  <span class="dialog-title-flag-emoji">
+    {{ countriesStore.selectedCountryWithDetails()?.flag }}
+  </span>
 
-<div mat-dialog-content>
-  <div class="flag-container">
-    <img [style.height]="'100px'"
-    [src]="countriesStore.selectedCountryWithDetails()?.flags?.png" 
-    [alt]="'Flag of ' + countriesStore.selectedCountryWithDetails()?.name?.common" 
-    class="flag-icon">
-    <img [style.height]="'70px'"
-    [attr.src]="countriesStore.selectedCountryWithDetails()?.coatOfArms?.png" 
-    alt="Coat of Arms" 
-    class="coat-of-arms">
+  @if (!countriesStore.errorDetails()) {
+  <mat-card class="error-card" appearance="outlined">
+    <mat-card-content class="error-content">
+      {{ countriesStore.errorDetails() }} kk
+    </mat-card-content>
+  </mat-card>
+  }
+
+  <div class="dialog-toggle-group">
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(value)]="selectedToggle">
+      <mat-button-toggle value="info">
+        <mat-icon>info</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="map">
+        <mat-icon>map</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
   </div>
 
-  <table mat-table [dataSource]="countriesStore.selectedCountryTableDataSource()" class="country-table">
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Property</th>
-      <td mat-cell *matCellDef="let element">{{element.name}}</td>
-    </ng-container>
 
-    <!-- Value Column -->
-    <ng-container matColumnDef="value">
-      <th mat-header-cell *matHeaderCellDef>Value</th>
-      <td mat-cell *matCellDef="let element" [innerHTML]="element.value"></td>
-    </ng-container>
+</div>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+
+
+<div mat-dialog-content class="dialog-content-flex">
+
+  @if(selectedToggle === 'map') {
+
+  } @else {
+  <section class="dialog-content-tab-flex">
+    <div class="dialog-flag-grid">
+      <div class="flag-column-flex">
+        <p>National flag</p>
+        @if(countriesStore.selectedCountryWithDetails()?.flags?.png) {
+        <img [style.height]="'100px'" [src]="countriesStore.selectedCountryWithDetails()?.flags?.png"
+          [alt]="'Flag of ' + countriesStore.selectedCountryWithDetails()?.name?.common" class="flag-icon">
+        } @else {
+        NA
+        }
+      </div>
+
+      <div class="flag-column-flex">
+        <p>Coat Of arms</p>
+        @if(countriesStore.selectedCountryWithDetails()?.coatOfArms?.png) {
+        <img [style.height]="'100px'" [attr.src]="countriesStore.selectedCountryWithDetails()?.coatOfArms?.png"
+          alt="Coat of Arms" class="coat-of-arms">
+        } @else {
+        NA
+        }
+      </div>
+
+    </div>
+
+    <table mat-table [dataSource]="countriesStore.selectedCountryTableDataSource()" class="country-table">
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Property</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="cell-content-flex {{classNameFromName(element.name)}}">{{element.name}}</div>
+        </td>
+      </ng-container>
+
+      <!-- Value Column -->
+      <ng-container matColumnDef="value">
+        <th mat-header-cell *matHeaderCellDef>Value</th>
+        <td mat-cell *matCellDef="let element" [innerHTML]="element.value"></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </section>
+  }
 </div>
 
 <div mat-dialog-actions align="end">
+  @if (countriesStore.loadingDetails()) {
+  <mat-spinner diameter="25"></mat-spinner>
+  <span class="dialog-loading-text">loading...</span>
+  }
   <button mat-button mat-dialog-close>Close</button>
 </div>
