@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgxAppMapComponent } from './ngx-app-map.component';
 
 describe('MapComponent', () => {
-  let component: MapComponent;
-  let fixture: ComponentFixture<MapComponent>;
+  let component: NgxAppMapComponent;
+  let fixture: ComponentFixture<NgxAppMapComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
