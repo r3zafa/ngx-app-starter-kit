@@ -1,9 +1,9 @@
 export type ThemeColorMode = "light" | "dark";
+export type ThemeVariantRecord = Record<'jadeSerenity' | 'twilightBlaze', "jade-serenity" | "twilight-blaze">
 
-// types.ts
-export const THEME_VARIANTS = {
-  jadeSerenity: "jade-serenity",
-  twilightBlaze: "twilight-blaze"
+export const THEME_VARIANTS: ThemeVariantRecord = {
+    jadeSerenity: "jade-serenity",
+    twilightBlaze: "twilight-blaze"
 } as const;
 
 export type ThemeVariant = typeof THEME_VARIANTS[keyof typeof THEME_VARIANTS];

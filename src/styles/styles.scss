@@ -1,12 +1,10 @@
 @use "./typography" as typography;
 @use "./material-icons" as mat-icon;
-@use "./theme/" as themes;
+@use "./theme/index" as themes;
 @use "./components";
 
 * {
   box-sizing: border-box;
-  padding: unset;
-  margin: unset;
 }
 
 body {

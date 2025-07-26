@@ -1,0 +1,34 @@
+@use "sass:map" as map;
+@use "../../twilight-blaze-m3-palettes" as c;
+
+@mixin light-theme {
+  .mat-drawer-container {
+    background: var(--mat-sys-surface);
+    color: var(--mat-sys-on-surface);
+  }
+
+  .mat-drawer.content-sidenav {
+    background: #{c.color(primary, 98)};
+    color: var(--mat-sys-on-surface);
+  }
+
+  .mat-drawer.content-sidenav.mat-drawer-side {
+    --mat-sidenav-container-divider-color: #{c.color(primary, 70)};
+  }
+}
+
+@mixin dark-theme {
+  .mat-drawer-container {
+    background: #{c.color(neutral, 4)};
+    color: var(--mat-sys-on-surface);
+  }
+
+  .mat-drawer.content-sidenav {
+    background: #{c.color(neutral, 4)};
+    color: var(--mat-sys-on-surface);
+  }
+
+  .content .content-sidenav {
+    --mat-sidenav-container-divider-color: #{c.color(primary, 30)};
+  }
+}

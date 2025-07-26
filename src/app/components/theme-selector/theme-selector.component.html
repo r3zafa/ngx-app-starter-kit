@@ -1,0 +1,50 @@
+<button mat-icon-button [matMenuTriggerFor]="menu"
+        aria-label="select language"
+        class="translation-btn">
+    <mat-icon>{{ icon.palette }}</mat-icon>
+</button>
+
+<mat-menu #menu="matMenu" class="translation-menu">
+
+    <button mat-menu-item (click)="selectThemeVariant(variant.jadeSerenity, mode.dark)">
+        <span>
+          {{ variant.jadeSerenity }} - {{ mode.dark }}
+        </span>
+        @if (selection() === INDICATOR_MODE.darkJadeSerenity) {
+            <mat-pseudo-checkbox state="checked" aria-hidden="true" appearance="minimal">
+            </mat-pseudo-checkbox>
+        }
+    </button>
+
+    <button mat-menu-item (click)="selectThemeVariant(variant.jadeSerenity, mode.light)">
+        <span>
+          {{ variant.jadeSerenity }} - {{ mode.light }}
+        </span>
+        @if (selection() === INDICATOR_MODE.lightJadeSerenity) {
+            <mat-pseudo-checkbox state="checked" aria-hidden="true" appearance="minimal">
+            </mat-pseudo-checkbox>
+        }
+    </button>
+
+    <button mat-menu-item (click)="selectThemeVariant(variant.twilightBlaze, mode.dark)">
+        <span>
+          {{ variant.twilightBlaze }} - {{ mode.dark }}
+        </span>
+        @if (selection() === INDICATOR_MODE.darkTwilightBlaze) {
+            <mat-pseudo-checkbox state="checked" aria-hidden="true" appearance="minimal">
+            </mat-pseudo-checkbox>
+        }
+    </button>
+
+    <button mat-menu-item (click)="selectThemeVariant(variant.twilightBlaze, mode.light)">
+        <span>
+          {{ variant.twilightBlaze }} - {{ mode.light }}
+        </span>
+        @if (selection() === INDICATOR_MODE.lightTwilightBlaze) {
+            <mat-pseudo-checkbox state="checked" aria-hidden="true" appearance="minimal">
+            </mat-pseudo-checkbox>
+        }
+    </button>
+
+
+</mat-menu>

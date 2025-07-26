@@ -1,39 +1,32 @@
-// theme.scss
-@use './twilight-blaze-m3/theme' as twilight-blaze;
-@use './jade-serenity-m3/theme' as jade-serenity;
 @use "@angular/material" as mat;
+@use './twilight-blaze-m3-theme' as twilight-blaze;
+@use './jade-serenity-m3-theme' as jade-serenity;
+@use './customized/global' as global;
 
-@include mat.core();
+@include mat.core(); // do not remove
 
 html {
-  &.twilight-blaze {
-    @include twilight-blaze.base();
-    
-    &.light {
-      color-scheme: light;
-      @include twilight-blaze.light-theme();
-      
-      & body {
-        background: var(--mat-sys-surface);
-        color: var(--mat-sys-on-surface);
-      }
-    }
-    
-    &.dark {
-      color-scheme: dark;
-      @include twilight-blaze.dark-theme();
-    }
-  }
-  
-  &.jade-serenity {
-    &.light {
-      color-scheme: light;
-      @include jade-serenity.light-theme();
-    }
-    
-    &.dark {
-      color-scheme: dark;
-      @include jade-serenity.dark-theme();
-    }
-  }
+  color-scheme: dark;
+  @include global.custom-theme;
+  @include twilight-blaze.dark-theme;
+}
+
+/* default twilight-blaze- dark */
+html.dark.twilight-blaze{
+  @include twilight-blaze.has-twilight-blaze;
+}
+
+html.light.twilight-blaze {
+  color-scheme: light;
+  @include twilight-blaze.light-theme;
+}
+
+html.light.jade-serenity {
+  color-scheme: light;
+  @include jade-serenity.light-theme;
+}
+
+html.dark.jade-serenity {
+  color-scheme: dark;
+  @include jade-serenity.dark-theme;
 }

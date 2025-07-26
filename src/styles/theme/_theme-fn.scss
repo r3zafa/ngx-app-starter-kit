@@ -1,0 +1,45 @@
+@use "@angular/material" as mat;
+
+@function theme-fn($type, $primary, $tertiary) {
+  @return mat.define-theme((color: (theme-type: $type,
+          primary: $primary,
+          tertiary: $tertiary,
+  ),
+          typography: (plain-family: Poppins,
+                  brand-family: Montserrat,
+                  bold-weight: 700,
+                  medium-weight: 500,
+                  regular-weight: 400,
+                  use-system-variables: false,
+          ),
+          density: (scale: -1),
+  ));
+}
+
+// 2. Create custom palettes based on your colors
+@function create-custom-palette($color, $on-color) {
+  @return (
+          50: lighten($color, 40%),
+          100: lighten($color, 30%),
+          200: lighten($color, 20%),
+          300: lighten($color, 10%),
+          400: lighten($color, 5%),
+          500: $color,
+          600: darken($color, 5%),
+          700: darken($color, 10%),
+          800: darken($color, 15%),
+          900: darken($color, 20%),
+          contrast: (
+                  50: $on-color,
+                  100: $on-color,
+                  200: $on-color,
+                  300: $on-color,
+                  400: $on-color,
+                  500: $on-color,
+                  600: $on-color,
+                  700: $on-color,
+                  800: $on-color,
+                  900: $on-color,
+          )
+  );
+}

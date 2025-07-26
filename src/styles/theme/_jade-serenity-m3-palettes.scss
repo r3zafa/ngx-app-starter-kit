@@ -1,0 +1,158 @@
+@use "sass:map";
+
+$palettes: (
+        primary: (
+                0: #000000,
+                10: #00210f,
+                20: #00522d,
+                25: #096d3f,
+                30: #096d3f,
+                35: #096d3f,
+                40: #096d3f,
+                50: #6ABF89,
+                60: #83d8a0,
+                70: #83d8a0,
+                80: #9ef5bb,
+                90: #9ef5bb,
+                95: #9ef5bb,
+                98: #e8f9ee,
+                99: #f5fcf8,
+                100: #ffffff,
+        ),
+        secondary: (
+                0: #000000,
+                10: #022110,
+                20: #2e4d39,
+                25: #46654f,
+                30: #46654f,
+                35: #46654f,
+                40: #46654f,
+                50: #accfb4,
+                60: #accfb4,
+                70: #accfb4,
+                80: #c8ebcf,
+                90: #c8ebcf,
+                95: #e8f5eb,
+                98: #f3faf5,
+                99: #f9fcf9,
+                100: #ffffff,
+        ),
+        tertiary: (
+                0: #000000,
+                10: #001a42,
+                20: #2d4677,
+                25: #465e90,
+                30: #465e90,
+                35: #465e90,
+                40: #465e90,
+                50: #aec6ff,
+                60: #aec6ff,
+                70: #aec6ff,
+                80: #d8e2ff,
+                90: #d8e2ff,
+                95: #edf1ff,
+                98: #f7f9ff,
+                99: #fbfcff,
+                100: #ffffff,
+        ),
+        neutral: (
+                0: #000000,
+                4: #0e0e0e,
+                6: #131313,
+                10: #1c1b1b,
+                12: #20201f,
+                17: #2a2a29,
+                20: #313030,
+                22: #353534,
+                24: #3a3938,
+                25: #3a3938,
+                30: #5b605b,
+                35: #737873,
+                40: #787776,
+                50: #8e928d,
+                60: #a9a9a9,
+                70: #c4c8c1,
+                80: #e0e4dd,
+                87: #e5e2e0,
+                90: #f0edec,
+                92: #f3f0ef,
+                94: #f6f3f1,
+                95: #fcf9f7,
+                96: #fcf9f7,
+                98: #fcf9f7,
+                99: #fdfbff,
+                100: #ffffff,
+        ),
+        neutral-variant: (
+                0: #000000,
+                10: #1c1b1b,
+                20: #2d312d,
+                25: #373c45,
+                30: #434843,
+                35: #5b605b,
+                40: #6f7a70,
+                50: #747873,
+                60: #8e928d,
+                70: #a9a9a9,
+                80: #c4c8c1,
+                90: #e0e4dd,
+                95: #f0edec,
+                98: #fcf9f7,
+                99: #fdfbff,
+                100: #ffffff,
+        ),
+        error: (
+                0: #000000,
+                10: #410002,
+                20: #690005,
+                25: #7e0007,
+                30: #93000a,
+                35: #a80710,
+                40: #ba1a1a,
+                50: #de3730,
+                60: #ff5449,
+                70: #ff897d,
+                80: #ffb4ab,
+                90: #ffdad6,
+                95: #ffedea,
+                98: #fff8f7,
+                99: #fffbff,
+                100: #ffffff,
+        ),
+);
+
+/// Retrieves a color palette by name
+/// @param {String} $name - Name of the palette (e.g., 'primary', 'secondary')
+/// @return {Map} The requested color palette
+/// @throws Error if palette doesn't exist
+@function palette($name) {
+  @if not map.has-key($palettes, $name) {
+    @error 'Palette `#{$name}` not found. Available palettes: #{map.keys($palettes)}';
+  }
+
+  @return map.get($palettes, $name);
+}
+
+/// Gets a specific color from a palette
+/// @param {String} $palette-name - Name of the palette
+/// @param {Number} $tone - The tone/key to retrieve (e.g., 10, 20, 30)
+/// @return {Color} The requested color
+/// @throws Error if palette or tone doesn't exist
+@function color($palette-name, $tone) {
+  $palette: palette($palette-name);
+
+  @if not map.has-key($palette, $tone) {
+    @error 'Tone `#{$tone}` not found in palette `#{$palette-name}`. Available tones: #{map.keys($palette)}';
+  }
+
+  @return map.get($palette, $tone);
+}
+
+/// Merges additional values into an existing palette
+/// @param {String} $palette-name - Name of the base palette
+/// @param {Map} $additional-colors - Map of additional colors to merge
+/// @return {Map} The merged palette
+@function extend($palette-name, $additional-colors) {
+  $palette: palette($palette-name);
+  @return map.merge($palette, $additional-colors);
+}

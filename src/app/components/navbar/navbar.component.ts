@@ -9,6 +9,7 @@ import { MatButton } from "@angular/material/button";
 import { NavbarLogoComponent } from "../navbar-logo/navbar-logo.component";
 import { MatIcon } from "@angular/material/icon";
 import { RouterLink } from "@angular/router";
+import {ThemeSelectorComponent} from "../theme-selector/theme-selector.component";
 
 @Component({
   selector: "app-navbar",
@@ -16,17 +17,18 @@ import { RouterLink } from "@angular/router";
   encapsulation:ViewEncapsulation.None,
   templateUrl: "./navbar.component.html",
   styleUrls: ["./navbar.component.scss"],
-  imports: [
-    MatToolbar,
-    TranslatePipe,
-    MatButton,
-    MatIcon,
-    TranslationButtonComponent,
-    ThemeTogglerComponent,
-    SidenavTogglerComponent,
-    NavbarLogoComponent,
-    RouterLink
-  ],
+    imports: [
+        MatToolbar,
+        TranslatePipe,
+        MatButton,
+        MatIcon,
+        TranslationButtonComponent,
+        ThemeTogglerComponent,
+        SidenavTogglerComponent,
+        NavbarLogoComponent,
+        RouterLink,
+        ThemeSelectorComponent
+    ],
 })
 export class NavbarComponent {
   public translations = UI_TRANSLATION_Keys;
