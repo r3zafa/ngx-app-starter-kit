@@ -1,0 +1,40 @@
+@use "sass:map" as map;
+@use '../palettes.scss' as c;
+
+
+@mixin base-theme {
+  .mdc-card.error-card {
+    margin-top: 0.7rem;
+
+    .error-content {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+  }
+}
+
+@mixin light-theme {
+  --mat-text-button-hover-state-layer-opacity: 0.15;
+
+  .mdc-card.error-card {
+    --mdc-outlined-card-outline-color:#{map.get(map.get(c.$palettes, error), 90)};
+    --mdc-outlined-card-container-color:#{map.get(map.get(c.$palettes, error), 90)};
+
+    .error-content {
+      color: #{map.get(map.get(c.$palettes, error), 25)};
+    }
+  }
+}
+
+
+@mixin dark-theme {
+  .mdc-card.error-card {
+    --mdc-outlined-card-outline-color:#{map.get(map.get(c.$palettes, error), 20)};
+    --mdc-outlined-card-container-color:#{map.get(map.get(c.$palettes, error), 20)};
+
+    .error-content {
+      color: #{map.get(map.get(c.$palettes, error), 70)};
+    }
+  }
+}

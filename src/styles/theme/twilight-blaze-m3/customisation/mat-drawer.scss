@@ -1,0 +1,40 @@
+@use "sass:map" as map;
+@use "../palettes" as c;
+
+@mixin light-theme {
+  $drawer-bkg-color: map.get(map.get(c.$palettes, neutral), 98);
+  $divider-color: map.get(map.get(c.$palettes, primary), 60);
+
+  .mat-drawer {
+    background: $drawer-bkg-color;
+    color: var(--mat-sys-on-surface);
+  }
+
+  .mat-drawer-container {
+    background: var(--mat-sys-surface);
+    color: var(--mat-sys-on-surface);
+  }
+
+  .content .content-sidenav {
+    --mat-sidenav-container-divider-color: $divider-color;
+  }
+}
+
+@mixin dark-theme {
+  $drawer-bkg-color: map.get(map.get(c.$palettes, neutral), 4);
+  $divider-color: map.get(map.get(c.$palettes, primary), 30);
+
+  .mat-drawer {
+    background: $drawer-bkg-color;
+    color: var(--mat-sys-on-surface);
+  }
+
+  .mat-drawer-container {
+    background: $drawer-bkg-color;
+    color: var(--mat-sys-on-surface);
+  }
+
+  .content .content-sidenav {
+    --mat-sidenav-container-divider-color: $divider-color;
+  }
+}

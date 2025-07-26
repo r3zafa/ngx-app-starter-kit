@@ -1,58 +1,73 @@
-@use "sass:map" as map;
-@use "../../../styles/palettes" as c;
-@use "@angular/material" as mat;
+  $app-content-list-height: calc(100% - 4.3rem);
+  $app-content-list-width: 100%;
+  $app-content-list-gap: 0.5rem;
+  $app-content-list-padding: 0.5rem;
+  $mdc-list__content-list-height: 100%;
+  $mdc-list__content-list-width: 100%;
+  $mdc-list__content-list-gap: 0.2rem;
+  $mdc-list__content-list-padding: unset;
+  $mdc-list-item__container-height: max-content;
+  $mdc-list-item__active-indicator: var(--mdc-fab-small-container-shape);
+  $mdc-list-item__min-height: 4rem;
+  $mdc-list-item__width: 100%;
+  $mdc-list-item__content-gap: 0.5rem;
+  $mdc-list-item__collapsed__min-height: 4rem;
+  $mdc-list-item__collapsed__padding: 0;
+  $mdc-list-item__collapsed__content-gap: 0.1rem;
+  $mdc-list-item__collapsed__content-font-size: 0.55rem;
 
-
-.app-content-list {
-  height: calc(100% - 4.3rem);
-  width: 100%;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 0.5rem;
-  padding: 0.5rem;
-}
-
-.mdc-list.content-list {
-  width: 100%;
-  height: 100%;
-  padding: unset;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 0.2rem;
-
-  .mdc-list-item {
-    --mdc-list-list-item-one-line-container-height: max-content;
-    --mat-list-active-indicator-shape: var(--mdc-fab-small-container-shape);
-    min-height: 4rem;
-    width: 100%;
+  .app-content-list {
+    overflow: auto;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: $app-content-list-height;
+    width: $app-content-list-width;
+    gap: $app-content-list-gap;
+    padding: $app-content-list-padding;
+  }
 
-    .mdc-list-item__content {
+  .mdc-list.content-list {
+    height: $mdc-list__content-list-height;
+    width: $mdc-list__content-list-width;
+    gap: $mdc-list__content-list-gap;
+    padding: $mdc-list__content-list-padding;
+    //
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .mdc-list-item {
+      --mdc-list-list-item-one-line-container-height: $mdc-list-item__container-height;
+      --mat-list-active-indicator-shape: $mdc-list-item__active-indicator;
+      //      
+      min-height: $mdc-list-item__min-height;
+      width: $mdc-list-item__width;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
 
-      .mdc-list-item__primary-text {
+      .mdc-list-item__content {
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        gap: 0.5rem;
-      }
 
+        .mdc-list-item__primary-text {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: $mdc-list-item__content-gap;
+        }
+      }
     }
 
 
-    &.collapsed {
-      --mdc-list-list-item-one-line-container-height: max-content;
-      padding: 0;
-      min-height: 4rem;
+    // collapsed
+    .mdc-list-item.collapsed {
+      padding: $mdc-list-item__collapsed__padding;
+      min-height: $mdc-list-item__collapsed__min-height;
 
       .mdc-list-item__content {
         justify-content: center;
@@ -61,35 +76,11 @@
       .mdc-list-item__primary-text {
         flex-direction: column;
         justify-content: center;
-        gap: 0.1rem;
+        gap: $mdc-list-item__collapsed__content-gap;
 
         .collapsed {
-          font-size: 0.55rem;
+          font-size: $mdc-list-item__collapsed__content-font-size;
         }
       }
-
     }
   }
-}
-
-
-html.light-theme {
-  .mdc-list-item {
-    &.selected {
-      --mdc-list-list-item-label-text-color: #{map.get(map.get(c.$palettes, secondary), 40)};
-      --mdc-list-list-item-hover-label-text-color: #{map.get(map.get(c.$palettes, secondary), 35)};
-      --mdc-list-list-item-focus-label-text-color: #{map.get(map.get(c.$palettes, secondary), 30)};
-    }
-  }
-}
-
-html.dark-theme {
-  .mdc-list-item {
-    &.selected {
-      --mat-list-active-indicator-color: #{map.get(map.get(c.$palettes, secondary), 20)};
-      --mdc-list-list-item-label-text-color: #{map.get(map.get(c.$palettes, secondary), 70)};
-      --mdc-list-list-item-hover-label-text-color: #{map.get(map.get(c.$palettes, secondary), 80)};
-      --mdc-list-list-item-focus-label-text-color: #{map.get(map.get(c.$palettes, secondary), 80)};
-    }
-  }
-}

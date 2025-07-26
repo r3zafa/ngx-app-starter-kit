@@ -1,0 +1,39 @@
+// theme.scss
+@use './twilight-blaze-m3/theme' as twilight-blaze;
+@use './jade-serenity-m3/theme' as jade-serenity;
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+html {
+  &.twilight-blaze {
+    @include twilight-blaze.base();
+    
+    &.light {
+      color-scheme: light;
+      @include twilight-blaze.light-theme();
+      
+      & body {
+        background: var(--mat-sys-surface);
+        color: var(--mat-sys-on-surface);
+      }
+    }
+    
+    &.dark {
+      color-scheme: dark;
+      @include twilight-blaze.dark-theme();
+    }
+  }
+  
+  &.jade-serenity {
+    &.light {
+      color-scheme: light;
+      @include jade-serenity.light-theme();
+    }
+    
+    &.dark {
+      color-scheme: dark;
+      @include jade-serenity.dark-theme();
+    }
+  }
+}
