@@ -1,10 +1,10 @@
 import { computed, InputSignal } from '@angular/core';
 import { COLORS } from '../constants';
-import { ThemeType } from '../types';
+import { ThemeColorMode } from '../types';
 
 export abstract class Err404Svg {
   // Required input that child components must provide
-  abstract theme: InputSignal<ThemeType>;
+  abstract theme: InputSignal<ThemeColorMode>;
 
   // Color computations
   textColor = computed(() => this.theme() === 'dark' ? COLORS.LIGHT : COLORS.DARK);

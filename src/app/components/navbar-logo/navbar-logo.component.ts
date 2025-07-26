@@ -1,6 +1,5 @@
 import { Component, computed, inject, Signal } from '@angular/core';
 import { COLORS } from '../../shared/constants';
-import { ThemeType } from '../../shared/types';
 import { ThemeService } from '../../shared/services';
 
 @Component({
@@ -12,10 +11,10 @@ import { ThemeService } from '../../shared/services';
 })
 export class NavbarLogoComponent {
   private themeService = inject(ThemeService);
-  readonly currentTheme: Signal<ThemeType> = this.themeService.getCurrentTheme();  // theme state
 
+  readonly isDarkMode: Signal<boolean> = this.themeService.isDarkMode;
 
-  spaceShipBodyColor = computed(()=> this.currentTheme() === 'dark' ? COLORS.ERROR_100 : COLORS.ERROR_100);
-  spaceShipFireColor = computed(()=> this.currentTheme() === 'dark' ? COLORS.ERROR_100 : COLORS.ERROR_100);
-  
+  spaceShipBodyColor = computed(() => this.isDarkMode() ? COLORS.ERROR_100 : COLORS.ERROR_100);
+  spaceShipFireColor = computed(() => this.isDarkMode() ? COLORS.ERROR_100 : COLORS.ERROR_100);
+
 }

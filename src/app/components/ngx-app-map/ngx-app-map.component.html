@@ -1,0 +1,10 @@
+latlng Country :{{ latlng() || 'NA'}}
+latlng Capital :{{ latlngCapital() || 'NA'}}
+
+<mgl-map [style.width]="'100%'" [style.height]="'50dvh'" [style]="'https://demotiles.maplibre.org/style.json'"
+[zoom]="[4]" [center]="[51,9]">
+
+
+<mgl-control mglFullscreen></mgl-control>
+<mgl-control mglNavigation></mgl-control>
+</mgl-map>

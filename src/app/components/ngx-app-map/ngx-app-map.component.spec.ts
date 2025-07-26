@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MapComponent } from './map.component';
+import { NgxAppMapComponent } from './ngx-app-map.component';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -8,11 +8,11 @@ describe('MapComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MapComponent]
+      imports: [NgxAppMapComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MapComponent);
+    fixture = TestBed.createComponent(NgxAppMapComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

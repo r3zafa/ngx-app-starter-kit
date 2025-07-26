@@ -1,7 +1,10 @@
+@let selection = countriesStore.selectedCountryWithDetails();
+@let dataSource = countriesStore.selectedCountryTableDataSource();
+
 <div mat-dialog-title>
-  {{ countriesStore.selectedCountryWithDetails()?.name?.common }}
+  {{ selection?.name.common }}
   <span class="dialog-title-flag-emoji">
-    {{ countriesStore.selectedCountryWithDetails()?.flag }}
+    {{ selection?.flag }}
   </span>
 
   @if (countriesStore.errorDetails()) {
@@ -25,20 +28,22 @@
 
 </div>
 
-
-
 <div mat-dialog-content class="dialog-content-flex">
 
   @if(selectedToggle === 'map') {
-    <app-map />
+
+  <ngx-app-map
+    [latlng]="selection.latlng" 
+    [latlngCapital]="selection?.capitalInfo.latlng" />
+
   } @else {
   <section class="dialog-content-tab-flex">
     <div class="dialog-flag-grid">
       <div class="flag-column-flex">
         <p>National flag</p>
-        @if(countriesStore.selectedCountryWithDetails()?.flags?.png) {
-        <img [style.height]="'100px'" [src]="countriesStore.selectedCountryWithDetails()?.flags?.png"
-          [alt]="'Flag of ' + countriesStore.selectedCountryWithDetails()?.name?.common" class="flag-icon">
+        @if(selection?.flags?.png.length) {
+        <img [style.height]="'100px'" [src]="selection.flags.png" [alt]="'Flag of ' + selection?.name.common"
+          class="flag-icon">
         } @else {
         NA
         }
@@ -46,9 +51,8 @@
 
       <div class="flag-column-flex">
         <p>Coat Of arms</p>
-        @if(countriesStore.selectedCountryWithDetails()?.coatOfArms?.png) {
-        <img [style.height]="'100px'" [attr.src]="countriesStore.selectedCountryWithDetails()?.coatOfArms?.png"
-          alt="Coat of Arms" class="coat-of-arms">
+        @if(selection?.coatOfArms?.png.length) {
+        <img [style.height]="'100px'" [attr.src]="selection.coatOfArms.png" alt="Coat of Arms" class="coat-of-arms">
         } @else {
         NA
         }
@@ -56,7 +60,7 @@
 
     </div>
 
-    <table mat-table [dataSource]="countriesStore.selectedCountryTableDataSource()" class="country-table">
+    <table mat-table [dataSource]="dataSource" class="country-table">
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Property</th>

@@ -1,7 +1,7 @@
 @if(isMobile404()) {
-<app-err-404-mobile [theme]="currentTheme()" />
+<app-err-404-mobile [theme]="colorMode()" />
 } @else {
-<app-err-404-desktop [theme]="currentTheme()" />
+<app-err-404-desktop [theme]="colorMode()" />
 }
 
  <button mat-flat-button (click)="goBack()">

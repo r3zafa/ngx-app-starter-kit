@@ -5,7 +5,7 @@ import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap, catchError, map, of, forkJoin } from 'rxjs';
 import { Country, CountriesState, CountrySortOptionType } from './countries.interfaces';
 import { BASIC_FIELDS, DETAIL_FIELDS_GROUP1, DETAIL_FIELDS_GROUP2, DETAIL_FIELDS_GROUP3, initialState } from './countries.constants';
-import {LayoutService} from '../../shared';
+import { LayoutService } from '../../shared';
 import {
   capitalizeFirstLetter,
   createEmptyCountry,
@@ -148,7 +148,7 @@ export const CountriesStore = signalStore(
 
   })),
 
-  withComputed((store , layout = inject(LayoutService)) => {
+  withComputed((store, layout = inject(LayoutService)) => {
 
     const regions = computed(() => {
       const regions = new Set(store.countries().map((c: Country) => c.region));
@@ -195,14 +195,22 @@ export const CountriesStore = signalStore(
     });
 
     const selectedCountryTableDataSource = computed(() => {
+      
       const country = selectedCountryWithDetails();
-      const isPc = layout.layoutPC().matches;
+
       if (!country) return [];
+
+      const countryCodesObj = {
+        CCA2: country.cca2 || 'N/A',
+        CCA3: country.cca3 || 'N/A',
+        CCN3: country.ccn3 || 'N/A',
+        CIOC: country.cioc || 'N/A'
+      }
 
       return [
         { name: 'Official Name', value: country.name.official },
         { name: 'Common Name', value: country.name.common },
-        { name: 'Native Name', value: isPc ? formatObjectAsHtmlTable(country.name.nativeName) : formatObjectAsHtmlList(country.name.nativeName) },
+        { name: 'Native Name', value: layout.isPcOrTablet() ? formatObjectAsHtmlTable(country.name.nativeName) : formatObjectAsHtmlList(country.name.nativeName) },
         { name: 'Capital', value: country.capital?.join(', ') || 'N/A' },
         { name: 'Continents', value: country.continents?.join(', ') || 'N/A' },
         { name: 'Region', value: country.region },
@@ -211,19 +219,7 @@ export const CountriesStore = signalStore(
         { name: 'Population', value: country.population?.toLocaleString() || 'N/A' },
         { name: 'Time Zones', value: country.timezones?.join(', ') || 'N/A' },
         { name: 'Start of Week', value: country.startOfWeek ? capitalizeFirstLetter(country.startOfWeek) : 'N/A' },
-        {
-          name: 'Country Codes', value: isPc ? formatObjectAsHtmlTable({
-            CCA2: country.cca2 || 'N/A',
-            CCA3: country.cca3 || 'N/A',
-            CCN3: country.ccn3 || 'N/A',
-            CIOC: country.cioc || 'N/A'
-          }) : formatObjectAsHtmlList({
-            CCA2: country.cca2 || 'N/A',
-            CCA3: country.cca3 || 'N/A',
-            CCN3: country.ccn3 || 'N/A',
-            CIOC: country.cioc || 'N/A'
-          })
-        },
+        { name: 'Country Codes', value: layout.isPcOrTablet() ? formatObjectAsHtmlTable(countryCodesObj) : formatObjectAsHtmlList(countryCodesObj) },
         { name: 'Top Level Domain', value: country.tld?.join(', ') || 'N/A' },
         { name: 'Independent', value: country.independent ? 'Yes' : 'No' },
         { name: 'Status', value: country.status || 'N/A' },
@@ -244,9 +240,10 @@ export const CountriesStore = signalStore(
         { name: 'License plate country codes', value: country.car?.signs?.join(', ').toUpperCase() || 'N/A' },
         { name: 'Postal Code Format', value: country.postalCode?.format || 'N/A' },
         { name: 'Capital city coordinates', value: country.capitalInfo?.latlng?.join(', ') || 'N/A' },
-        { name: 'Demonyms', value: isPc ? formatObjectAsHtmlTable(country.demonyms) : formatObjectAsHtmlList(country.demonyms) },
-        { name: 'Translations', value: isPc ? formatObjectAsHtmlTable(country.translations) : formatObjectAsHtmlList(country.translations)},
+        { name: 'Demonyms', value: layout.isPcOrTablet() ? formatObjectAsHtmlTable(country.demonyms) : formatObjectAsHtmlList(country.demonyms) },
+        { name: 'Translations', value: layout.isPcOrTablet() ? formatObjectAsHtmlTable(country.translations) : formatObjectAsHtmlList(country.translations) },
       ];
+      
     });
 
 

@@ -1,5 +1,5 @@
 import { Component, input, InputSignal } from '@angular/core';
-import { ThemeType } from '../../../../shared/types';
+import { ThemeColorMode } from '../../../../shared/types';
 import { Err404Svg } from '../../../../shared/classes';
 
 
@@ -11,5 +11,5 @@ import { Err404Svg } from '../../../../shared/classes';
   styleUrl: './err-404-mobile.component.scss'
 })
 export class Err404MobileComponent extends Err404Svg {
-  theme: InputSignal<ThemeType> = input<ThemeType>('dark');
+  theme: InputSignal<ThemeColorMode> = input<ThemeColorMode>('dark');
 }

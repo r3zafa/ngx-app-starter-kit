@@ -1,7 +1,7 @@
-import { Component, inject, effect } from '@angular/core';
+import { Component, inject, effect, Signal } from '@angular/core';
 import { MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { ThemeService } from '../../shared';
+import { ThemeService, ThemeVariant } from '../../shared';
 
 @Component({
   selector: 'theme-toggler',
@@ -13,18 +13,17 @@ import { ThemeService } from '../../shared';
 export class ThemeTogglerComponent {
   private themeService: ThemeService = inject(ThemeService);
 
-  isDarkMode: boolean = false;
+  readonly isDarkMode: Signal<boolean> = this.themeService.isDarkMode;
 
-  constructor() {
-    this.themeService.initializeTheme();
-
-    // Reactively update `isDarkMode` when the theme signal changes
-    effect(() => {
-      this.isDarkMode = this.themeService.getCurrentTheme()() === 'dark';
-    });
+  public toggleColorMode() {
+    this.themeService.toggleColorMode();
   }
 
-  public toggleTheme() {
-    this.themeService.toggleTheme();
+  public selectThemeVariant(variant: ThemeVariant) {
+    this.themeService.setThemeVariant(variant);
+  }
+
+  public cycleThemeVariant() {
+    this.themeService.cycleThemeVariant();
   }
 }
