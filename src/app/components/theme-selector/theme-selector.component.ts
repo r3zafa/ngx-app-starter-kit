@@ -13,6 +13,7 @@ import {MatIconButton} from "@angular/material/button";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {UpperCasePipe} from "@angular/common";
 import {MatPseudoCheckbox} from "@angular/material/core";
+import {MatTooltip} from "@angular/material/tooltip";
 
 type IndicatorModeKeys = 'darkTwilightBlaze' | 'lightTwilightBlaze' | 'darkJadeSerenity' | 'lightJadeSerenity';
 type IndicatorModeValues = 1 | 2 | 3 | 4;
@@ -27,7 +28,8 @@ type IndicatorModeValues = 1 | 2 | 3 | 4;
         MatMenuItem,
         UpperCasePipe,
         MatMenuTrigger,
-        MatPseudoCheckbox
+        MatPseudoCheckbox,
+        MatTooltip
     ],
     templateUrl: './theme-selector.component.html',
     styleUrl: './theme-selector.component.scss'

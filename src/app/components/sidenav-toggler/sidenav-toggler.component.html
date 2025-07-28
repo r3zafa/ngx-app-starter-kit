@@ -1,3 +1,7 @@
-<button mat-icon-button class="menu-toggler" (click)="toggleSidenav()">
-    <mat-icon>{{icon.menu}}</mat-icon>
+<button mat-icon-button
+        [matTooltip]=" sidenavState() ? 'Close drawer' : 'Open drawer'"
+        [attr.aria-label]="sidenavState() ? 'close drawer' : 'open drawer'"
+        class="menu-toggler"
+        (click)="toggleSidenav()">
+    <mat-icon>{{ icon.menu }}</mat-icon>
 </button>

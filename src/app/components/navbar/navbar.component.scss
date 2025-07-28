@@ -1,6 +1,8 @@
 html .mat-toolbar.navbar {
     .navbar-actions {
         margin-left: auto;
+        display: flex;
+        gap: 0.5rem;
     }
 
     .navbar-title {

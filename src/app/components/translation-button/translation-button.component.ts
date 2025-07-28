@@ -7,6 +7,7 @@ import {MatMenuItem, MatMenuModule} from "@angular/material/menu";
 import {UpperCasePipe} from "@angular/common";
 import {MatPseudoCheckboxModule} from "@angular/material/core";
 import {matIconRecord, MatIconType} from "../../shared";
+import {MatTooltip} from "@angular/material/tooltip";
 
 @Component({
     selector: "translation-button",
@@ -20,7 +21,8 @@ import {matIconRecord, MatIconType} from "../../shared";
         MatMenuModule,
         MatMenuItem,
         MatSelectModule,
-        MatPseudoCheckboxModule
+        MatPseudoCheckboxModule,
+        MatTooltip
     ],
 })
 export class TranslationButtonComponent {

@@ -5,11 +5,12 @@ import { MatToolbar } from "@angular/material/toolbar";
 import { SidenavTogglerComponent } from "../sidenav-toggler/sidenav-toggler.component";
 import { TranslatePipe } from "@ngx-translate/core";
 import { UI_TRANSLATION_Keys } from "../../shared/constants";
-import { MatButton } from "@angular/material/button";
+import {MatButton, MatIconButton} from "@angular/material/button";
 import { NavbarLogoComponent } from "../navbar-logo/navbar-logo.component";
 import { MatIcon } from "@angular/material/icon";
 import { RouterLink } from "@angular/router";
 import {ThemeSelectorComponent} from "../theme-selector/theme-selector.component";
+import {MatTooltip} from "@angular/material/tooltip";
 
 @Component({
   selector: "app-navbar",
@@ -27,7 +28,9 @@ import {ThemeSelectorComponent} from "../theme-selector/theme-selector.component
         SidenavTogglerComponent,
         NavbarLogoComponent,
         RouterLink,
-        ThemeSelectorComponent
+        ThemeSelectorComponent,
+        MatIconButton,
+        MatTooltip
     ],
 })
 export class NavbarComponent {
