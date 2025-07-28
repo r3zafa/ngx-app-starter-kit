@@ -8,8 +8,8 @@ import {MatIcon} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {NgxAppMapComponent} from '../index';
 import {CountriesStore} from '../../stores';
+import {NgxAppMapComponent} from "../ngx-app-map/ngx-app-map.component";
 
 @Component({
     selector: 'app-country-card-details-dialog',

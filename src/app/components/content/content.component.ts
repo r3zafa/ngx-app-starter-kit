@@ -3,7 +3,9 @@ import {Component, computed, ViewEncapsulation} from "@angular/core";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDrawer, MatDrawerContainer, MatDrawerContent} from "@angular/material/sidenav";
 import {expandCollapseAnimation, WithSidenavAndIcons} from '../../shared/';
-import {ContentListComponent, SidenavExpandTogglerComponent} from '../index';
+import {ContentListComponent} from "../content-list/content-list.component";
+import {SidenavExpandTogglerComponent} from "../sidenav-expand-toggler/sidenav-expand-toggler.component";
+
 
 @Component({
     selector: "app-content",

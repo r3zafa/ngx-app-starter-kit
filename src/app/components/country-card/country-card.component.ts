@@ -4,9 +4,9 @@ import {CommonModule} from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
-import {CountryCardDetailsDialogComponent} from '../index';
 import {LayoutService} from '../../shared/';
 import {CountriesStore, Country} from '../../stores';
+import {CountryCardDetailsDialogComponent} from "../country-card-details-dialog/country-card-details-dialog.component";
 
 @Component({
     selector: 'app-country-card',
@@ -16,8 +16,7 @@ import {CountriesStore, Country} from '../../stores';
         MatCardModule,
         MatDialogModule,
         MatButtonModule,
-        MatIconModule,
-
+        MatIconModule
     ],
     templateUrl: './country-card.component.html',
     styleUrl: './country-card.component.scss'

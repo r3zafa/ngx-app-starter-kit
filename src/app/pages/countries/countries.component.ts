@@ -10,7 +10,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatOptionModule} from '@angular/material/core';
 import {MatIcon} from '@angular/material/icon';
 import {CountriesStore} from '../../stores';
-import {CountryCardComponent} from '../../components/';
+import {CountryCardComponent} from "../../components/country-card/country-card.component";
 
 @Component({
     selector: 'app-countries',
