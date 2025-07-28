@@ -13,6 +13,8 @@ import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {MatTooltip} from "@angular/material/tooltip";
+import {NgClass} from "@angular/common";
+import {MatDivider} from "@angular/material/divider";
 
 type IndicatorModeKeys = 'darkTwilightBlaze' | 'lightTwilightBlaze' | 'darkJadeSerenity' | 'lightJadeSerenity';
 type IndicatorModeValues = 1 | 2 | 3 | 4;
@@ -26,7 +28,9 @@ type IndicatorModeValues = 1 | 2 | 3 | 4;
         MatMenu,
         MatMenuItem,
         MatMenuTrigger,
-        MatTooltip
+        MatTooltip,
+        NgClass,
+        MatDivider
     ],
     templateUrl: './theme-selector.component.html',
     styleUrl: './theme-selector.component.scss'
@@ -44,9 +48,14 @@ export class ThemeSelectorComponent {
         'lightJadeSerenity': 4
     }
 
-    public selectThemeVariant(variant: ThemeVariant, mode: ThemeColorMode): void {
-        this.themeService.setThemeVariant(variant);
-        this.themeService.setColorMode(mode);
+    darkJs: [ThemeVariant, ThemeColorMode] = [this.variant.jadeSerenity, this.mode.dark];
+    lightJs: [ThemeVariant, ThemeColorMode] = [this.variant.jadeSerenity, this.mode.light];
+    darkTb: [ThemeVariant, ThemeColorMode] = [this.variant.twilightBlaze, this.mode.dark];
+    lightTb: [ThemeVariant, ThemeColorMode] = [this.variant.twilightBlaze, this.mode.light];
+
+    public selectThemeVariant(state: [ThemeVariant, ThemeColorMode]): void {
+        this.themeService.setThemeVariant(state[0]);
+        this.themeService.setColorMode(state[1]);
     }
 
     selection: Signal<number> = computed((): number => {
@@ -57,5 +66,12 @@ export class ThemeSelectorComponent {
         };
         return themeMap[mode]?.[variant] ?? null;
     });
+
+
+    stringFormat(str: string): string {
+        return str
+            .replace('-', ' ')
+            .replace(/^\w/, (firstChar) => firstChar.toUpperCase());
+    }
 
 }

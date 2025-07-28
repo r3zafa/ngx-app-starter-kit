@@ -1,3 +1,44 @@
+@use '../../../styles/theme/jade-serenity-m3-palettes' as js;
+@use '../../../styles/theme/twilight-blaze-m3-palettes' as tb;
+
+
 :host {
   display: contents;
+}
+
+.theme-span {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0.7rem;
+}
+
+.theme-color-indicator {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+
+  /* First color (theme) on top-left to bottom-right */
+  /* Second color (mode) from middle to bottom-right */
+  &.dark.jade-serenity {
+    border: 1px solid #{js.color(primary,50)};
+    background: linear-gradient(45deg, #{js.color(primary,50)} 0% 50%, #{js.color(primary,0)} 50% 100%);
+  }
+
+  &.light.jade-serenity {
+    border: 1px solid #{js.color(primary,50)};
+    background: linear-gradient(45deg, #{js.color(primary,50)} 0% 50%, #{js.color(primary,100)} 50% 100%);
+  }
+
+  &.dark.twilight-blaze {
+    border: 1px solid #{js.color(primary,50)};
+    background: linear-gradient(45deg, #{tb.color(primary,50)} 0% 50%, #{tb.color(primary,0)} 50% 100%);
+  }
+
+  &.light.twilight-blaze {
+    border: 1px solid #{js.color(primary,50)};
+    background: linear-gradient(45deg, #{tb.color(primary,50)} 0% 50%, #{tb.color(primary,100)} 50% 100%);
+  }
+
 }

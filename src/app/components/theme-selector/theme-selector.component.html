@@ -6,29 +6,39 @@
 </button>
 
 <mat-menu #menu="matMenu" class="translation-menu">
-
-    <button mat-menu-item (click)="selectThemeVariant(variant.jadeSerenity, mode.dark)"
-            aria-label="item-1: Dark / Jade Serenity theme">
+    <button mat-menu-item (click)="selectThemeVariant(darkJs)" aria-label="item-1: Dark / Jade Serenity theme">
         <mat-icon>{{ selection() === INDICATOR_MODE.darkJadeSerenity ? icon.radio_button_checked : icon.radio_button_unchecked }}</mat-icon>
-        <span>{{ variant.jadeSerenity }} - {{ mode.dark }}</span>
+        <span class="theme-span">
+            {{ stringFormat(variant.jadeSerenity) }}
+            <span class="theme-color-indicator" [ngClass]="darkJs"></span>
+        </span>
     </button>
 
-    <button mat-menu-item (click)="selectThemeVariant(variant.jadeSerenity, mode.light)"
-            aria-label="item-2: Light / Jade Serenity theme">
+
+    <button mat-menu-item (click)="selectThemeVariant(lightJs)" aria-label="item-2: Light / Jade Serenity theme">
         <mat-icon>{{ selection() === INDICATOR_MODE.lightJadeSerenity ? icon.radio_button_checked : icon.radio_button_unchecked }}</mat-icon>
-        <span>{{ variant.jadeSerenity }} - {{ mode.light }}</span>
+        <span class="theme-span">
+            {{ stringFormat(variant.jadeSerenity) }}
+            <span class="theme-color-indicator" [ngClass]="lightJs"></span>
+        </span>
     </button>
 
-    <button mat-menu-item (click)=" selectThemeVariant(variant.twilightBlaze, mode.dark)"
-            aria-label="Item-3: Dark / Twilight Blaze theme">
+    <mat-divider/>
+
+    <button mat-menu-item (click)=" selectThemeVariant(darkTb)" aria-label="Item-3: Dark / Twilight Blaze theme">
         <mat-icon>{{ selection() === INDICATOR_MODE.darkTwilightBlaze ? icon.radio_button_checked : icon.radio_button_unchecked }}</mat-icon>
-        <span> {{ variant.twilightBlaze }} - {{ mode.dark }} </span>
+        <span class="theme-span">
+            {{ stringFormat(variant.twilightBlaze) }}
+            <span class="theme-color-indicator" [ngClass]="darkTb"></span>
+        </span>
     </button>
 
-    <button mat-menu-item (click)="selectThemeVariant(variant.twilightBlaze, mode.light)"
-            aria-label="item-4: Light / Twilight Blaze theme">
+    <button mat-menu-item (click)="selectThemeVariant(lightTb)" aria-label="item-4: Light / Twilight Blaze theme">
         <mat-icon>{{ selection() === INDICATOR_MODE.lightTwilightBlaze ? icon.radio_button_checked : icon.radio_button_unchecked }}</mat-icon>
-        <span>{{ variant.twilightBlaze }} - {{ mode.light }}</span>
+        <span class="theme-span">
+            {{ stringFormat(variant.twilightBlaze) }}
+            <span class="theme-color-indicator" [ngClass]="lightTb"></span>
+        </span>
     </button>
 
 </mat-menu>
