@@ -1,0 +1,44 @@
+<button mat-icon-button [matMenuTriggerFor]="menu"
+        matTooltip="Select a theme"
+        aria-label="Select a theme"
+        class="translation-btn">
+    <mat-icon>{{ icon.format_color_fill }}</mat-icon>
+</button>
+
+<mat-menu #menu="matMenu" class="translation-menu">
+    <button mat-menu-item (click)="selectThemeVariant(darkJs)" aria-label="item-1: Dark / Jade Serenity theme">
+        <mat-icon>{{ selection() === INDICATOR_MODE.darkJadeSerenity ? icon.radio_button_checked : icon.radio_button_unchecked }}</mat-icon>
+        <span class="theme-span">
+            {{ stringFormat(variant.jadeSerenity) }}
+            <span class="theme-color-indicator" [ngClass]="darkJs"></span>
+        </span>
+    </button>
+
+
+    <button mat-menu-item (click)="selectThemeVariant(lightJs)" aria-label="item-2: Light / Jade Serenity theme">
+        <mat-icon>{{ selection() === INDICATOR_MODE.lightJadeSerenity ? icon.radio_button_checked : icon.radio_button_unchecked }}</mat-icon>
+        <span class="theme-span">
+            {{ stringFormat(variant.jadeSerenity) }}
+            <span class="theme-color-indicator" [ngClass]="lightJs"></span>
+        </span>
+    </button>
+
+    <mat-divider/>
+
+    <button mat-menu-item (click)=" selectThemeVariant(darkTb)" aria-label="Item-3: Dark / Twilight Blaze theme">
+        <mat-icon>{{ selection() === INDICATOR_MODE.darkTwilightBlaze ? icon.radio_button_checked : icon.radio_button_unchecked }}</mat-icon>
+        <span class="theme-span">
+            {{ stringFormat(variant.twilightBlaze) }}
+            <span class="theme-color-indicator" [ngClass]="darkTb"></span>
+        </span>
+    </button>
+
+    <button mat-menu-item (click)="selectThemeVariant(lightTb)" aria-label="item-4: Light / Twilight Blaze theme">
+        <mat-icon>{{ selection() === INDICATOR_MODE.lightTwilightBlaze ? icon.radio_button_checked : icon.radio_button_unchecked }}</mat-icon>
+        <span class="theme-span">
+            {{ stringFormat(variant.twilightBlaze) }}
+            <span class="theme-color-indicator" [ngClass]="lightTb"></span>
+        </span>
+    </button>
+
+</mat-menu>

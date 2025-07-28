@@ -15,6 +15,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --poll 2000",
+    "start-safe": "start cmd /k \"ng serve  --host 0.0.0.0 --poll 2000 && taskkill /IM node.exe /F\"",
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

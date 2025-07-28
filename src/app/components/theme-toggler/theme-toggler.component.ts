@@ -1,30 +1,23 @@
-import { Component, inject, effect } from '@angular/core';
-import { MatButtonModule, MatIconButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
-import { ThemeService } from '../../shared';
+import {Component, inject, Signal} from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
+import {MatTooltip} from "@angular/material/tooltip";
+import {matIconRecord, MatIconType, ThemeService} from '../../shared';
 
 @Component({
-  selector: 'theme-toggler',
-  standalone: true,
-  imports: [MatButtonModule, MatIcon],
-  templateUrl: './theme-toggler.component.html',
-  styleUrls: ['./theme-toggler.component.scss']
+    selector: 'theme-toggler',
+    standalone: true,
+    imports: [MatButtonModule, MatIcon, MatTooltip],
+    templateUrl: './theme-toggler.component.html',
+    styleUrls: ['./theme-toggler.component.scss']
 })
 export class ThemeTogglerComponent {
-  private themeService: ThemeService = inject(ThemeService);
+    private themeService: ThemeService = inject(ThemeService);
 
-  isDarkMode: boolean = false;
+    readonly isDarkMode: Signal<boolean> = this.themeService.isDarkMode;
+    readonly icon: Record<MatIconType, MatIconType> = matIconRecord;
 
-  constructor() {
-    this.themeService.initializeTheme();
-
-    // Reactively update `isDarkMode` when the theme signal changes
-    effect(() => {
-      this.isDarkMode = this.themeService.getCurrentTheme()() === 'dark';
-    });
-  }
-
-  public toggleTheme() {
-    this.themeService.toggleTheme();
-  }
+    public toggleColorMode() {
+        this.themeService.toggleColorMode();
+    }
 }

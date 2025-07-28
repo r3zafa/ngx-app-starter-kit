@@ -1,0 +1,20 @@
+@use "sass:map";
+@use "../theme.twilight-blaze.palettes" as c;
+
+// Light theme navbar styles
+@mixin light-theme {
+  .mat-toolbar.navbar {
+    --mat-toolbar-container-background-color:  #{c.color(primary, 40)};
+    --mat-toolbar-container-text-color:  #{c.color(primary, 100)};
+    --mdc-icon-button-icon-color:  #{c.color(primary, 100)};
+  }
+}
+
+// Dark theme navbar styles
+@mixin dark-theme {
+  .mat-toolbar.navbar {
+    --mat-toolbar-container-background-color: #{c.color(primary, 10)};
+    --mat-toolbar-container-text-color: #{c.color(primary, 100)};
+    --mdc-icon-button-icon-color: #{c.color(primary, 100)};
+  }
+}

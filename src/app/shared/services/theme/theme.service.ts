@@ -1,9 +1,16 @@
 // theme.service.ts
-import { Injectable, PLATFORM_ID, Signal, inject, signal } from "@angular/core";
+import { Injectable, PLATFORM_ID, Signal, computed, inject, signal } from "@angular/core";
 import { isPlatformBrowser } from "@angular/common";
-import { ThemeType } from "../../types";
+import { THEME_VARIANTS, ThemeColorMode, ThemeVariant } from "../../types";
 
-const THEME_KEY = "theme-preference";
+export const COLOR_MODE_KEY = 'color-mode';
+export const THEME_VARIANTS_KEY = 'theme-variant';
+
+export const COLOR_MODE: Record<ThemeColorMode, ThemeColorMode> = {
+  dark: "dark",
+  light: "light"
+};
+
 
 /**
  * Service for managing application theme (light/dark mode).
@@ -22,108 +29,101 @@ const THEME_KEY = "theme-preference";
   providedIn: "root",
 })
 export class ThemeService {
-  // dependency injection
-  private platformId: Object = inject(PLATFORM_ID);
 
-  // HTML element to set color-scheme
-  private readonly _htmlElement?: HTMLHtmlElement;
+  private platformId = inject(PLATFORM_ID);
+  private readonly htmlElement: HTMLElement | null = null;
 
-  // Signal to track the current theme
-  private currentThemeSignal = signal<ThemeType>("light");
+  // Signals
+  private colorMode = signal<ThemeColorMode>(COLOR_MODE.light);
+  private themeVariant = signal<ThemeVariant>(THEME_VARIANTS.twilightBlaze);
+
+  // Computed theme
+  public isDarkMode = computed(() => this.colorMode() === COLOR_MODE.dark);
+
+  public activeTheme = computed(() => ({
+    mode: this.colorMode(),
+    variant: this.themeVariant(),
+    classes: {
+      mode: this.colorMode(),
+      variant: this.themeVariant()
+    }
+  }));
+
 
   constructor() {
-    // ensure we only access document/window in browser environment
     if (isPlatformBrowser(this.platformId)) {
-      this._htmlElement = document.documentElement as HTMLHtmlElement;
-      this.currentThemeSignal.set(this.getSavedTheme() || this.getSystemTheme());
+      this.htmlElement = document.documentElement;
+      this.initializeTheme();
     }
   }
 
-  // Initialize theme on app startup
+  // - Initialize theme on app startup
+  // - Initialize from storage or system preferences
   public initializeTheme() {
-    if (!isPlatformBrowser(this.platformId)) return;
-    const savedTheme = this.getSavedTheme();
-    const systemTheme = this.getSystemTheme();
-
-    // Prefer saved theme, fall back to system theme
-    const initialTheme = systemTheme || savedTheme;
-    this.setTheme(initialTheme);
-
-    // Listen for system theme changes
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    mediaQuery.addEventListener("change", (e) => !this.getSavedTheme() ? this.setTheme(e.matches ? "dark" : "light") : null);
+    const savedMode = this.getSavedColorMode() ?? this.getSystemColorMode();
+    const savedVariant = this.getSavedVariant() ?? THEME_VARIANTS.twilightBlaze;
+    this.setColorMode(savedMode);
+    this.setThemeVariant(savedVariant);
+    this.watchSystemColorMode();
   }
 
-  /**
-   * Toggle between light and dark themes
-   */
-  public toggleTheme(): ThemeType | null {
-    if (!isPlatformBrowser(this.platformId)) return null;
-    const currentTheme = this.currentThemeSignal();
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
-    this.setTheme(newTheme);
-    return newTheme;
+  // Color Mode Methods
+
+  toggleColorMode(): ThemeColorMode {
+    const newMode = this.colorMode() === COLOR_MODE.light ? COLOR_MODE.dark : COLOR_MODE.light;
+    this.setColorMode(newMode);
+    return newMode;
   }
 
-  /**
-   * Set a specific theme.
-   * @param theme 'light' or 'dark'.
-   */
-  public setTheme(theme: ThemeType) {
-    if (!isPlatformBrowser(this.platformId)) return;
-    console.log("Setting theme:", theme);
-    localStorage.setItem(THEME_KEY, theme); // Save theme preference
-    this._htmlElement?.setAttribute("color-scheme", theme); // Set color-scheme on html element
-    // Toggle theme-specific classes
-    if (theme === "dark") {
-      console.log("Adding dark-theme class");
-      this._htmlElement?.classList.add("dark-theme");
-      this._htmlElement?.classList.remove("light-theme");
-    } else {
-      console.log("Adding light-theme class");
-      this._htmlElement?.classList.add("light-theme");
-      this._htmlElement?.classList.remove("dark-theme");
-    }
-    this.currentThemeSignal.set(theme); // Update the signal
+  setColorMode(mode: ThemeColorMode): void {
+    if (!this.htmlElement) return;
+    // Update state
+    this.colorMode.set(mode);
+    localStorage.setItem(COLOR_MODE_KEY, mode);
+    // Update DOM
+    this.htmlElement.setAttribute('color-scheme', mode);
+    this.htmlElement.classList.remove(COLOR_MODE.light, COLOR_MODE.dark);
+    this.htmlElement.classList.add(mode);
   }
 
-  /**
-   * Get the current active theme as a signal
-   * @returns Signal of 'light' or 'dark'.
-   */
-  public getCurrentTheme(): Signal<ThemeType> {
-    return this.currentThemeSignal.asReadonly();
+  // Theme Variant Methods
+
+  setThemeVariant(variant: ThemeVariant): void {
+    if (!this.htmlElement) return;
+    // Update state
+    this.themeVariant.set(variant);
+    localStorage.setItem(THEME_VARIANTS_KEY, variant);
+    // Update DOM
+    Object.values(THEME_VARIANTS).forEach(v => this.htmlElement?.classList.remove(v));
+    this.htmlElement?.classList.add(variant);
   }
 
-  private getSystemTheme(): ThemeType {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  public cycleThemeVariant(): ThemeVariant {
+    const variants = Object.values(THEME_VARIANTS);
+    const nextVariant = variants[(variants.indexOf(this.themeVariant()) + 1) % variants.length];
+    this.setThemeVariant(nextVariant);
+    return nextVariant;
   }
 
-  /**
-   * Get saved theme preference from localStorage
-   * @returns Saved theme or null.
-   */
-  private getSavedTheme(): ThemeType | null {
-    if (!isPlatformBrowser(this.platformId)) return null;
-    const savedTheme = localStorage.getItem(THEME_KEY);
-    return savedTheme === "light" || savedTheme === "dark" ? savedTheme : null;
+  // private / helper methods
+  private getSavedColorMode(): ThemeColorMode | null {
+    const saved = localStorage.getItem(COLOR_MODE_KEY);
+    return (saved === COLOR_MODE.light || saved === COLOR_MODE.dark) ? saved : null;
   }
 
-  /**
-   * Set theme based on system preference
-   */
-  public setThemeFromSystemPreference() {
-    if (!isPlatformBrowser(this.platformId)) return;
-    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
-    const initialTheme = prefersDarkScheme.matches ? "dark" : "light";
-    this.setTheme(initialTheme);
+  private getSavedVariant(): ThemeVariant | null {
+    const saved = localStorage.getItem(THEME_VARIANTS_KEY);
+    return Object.values(THEME_VARIANTS).includes(saved as ThemeVariant) ? saved as ThemeVariant : null;
+  }
 
-    // Use addEventListener instead of deprecated addListener
-    prefersDarkScheme.addEventListener("change", (e) => {
-      // Only change if no saved preference exists
-      if (!this.getSavedTheme()) {
-        this.setTheme(e.matches ? "dark" : "light");
-      }
+  private getSystemColorMode(): ThemeColorMode {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? COLOR_MODE.dark : COLOR_MODE.light;
+  }
+
+  private watchSystemColorMode(): void {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      if (!this.getSavedColorMode()) this.setColorMode(e.matches ? COLOR_MODE.dark : COLOR_MODE.light);
     });
   }
+
 }

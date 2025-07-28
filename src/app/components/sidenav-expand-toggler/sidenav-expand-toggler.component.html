@@ -1,14 +1,13 @@
-<!-- expand btn -->
-@if (!isCollapsed()) {
+<button mat-mini-fab
+        [matTooltip]="isCollapsed() ? 'Expand sidebar' : 'Collapse sidebar'"
+        [attr.aria-label]="isCollapsed() ? 'Expand sidebar' : 'Collapse sidebar'"
+        (click)="toggleIsColapsed()">
 
-<button mat-mini-fab (click)="toggleIsColapsed()">
-  <mat-icon [style.width]="'14px'">{{icon.arrow_back_ios}}</mat-icon>
+    @if (isCollapsed()) {
+        <mat-icon>{{ icon.arrow_forward_ios }}</mat-icon>
+    } @else {
+        <mat-icon [style.width]="'14px'">{{ icon.arrow_back_ios }}</mat-icon>
+    }
+
 </button>
 
-} @else {
-
-<button mat-mini-fab (click)="toggleIsColapsed()">
-  <mat-icon>{{icon.arrow_forward_ios}}</mat-icon>
-</button>
-
-}

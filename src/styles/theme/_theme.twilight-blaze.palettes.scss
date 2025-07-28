@@ -1,3 +1,6 @@
+
+@use "sass:map";
+
 $palettes: (
   primary: (0: #000000,
     10: #001a3a,
@@ -16,27 +19,7 @@ $palettes: (
     99: #fbfdff,
     100: #ffffff,
   ),
-  /*
   secondary: (0: #000000,
-    10: #001226,
-    20: #00234d,
-    25: #002c63,
-    30: #003680,
-    35: #004099,
-    40: #004bb3,
-    50: #2d73ff,
-    60: #5d92ff,
-    70: #8ab0ff,
-    80: #b3ccff,
-    90: #d9e6ff,
-    95: #ecf2ff,
-    98: #f8faff,
-    99: #fcfdff,
-    100: #ffffff,
-  ),
-  */
-    secondary: (
-    0: #000000,
     10: #3b0900,
     20: #601400,
     25: #731a00,
@@ -132,3 +115,39 @@ $palettes: (
     100: #ffffff,
   ),
 );
+
+/// Retrieves a color palette by name
+/// @param {String} $name - Name of the palette (e.g., 'primary', 'secondary')
+/// @return {Map} The requested color palette
+/// @throws Error if palette doesn't exist
+@function palette($name) {
+  @if not map.has-key($palettes, $name) {
+    @error 'Palette `#{$name}` not found. Available palettes: #{map.keys($palettes)}';
+  }
+
+  @return map.get($palettes, $name);
+}
+
+/// Gets a specific color from a palette
+/// @param {String} $palette-name - Name of the palette
+/// @param {Number} $tone - The tone/key to retrieve (e.g., 10, 20, 30)
+/// @return {Color} The requested color
+/// @throws Error if palette or tone doesn't exist
+@function color($palette-name, $tone) {
+  $palette: palette($palette-name);
+
+  @if not map.has-key($palette, $tone) {
+    @error 'Tone `#{$tone}` not found in palette `#{$palette-name}`. Available tones: #{map.keys($palette)}';
+  }
+
+  @return map.get($palette, $tone);
+}
+
+/// Merges additional values into an existing palette
+/// @param {String} $palette-name - Name of the base palette
+/// @param {Map} $additional-colors - Map of additional colors to merge
+/// @return {Map} The merged palette
+@function extend($palette-name, $additional-colors) {
+  $palette: palette($palette-name);
+  @return map.merge($palette, $additional-colors);
+}

@@ -1,0 +1,27 @@
+@use "sass:map" as map;
+@use '../theme.twilight-blaze.palettes' as c;
+
+@mixin light-theme {
+  --mat-text-button-hover-state-layer-opacity: 0.15;
+
+  .mdc-card.error-card {
+    --mdc-outlined-card-outline-color:#{c.color(error, 90)};
+    --mdc-outlined-card-container-color:#{c.color(error, 90)};
+
+    .error-content {
+      color: #{c.color(error, 25)};
+    }
+  }
+}
+
+
+@mixin dark-theme {
+  .mdc-card.error-card {
+    --mdc-outlined-card-outline-color:#{c.color(error, 20)};
+    --mdc-outlined-card-container-color:#{c.color(error, 20)};
+
+    .error-content {
+      color: #{c.color(error, 70)};
+    }
+  }
+}

@@ -1,0 +1,22 @@
+@use "@angular/material" as mat;
+@use './theme.utils' as fn;
+@use './theme.jade-serenity.palettes' as c;
+
+$_rest: (
+        secondary: c.palette(secondary),
+        neutral: c.palette(neutral),
+        neutral-variant: c.palette(neutral-variant),
+        error: c.palette(error),
+);
+$_primary: c.extend(primary, $_rest);
+$_tertiary: c.extend(tertiary, $_rest);
+$light-theme: fn.theme-fn(light, $_primary, $_tertiary);
+$dark-theme: fn.theme-fn(dark, $_primary, $_tertiary);
+
+@mixin light-theme() {
+  @include mat.all-component-colors($light-theme);
+}
+
+@mixin dark-theme() {
+  @include mat.all-component-colors($dark-theme);
+}

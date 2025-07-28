@@ -1,14 +1,19 @@
 <mat-toolbar class="navbar">
 
-  <sidenav-toggler />
+    <sidenav-toggler/>
 
-  <button mat-button class="navbar-title" routerLink="/home">
-    <app-navbar-logo/>
-    <span>My App</span>
-  </button>
+    <button mat-button
+            aria-label="Application Logo - Go to Home"
+            class="navbar-title"
+            routerLink="/home">
+        <app-navbar-logo/>
+        <span>My App</span>
+    </button>
 
-  <span class="navbar-actions">
-      <theme-toggler />
-      <translation-button />
-  </span>
+    <span class="navbar-actions">
+      <theme-toggler tabindex="3"/>
+      <theme-selector tabindex="4"/>
+      <translation-button tabindex="5"/>
+    </span>
+
 </mat-toolbar>

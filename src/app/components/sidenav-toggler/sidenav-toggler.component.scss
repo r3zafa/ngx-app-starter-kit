@@ -1,17 +1,17 @@
-:host {
+.menu-toggler {
     --mdc-icon-button-state-layer-size: 3rem;
-    --mdc-icon-button-icon-size: 2rem;
 
-    .menu-toggler {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
 
-        .mat-icon {
-            font-size: var(--mdc-icon-button-icon-size);
-            width: unset;
-            height: unset;
-        }
+     .mat-icon {
+         display: inline-flex;
+         align-items: center;
+         justify-content: center;
+         font-size: 2rem;
+         width: unset;
+         height: unset;
+     }
 
-    }
-}
+ }

@@ -1,0 +1,32 @@
+@use "@angular/material" as mat;
+@use './theme.twilight-blaze' as twilight-blaze;
+@use './theme.jade-serenity' as jade-serenity;
+@use './theme.customizations.global' as global;
+
+@include mat.core(); // do not remove
+
+html {
+  color-scheme: dark;
+  @include global.custom-theme;
+  @include twilight-blaze.dark-theme;
+}
+
+/* default twilight-blaze- dark */
+html.dark.twilight-blaze{
+  @include twilight-blaze.has-twilight-blaze;
+}
+
+html.light.twilight-blaze {
+  color-scheme: light;
+  @include twilight-blaze.light-theme;
+}
+
+html.light.jade-serenity {
+  color-scheme: light;
+  @include jade-serenity.light-theme;
+}
+
+html.dark.jade-serenity {
+  color-scheme: dark;
+  @include jade-serenity.dark-theme;
+}

@@ -1,43 +1,43 @@
-import { Component, inject } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatTableModule } from '@angular/material/table';
-import { MatCardModule } from '@angular/material/card';
-import { MatIcon } from '@angular/material/icon';
-import { CountriesStore } from '../../stores';
-import { CommonModule } from '@angular/common';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {Component, inject} from '@angular/core';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatTableModule} from '@angular/material/table';
+import {MatCardModule} from '@angular/material/card';
+import {MatIcon} from '@angular/material/icon';
+import {CommonModule} from '@angular/common';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import { MapComponent } from '../map/map.component';
+import {CountriesStore} from '../../stores';
+import {NgxAppMapComponent} from "../ngx-app-map/ngx-app-map.component";
 
 @Component({
-  selector: 'app-country-card-details-dialog',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
-    MatDividerModule,
-    MatTableModule,
-    MatCardModule,
-    MatButtonToggleModule,
-    MatIcon,
-    MapComponent
-  ],
-  templateUrl: './country-card-details-dialog.component.html',
-  styleUrl: './country-card-details-dialog.component.scss'
+    selector: 'app-country-card-details-dialog',
+    standalone: true,
+    imports: [
+        CommonModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatProgressSpinnerModule,
+        MatDividerModule,
+        MatTableModule,
+        MatCardModule,
+        MatButtonToggleModule,
+        MatIcon,
+        NgxAppMapComponent
+    ],
+    templateUrl: './country-card-details-dialog.component.html',
+    styleUrl: './country-card-details-dialog.component.scss'
 })
 export class CountryCardDetailsDialogComponent {
 
-  readonly countriesStore = inject(CountriesStore);
-  displayedColumns: string[] = ['name', 'value'];
-  selectedToggle = 'info'; // Set 'info' as the default selection
+    readonly countriesStore = inject(CountriesStore);
+    displayedColumns: string[] = ['name', 'value'];
+    selectedToggle = 'info'; // Set 'info' as the default selection
 
-  classNameFromName(str:string) {
-    return str.replace(/\s/g, "-").toLowerCase();
-  }
+    classNameFromName(str: string) {
+        return str.replace(/\s/g, "-").toLowerCase();
+    }
 }
 
 

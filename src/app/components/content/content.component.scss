@@ -1,50 +1,28 @@
-@use "sass:map";
-@use "../../../styles/palettes" as c;
 @use "../../../styles/animation" as animation;
 
-$sidenav-bkg-dark-color : map.get(map.get(c.$palettes, primary), 30);
-$sidenav-bkg-light-color: map.get(map.get(c.$palettes, primary), 60);
-$mat-sidenav-container-shape: 0;
-
 :host {
-    display: contents;
+  display: contents;
 }
 
 .content {
-    // variables
-    --mat-sidenav-container-shape: $mat-sidenav-container-shape;
-
-    // styles
-    height: calc(100dvh - 4rem);
+  --mat-sidenav-container-shape: 0;
+  height: calc(100dvh - 4rem);
 }
-
-
-
-html.light-theme .content .content-sidenav {
-   --mat-sidenav-container-divider-color: #{$sidenav-bkg-light-color};
-}
-
-html.dark-theme .content .content-sidenav {
-   --mat-sidenav-container-divider-color: #{$sidenav-bkg-dark-color};
-}
-
-
 
 .content-body {
-    padding: 1rem 1.5rem;
+  padding: 1rem 1.5rem;
 }
 
-
 .content-sidenav {
-    padding: 0;
+  padding: 0;
 
-    .mat-drawer-inner-container {
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        gap: 0.5rem;
-    }
+  .mat-drawer-inner-container {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
 
 }

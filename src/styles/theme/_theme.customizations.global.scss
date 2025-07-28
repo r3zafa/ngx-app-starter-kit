@@ -1,0 +1,23 @@
+@mixin custom-theme {
+
+  .mat-drawer.content-sidenav.mat-drawer-side {
+    border-right-width: .1rem;
+  }
+
+  .mat-toolbar.navbar {
+    --mat-toolbar-standard-height: 4rem;
+    --mat-toolbar-mobile-height: 4rem;
+    padding: 0 1rem;
+  }
+
+  .mdc-card.error-card {
+    margin-top: 0.7rem;
+
+    .error-content {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+  }
+
+}
+

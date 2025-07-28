@@ -1,15 +1,20 @@
 @if (itemList().length > 0) {
-<mat-nav-list class="content-list">
-    @for (item of itemList(); track item) {
-    <mat-list-item mat-list-item [class.collapsed]="isCollapsed()" [matTooltip]="isCollapsed() ? item?.title : null"
-        matTooltipPosition='right' [activated]="isRouteActive(item?.route)" [routerLink]="item?.route"
-        routerLinkActive="selected">
+    <mat-nav-list class="content-list">
+        @for (item of itemList(); track item) {
+            <mat-list-item mat-list-item
+                           class="content-list-item"
+                           [class.collapsed]="isCollapsed()"
+                           [matTooltip]="isCollapsed() ? item?.title : null"
+                           matTooltipPosition='right'
+                           [activated]="isRouteActive(item?.route)"
+                           [routerLink]="item?.route"
+                           routerLinkActive="selected">
 
-        <mat-icon>{{item?.icon}}</mat-icon>
+                <mat-icon>{{ item?.icon }}</mat-icon>
 
-        <span [class.collapsed]="isCollapsed()">{{item?.title}}</span>
+                <span [class.collapsed]="isCollapsed()">{{ item?.title }}</span>
 
-    </mat-list-item>
-    }
-</mat-nav-list>
+            </mat-list-item>
+        }
+    </mat-nav-list>
 }
