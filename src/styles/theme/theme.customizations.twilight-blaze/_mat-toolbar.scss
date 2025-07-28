@@ -1,5 +1,5 @@
 @use "sass:map";
-@use "../../twilight-blaze-m3-palettes" as c;
+@use "../theme.twilight-blaze.palettes" as c;
 
 // Light theme navbar styles
 @mixin light-theme {

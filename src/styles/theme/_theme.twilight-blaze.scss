@@ -1,10 +1,10 @@
 @use "@angular/material" as mat;
-@use './theme-fn' as fn;
-@use './twilight-blaze-m3-palettes' as c;
-@use './customized/twilight-blaze/mdc-list-select' as list-select;
-@use './customized/twilight-blaze/mdc-error-card' as error-card;
-@use './customized/twilight-blaze/mat-toolbar' as navbar;
-@use './customized/twilight-blaze/mat-drawer' as drawer;
+@use './theme.utils' as fn;
+@use './theme.twilight-blaze.palettes' as c;
+@use './theme.customizations.twilight-blaze/mdc-list-item' as list-select;
+@use './theme.customizations.twilight-blaze/mdc-card' as error-card;
+@use './theme.customizations.twilight-blaze/mat-toolbar' as navbar;
+@use './theme.customizations.twilight-blaze/mat-drawer' as drawer;
 
 $_rest: (
         secondary: c.palette(secondary),

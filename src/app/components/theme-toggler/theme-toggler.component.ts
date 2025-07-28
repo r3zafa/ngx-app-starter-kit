@@ -1,8 +1,8 @@
 import {Component, inject, Signal} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
-import {matIconRecord, MatIconType, ThemeService} from '../../shared';
 import {MatTooltip} from "@angular/material/tooltip";
+import {matIconRecord, MatIconType, ThemeService} from '../../shared';
 
 @Component({
     selector: 'theme-toggler',

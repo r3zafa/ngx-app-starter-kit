@@ -1,5 +1,5 @@
 @use "sass:map" as map;
-@use '../../twilight-blaze-m3-palettes' as c;
+@use '../theme.twilight-blaze.palettes' as c;
 
 @mixin light-theme {
   --mat-text-button-hover-state-layer-opacity: 0.15;

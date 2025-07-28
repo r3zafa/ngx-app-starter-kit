@@ -1,8 +1,8 @@
 import {Component, HostBinding, ViewEncapsulation} from '@angular/core';
 import {MatIcon} from '@angular/material/icon';
 import {MatMiniFabButton} from '@angular/material/button';
-import {WithSidenavAndIcons} from "../../shared";
 import {MatTooltip} from "@angular/material/tooltip";
+import {WithSidenavAndIcons} from "../../shared";
 
 @Component({
     selector: 'app-sidenav-expand-toggler',

@@ -1,7 +1,7 @@
 @use "@angular/material" as mat;
-@use './twilight-blaze-m3-theme' as twilight-blaze;
-@use './jade-serenity-m3-theme' as jade-serenity;
-@use './customized/global' as global;
+@use './theme.twilight-blaze' as twilight-blaze;
+@use './theme.jade-serenity' as jade-serenity;
+@use './theme.customizations.global' as global;
 
 @include mat.core(); // do not remove
 

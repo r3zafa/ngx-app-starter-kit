@@ -1,6 +1,6 @@
 @use "@angular/material" as mat;
-@use './theme-fn' as fn;
-@use './jade-serenity-m3-palettes' as c;
+@use './theme.utils' as fn;
+@use './theme.jade-serenity.palettes' as c;
 
 $_rest: (
         secondary: c.palette(secondary),

@@ -1,4 +1,10 @@
 import {Component, computed, inject, Signal} from '@angular/core';
+import {MatIcon} from "@angular/material/icon";
+import {MatIconButton} from "@angular/material/button";
+import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
+import {MatTooltip} from "@angular/material/tooltip";
+import {NgClass} from "@angular/common";
+import {MatDivider} from "@angular/material/divider";
 import {
     COLOR_MODE,
     matIconRecord,
@@ -9,12 +15,6 @@ import {
     ThemeVariant,
     ThemeVariantRecord
 } from "../../shared";
-import {MatIcon} from "@angular/material/icon";
-import {MatIconButton} from "@angular/material/button";
-import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
-import {MatTooltip} from "@angular/material/tooltip";
-import {NgClass} from "@angular/common";
-import {MatDivider} from "@angular/material/divider";
 
 type IndicatorModeKeys = 'darkTwilightBlaze' | 'lightTwilightBlaze' | 'darkJadeSerenity' | 'lightJadeSerenity';
 type IndicatorModeValues = 1 | 2 | 3 | 4;

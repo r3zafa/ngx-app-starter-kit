@@ -1,13 +1,13 @@
 import {Component, inject} from "@angular/core";
+import {UpperCasePipe} from "@angular/common";
 import {TranslateService} from "@ngx-translate/core";
 import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
-import {MatIcon} from "@angular/material/icon";
 import {MatMenuItem, MatMenuModule} from "@angular/material/menu";
-import {UpperCasePipe} from "@angular/common";
+import {MatIcon} from "@angular/material/icon";
+import {MatTooltip} from "@angular/material/tooltip";
 import {MatPseudoCheckboxModule} from "@angular/material/core";
 import {matIconRecord, MatIconType} from "../../shared";
-import {MatTooltip} from "@angular/material/tooltip";
 
 @Component({
     selector: "translation-button",
