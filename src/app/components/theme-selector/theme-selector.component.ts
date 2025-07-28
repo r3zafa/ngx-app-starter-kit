@@ -1,7 +1,8 @@
 import {Component, computed, inject, Signal} from '@angular/core';
 import {
     COLOR_MODE,
-    matIconRecord, MatIconType,
+    matIconRecord,
+    MatIconType,
     THEME_VARIANTS,
     ThemeColorMode,
     ThemeService,
@@ -11,8 +12,6 @@ import {
 import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
-import {UpperCasePipe} from "@angular/common";
-import {MatPseudoCheckbox} from "@angular/material/core";
 import {MatTooltip} from "@angular/material/tooltip";
 
 type IndicatorModeKeys = 'darkTwilightBlaze' | 'lightTwilightBlaze' | 'darkJadeSerenity' | 'lightJadeSerenity';
@@ -26,9 +25,7 @@ type IndicatorModeValues = 1 | 2 | 3 | 4;
         MatIconButton,
         MatMenu,
         MatMenuItem,
-        UpperCasePipe,
         MatMenuTrigger,
-        MatPseudoCheckbox,
         MatTooltip
     ],
     templateUrl: './theme-selector.component.html',
