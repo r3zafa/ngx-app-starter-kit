@@ -1,10 +1,7 @@
 @use "@angular/material" as mat;
 @use './theme.utils' as fn;
+@use './theme.twilight-blaze.utils' as utils;
 @use './theme.twilight-blaze.palettes' as c;
-@use './theme.customizations.twilight-blaze/mdc-list-item' as list-select;
-@use './theme.customizations.twilight-blaze/mdc-card' as error-card;
-@use './theme.customizations.twilight-blaze/mat-toolbar' as navbar;
-@use './theme.customizations.twilight-blaze/mat-drawer' as drawer;
 
 $_rest: (
         secondary: c.palette(secondary),
@@ -19,10 +16,10 @@ $dark-theme: fn.theme-fn(dark, $_primary, $_tertiary);
 
 @mixin light-theme() {
   @include mat.all-component-colors($light-theme);
-  @include list-select.light-theme;
-  @include error-card.light-theme;
-  @include navbar.light-theme;
-  @include drawer.light-theme;
+  @include utils.navbar-theme-tb(40, 100);
+  @include utils.sidenav-theme-tb(98, 70);
+  @include utils.mdc-error-card-tb(90, 25, true);
+  @include utils.mdc-list-item-selected-tb(30, 35, 40, 80);
 }
 
 @mixin dark-theme() {
@@ -30,8 +27,8 @@ $dark-theme: fn.theme-fn(dark, $_primary, $_tertiary);
 }
 
 @mixin has-twilight-blaze() {
-    @include list-select.dark-theme;
-    @include error-card.dark-theme;
-    @include navbar.dark-theme;
-    @include drawer.dark-theme;
+  @include utils.navbar-theme-tb(10, 100);
+  @include utils.sidenav-theme-tb(4, 30);
+  @include utils.mdc-error-card-tb(20, 70, false);
+  @include utils.mdc-list-item-selected-tb(70, 70, 80, 20);
 }
