@@ -1,0 +1,48 @@
+@use "./theme.twilight-blaze.palettes" as tbc;
+
+@mixin navbar-theme-tb($shade-drawer, $shade-text) {
+  .mat-toolbar.navbar {
+    --mat-toolbar-container-background-color: #{tbc.color(primary, $shade-drawer)};
+    --mat-toolbar-container-text-color: #{tbc.color(primary, $shade-text)};
+    --mdc-icon-button-icon-color: #{tbc.color(primary, $shade-text)};
+  }
+}
+
+@mixin sidenav-theme-tb($shade-bkg, $shade-border, $shade-text: null) {
+  .mat-drawer-container.content {
+    --mat-sidenav-content-background-color: #{tbc.color(neutral, $shade-bkg)};
+    --mat-sidenav-container-divider-color: #{tbc.color(primary, $shade-border)};
+
+    @if $shade-text != null {
+      // Use custom text color if provided
+      --mat-sidenav-content-text-color: #{tbc.color(neutral, $shade-text)};
+    } @else {
+      // Fallback to theme's on-surface color if no shade provided
+      --mat-sidenav-content-text-color: var(--mat-sys-on-surface);
+    }
+  }
+}
+
+@mixin mdc-error-card-tb($shade-bkg, $shade-text, $light: false) {
+  @if ($light) {
+    --mat-text-button-hover-state-layer-opacity: 0.15;
+  }
+
+  .mdc-card.error-card {
+    --mdc-outlined-card-outline-color: #{tbc.color(error, $shade-bkg)};
+    --mdc-outlined-card-container-color: #{tbc.color(error, $shade-bkg)};
+
+    .error-content {
+      color: #{tbc.color(error, $shade-text)};
+    }
+  }
+}
+
+@mixin mdc-list-item-selected-tb($shade-text, $shade-hover, $shade-focus, $shade-indicator) {
+  .mdc-list-item.content-list-item.selected {
+    --mdc-list-list-item-label-text-color: #{tbc.color(secondary, $shade-text)};
+    --mdc-list-list-item-hover-label-text-color: #{tbc.color(secondary, $shade-hover)};
+    --mdc-list-list-item-focus-label-text-color: #{tbc.color(secondary, $shade-focus)};
+    --mat-list-active-indicator-color: #{tbc.color(secondary, $shade-indicator)};
+  }
+}

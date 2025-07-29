@@ -1,3 +1,8 @@
 :host {
     display: contents;
 }
+
+.navbar-logo {
+    color : var(--mdc-icon-button-icon-color);
+    fill: var(--mdc-icon-button-icon-color);
+}

@@ -1,5 +1,6 @@
 @use "@angular/material" as mat;
 @use './theme.utils' as fn;
+@use './theme.jade-serenity.utils' as utils;
 @use './theme.jade-serenity.palettes' as c;
 
 $_rest: (
@@ -15,8 +16,13 @@ $dark-theme: fn.theme-fn(dark, $_primary, $_tertiary);
 
 @mixin light-theme() {
   @include mat.all-component-colors($light-theme);
+  @include utils.navbar-theme-js(95, 25);
+  @include utils.sidenav-theme-js(98, 70);
+
 }
 
 @mixin dark-theme() {
   @include mat.all-component-colors($dark-theme);
+  @include utils.navbar-theme-js(10, 100);
+  @include utils.sidenav-theme-js(4, 30);
 }
