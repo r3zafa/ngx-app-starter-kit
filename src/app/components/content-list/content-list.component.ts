@@ -24,5 +24,11 @@ import {ContentListItem, WithSidenavAndIcons} from "../../shared";
     }
 })
 export class ContentListComponent extends WithSidenavAndIcons {
+
     itemList: InputSignal<ContentListItem[]> = input<ContentListItem[]>([]);
+
+    closeOnClickIfMobile() {
+        if (!this.isCollapsed() && this.isMobile()) this.sidenavService.setOpened(!this.isMobile());
+    }
+
 }

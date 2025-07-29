@@ -16,13 +16,15 @@ $dark-theme: fn.theme-fn(dark, $_primary, $_tertiary);
 
 @mixin light-theme() {
   @include mat.all-component-colors($light-theme);
-  @include utils.navbar-theme-js(95, 25);
+  @include utils.navbar-theme-js(50, 20);
   @include utils.sidenav-theme-js(98, 70);
+  @include utils.mdc-list-item-selected-js(20, 15, 15, 65);
 
 }
 
 @mixin dark-theme() {
   @include mat.all-component-colors($dark-theme);
-  @include utils.navbar-theme-js(10, 100);
-  @include utils.sidenav-theme-js(4, 30);
+  @include utils.navbar-theme-js(10, 90);
+  @include utils.sidenav-theme-js(6, 30);
+  @include utils.mdc-list-item-selected-js(80, 80, 80, 25);
 }

@@ -1,18 +1,17 @@
-import { SidenavService } from "../../shared/services/sidenav/sidenav.service";
-import { matIconRecord } from '../../shared/constants/mat-icon-record.constant';
-import { MatIconType } from '../../shared/types/mat-icon.type';
-import { inject, signal, WritableSignal } from "@angular/core";
-import { ContentListItem } from "../interfaces/content-list-item.interface";
-import { Router } from "@angular/router";
-import { routePaths } from "../../app.routes";
+import {computed, inject, signal, WritableSignal} from "@angular/core";
+import {Router} from "@angular/router";
+import {routePaths} from "../../app.routes";
+import {ContentListItem, LayoutService, matIconRecord, MatIconType, SidenavService} from "../index";
+
 
 export abstract class WithSidenavAndIcons {
 
     // constants
     public icon: Record<MatIconType, MatIconType> = matIconRecord;
 
-    // injctions
+    // injections
     protected sidenavService: SidenavService = inject(SidenavService);
+    protected layoutService = inject(LayoutService);
     private router: Router = inject(Router);
 
     // Using signals to manage the state of the sidenav
@@ -24,7 +23,6 @@ export abstract class WithSidenavAndIcons {
     protected width = this.sidenavService.getWidth();
     protected contentMargin = this.sidenavService.getContentMargin();
     protected isCollapsed = this.sidenavService.getIsCollapsed();
-
 
     // content list
     contentList: WritableSignal<ContentListItem[]> = signal([
@@ -50,8 +48,6 @@ export abstract class WithSidenavAndIcons {
         }
     ]);
 
-
-
     // route active check
     public isRouteActive(route: string | undefined): boolean {
         return route ? this.router.isActive(route, {
@@ -61,4 +57,8 @@ export abstract class WithSidenavAndIcons {
             matrixParams: 'ignored'
         }) : false;
     }
+
+    // Mobile detection - using the layout service
+    protected readonly isMobile = computed(() => this.layoutService.isHandsetPortrait());
+
 }

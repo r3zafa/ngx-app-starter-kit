@@ -8,6 +8,7 @@
                            matTooltipPosition='right'
                            [activated]="isRouteActive(item?.route)"
                            [routerLink]="item?.route"
+                           (click)="closeOnClickIfMobile()"
                            routerLinkActive="selected">
 
                 <mat-icon>{{ item?.icon }}</mat-icon>

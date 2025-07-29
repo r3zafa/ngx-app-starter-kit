@@ -23,8 +23,7 @@ export class SidenavService {
         {initialValue: {matches: false, breakpoints: {}}}
     );
 
-    // signals
-    // These signals are used to manage the state of the sidenav
+    // signals - These signals are used to manage the state of the sidenav
     private opened: WritableSignal<boolean> = signal(true);
     private mode: WritableSignal<DrawerMode> = signal("side");
     private position: WritableSignal<DrawerPosition> = signal("start");

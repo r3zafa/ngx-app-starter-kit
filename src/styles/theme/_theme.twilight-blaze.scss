@@ -16,10 +16,10 @@ $dark-theme: fn.theme-fn(dark, $_primary, $_tertiary);
 
 @mixin light-theme() {
   @include mat.all-component-colors($light-theme);
-  @include utils.navbar-theme-tb(40, 100);
+  @include utils.navbar-theme-tb(40, 90);
   @include utils.sidenav-theme-tb(98, 70);
   @include utils.mdc-error-card-tb(90, 25, true);
-  @include utils.mdc-list-item-selected-tb(30, 35, 40, 80);
+  @include utils.mdc-list-item-selected-tb(20, 25, 25, 90);
 }
 
 @mixin dark-theme() {
@@ -27,8 +27,8 @@ $dark-theme: fn.theme-fn(dark, $_primary, $_tertiary);
 }
 
 @mixin has-twilight-blaze() {
-  @include utils.navbar-theme-tb(10, 100);
-  @include utils.sidenav-theme-tb(4, 30);
+  @include utils.navbar-theme-tb(20, 90);
+  @include utils.sidenav-theme-tb(6, 40);
   @include utils.mdc-error-card-tb(20, 70, false);
-  @include utils.mdc-list-item-selected-tb(70, 70, 80, 20);
+  @include utils.mdc-list-item-selected-tb(80, 85, 85, 20);
 }
