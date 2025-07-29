@@ -1,10 +1,18 @@
-latlng Country :{{ latlng() || 'NA'}}
-latlng Capital :{{ latlngCapital() || 'NA'}}
+{{ area() }} km^2 - INIT_ZOOM:{{ calculatedZoom() || 'NA' }}x
+<mgl-map class="mgl-map" [style]="'https://demotiles.maplibre.org/style.json'"
+         [zoom]="[calculatedZoom() || 1]" [center]="latLongReverse() || [0,0]">
 
-<mgl-map [style.width]="'100%'" [style.height]="'50dvh'" [style]="'https://demotiles.maplibre.org/style.json'"
-[zoom]="[4]" [center]="[51,9]">
+    <!-- Capital Marker -->
+    @if (latlngCapital() && capital().length) {
+        <mgl-marker [lngLat]="latLongCapitalReverse()" color="red">
+            <section class="location-marker">
+                <mat-icon class="location-marker-icon">{{ icon.fmd_good }}</mat-icon>
+                <span class="location-marker-label">{{ capital()?.join(', ')}}</span>
+            </section>
+        </mgl-marker>
+    }
 
+    <mgl-control mglFullscreen></mgl-control>
+    <mgl-control mglNavigation></mgl-control>
 
-<mgl-control mglFullscreen></mgl-control>
-<mgl-control mglNavigation></mgl-control>
 </mgl-map>

@@ -31,18 +31,17 @@
 <div mat-dialog-content class="dialog-content-flex">
 
   @if(selectedToggle === 'map') {
-
-  <ngx-app-map
-    [latlng]="selection.latlng" 
-    [latlngCapital]="selection?.capitalInfo.latlng" />
-
+      <ngx-app-map [capital]="selection.capital"
+                   [area]="selection.area"
+                   [latlng]="selection.latlng"
+                   [latlngCapital]="selection?.capitalInfo.latlng"/>
   } @else {
   <section class="dialog-content-tab-flex">
     <div class="dialog-flag-grid">
       <div class="flag-column-flex">
         <p>National flag</p>
         @if(selection?.flags?.png.length) {
-        <img [style.height]="'100px'" [src]="selection.flags.png" [alt]="'Flag of ' + selection?.name.common"
+            <img [style.height]="'100px'" [attr.src]="selection.flags.png" [alt]="'Flag of ' + selection?.name.common"
           class="flag-icon">
         } @else {
         NA

@@ -1,5 +1,29 @@
-@use './maplibre-gl.scss';
+:host {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 
-.maplibregl-ctrl.maplibregl-ctrl-attrib.maplibregl-compact {
-    display: none;
+    .mgl-map {
+        flex: 1;
+        width: 100%;
+        height: 100%;
+    }
+
+    .location-marker {
+        color: red;
+        height: min-content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+    }
+
+    .capital-marker-icon {
+        width: fit-content;
+        height: fit-content;
+        font-size: 3rem;
+        color: red;
+    }
+
 }

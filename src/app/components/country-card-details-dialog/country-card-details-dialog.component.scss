@@ -19,6 +19,8 @@
 .dialog-content-flex {
     display: flex;
     flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
     gap: 1rem;
 }
 

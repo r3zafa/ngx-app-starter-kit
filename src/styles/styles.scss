@@ -1,9 +1,14 @@
 @use "./typography" as typography;
 @use "./theme/index" as themes;
 @use "./components";
+@use "./mixins/maplibre-gl" as maplibre-gl;
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  @include maplibre-gl.init();
 }
 
 body {

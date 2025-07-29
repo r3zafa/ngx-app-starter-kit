@@ -1,11 +1,17 @@
-import { signalStore, withState, withMethods, withComputed, patchState, withHooks } from '@ngrx/signals';
-import { computed, inject, Signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { pipe, switchMap, tap, catchError, map, of, forkJoin } from 'rxjs';
-import { Country, CountriesState, CountrySortOptionType } from './countries.interfaces';
-import { BASIC_FIELDS, DETAIL_FIELDS_GROUP1, DETAIL_FIELDS_GROUP2, DETAIL_FIELDS_GROUP3, initialState } from './countries.constants';
-import { LayoutService } from '../../shared';
+import {patchState, signalStore, withComputed, withHooks, withMethods, withState} from '@ngrx/signals';
+import {computed, inject} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {rxMethod} from '@ngrx/signals/rxjs-interop';
+import {catchError, forkJoin, map, of, pipe, switchMap, tap} from 'rxjs';
+import {CountriesState, Country, CountrySortOptionType} from './countries.interfaces';
+import {
+  BASIC_FIELDS,
+  DETAIL_FIELDS_GROUP1,
+  DETAIL_FIELDS_GROUP2,
+  DETAIL_FIELDS_GROUP3,
+  initialState
+} from './countries.constants';
+import {LayoutService} from '../../shared';
 import {
   capitalizeFirstLetter,
   createEmptyCountry,
