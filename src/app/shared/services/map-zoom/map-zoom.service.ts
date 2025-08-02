@@ -46,8 +46,8 @@ export class MapZoomService {
         EXTRA_LARGE: 1.6,
         VERY_LARGE: 2.0,
         LARGE: 2.2,
-        MEDIUM_XL: 3.8,
-        MEDIUM_LARGE: 4,
+        MEDIUM_XL: 2.4,
+        MEDIUM_LARGE: 2.8,
         MEDIUM: 3.0,
         MEDIUM_SMALL: 4.2,
         SMALL: 4.8,
@@ -83,6 +83,8 @@ export class MapZoomService {
         const category = this.CATEGORY_ORDER.find(
             cat => clampedArea >= this.SIZE_CATEGORIES[cat]
         ) ?? 'POINT';
+
+        //window.alert(category)
 
         let zoom = this.CATEGORY_ZOOMS[category];
         const categoryMin = this.SIZE_CATEGORIES[category];

@@ -1,3 +1,5 @@
+@use '../../../styles/theme/theme.twilight-blaze.palettes' as tb;
+
 :host {
     display: flex;
     flex-direction: column;
@@ -10,7 +12,7 @@
     }
 
     .location-marker {
-        color: red;
+        color: tb.color(primary, 10);
         height: min-content;
         display: flex;
         flex-direction: column;
@@ -22,8 +24,11 @@
     .capital-marker-icon {
         width: fit-content;
         height: fit-content;
-        font-size: 3rem;
-        color: red;
+        font-size: 4rem;
     }
+
+
+
+
 
 }

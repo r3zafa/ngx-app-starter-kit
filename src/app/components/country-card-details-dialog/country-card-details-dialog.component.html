@@ -1,16 +1,13 @@
 @let selection = countriesStore.selectedCountryWithDetails();
 @let dataSource = countriesStore.selectedCountryTableDataSource();
 
-<div mat-dialog-title>
-  {{ selection?.name.common }}
-  <span class="dialog-title-flag-emoji">
-    {{ selection?.flag }}
-  </span>
+<div mat-dialog-title class="dialog-title">
+    {{ selection?.name.common }} {{ selection?.flag }}
 
   @if (countriesStore.errorDetails()) {
   <mat-card class="error-card" appearance="outlined">
     <mat-card-content class="error-content">
-      {{ countriesStore.errorDetails() }} kk
+      {{ countriesStore.errorDetails() }}
     </mat-card-content>
   </mat-card>
   }
@@ -81,7 +78,7 @@
   }
 </div>
 
-<div mat-dialog-actions align="end">
+<div mat-dialog-actions class="dialog-action" align="end">
   @if (countriesStore.loadingDetails()) {
   <mat-spinner diameter="25"></mat-spinner>
   <span class="dialog-loading-text">loading...</span>

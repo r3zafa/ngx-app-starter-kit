@@ -1,4 +1,10 @@
-@mixin init() {
+@mixin init(
+  $ctr-shadow-color:rgba(0, 0, 0, 0.1),
+  $ctr-bkg-color: #fff,
+  $ctr-border-radius: 4px,
+  $ctr-btn-height: 2.5rem,
+  $ctr-btn-width: 2.5rem,
+) {
   .maplibregl-map {
     font: 12px/20px Helvetica Neue, Arial, Helvetica, sans-serif;
     overflow: hidden;
@@ -114,12 +120,12 @@
   }
 
   .maplibregl-ctrl-group {
-    background: #fff;
-    border-radius: 4px
+    background: $ctr-bkg-color;
+    border-radius: $ctr-border-radius;
   }
 
   .maplibregl-ctrl-group:not(:empty) {
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, .1)
+    box-shadow: 0 0 0 2px $ctr-shadow-color
   }
 
   @media (forced-colors: active) {
@@ -129,15 +135,15 @@
   }
 
   .maplibregl-ctrl-group button {
+    height: $ctr-btn-height;
+    width: $ctr-btn-width;
     background-color: transparent;
     border: 0;
     box-sizing: border-box;
     cursor: pointer;
     display: block;
-    height: 29px;
     outline: none;
     padding: 0;
-    width: 29px
   }
 
   .maplibregl-ctrl-group button + button {
@@ -199,11 +205,11 @@
   }
 
   .maplibregl-ctrl-group button:focus:first-child {
-    border-radius: 4px 4px 0 0
+    border-radius: $ctr-border-radius $ctr-border-radius 0 0
   }
 
   .maplibregl-ctrl-group button:focus:last-child {
-    border-radius: 0 0 4px 4px
+    border-radius: 0 0 $ctr-border-radius $ctr-border-radius;
   }
 
   .maplibregl-ctrl-group button:focus:only-child {
@@ -408,14 +414,15 @@
 
   @media screen {
     .maplibregl-ctrl-attrib.maplibregl-compact {
-      background-color: #fff;
+      background-color: $ctr-bkg-color;
       border-radius: 12px;
       box-sizing: content-box;
       color: #000;
       margin: 10px;
       min-height: 20px;
       padding: 2px 24px 2px 0;
-      position: relative
+      position: relative;
+      display: none;
     }
 
     .maplibregl-ctrl-attrib.maplibregl-compact-show {
@@ -634,7 +641,7 @@
   }
 
   .maplibregl-popup-content {
-    background: #fff;
+    background: $ctr-bkg-color;
     border-radius: 3px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
     padding: 15px 10px;
@@ -751,7 +758,7 @@
   }
 
   .maplibregl-boxzoom {
-    background: #fff;
+    background: $ctr-bkg-color;
     border: 2px dotted #202020;
     height: 0;
     left: 0;
@@ -805,5 +812,46 @@
     top: 0 !important;
     width: 100% !important;
     z-index: 99999
+  }
+}
+
+@mixin borderRadius(
+  $var:var(--mdc-fab-small-container-shape)
+) {
+  .mgl-map .maplibregl-canvas {
+    border-radius: $var;
+  }
+}
+
+@mixin customBtn(
+  $ctr-shadow-color:rgba(0, 0, 0, 0.1),
+  $ctr-color: #000,
+  $ctr-bkg-color: #fff,
+  $ctr-border-radius: 4px,
+  $ctr-btn-height: 2.5rem,
+  $ctr-btn-width: 2.5rem,
+) {
+  .map-custom-btn {
+    box-shadow: 0 0 0 2px $ctr-shadow-color;
+    background: $ctr-bkg-color;
+    color: $ctr-color;
+    border-radius: $ctr-border-radius;
+    height: $ctr-btn-height;
+    width: $ctr-btn-width;
+    box-sizing: border-box;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.mat-mdc-icon-button .mat-mdc-button-persistent-ripple {
+      border-radius: $ctr-border-radius;
+    }
+
+    .map-custom-btn-icon {
+      color: $ctr-color;
+    }
   }
 }
