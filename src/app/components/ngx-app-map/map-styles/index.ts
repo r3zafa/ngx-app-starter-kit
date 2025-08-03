@@ -1,5 +1,3 @@
-import {StyleSpecification} from "maplibre-gl";
-
 export * from './alidade-smooth-map-style';
 export * from './dark-matter-map-style';
 export * from './maplibrel-map-style';
@@ -14,4 +12,5 @@ export type MapStyleType = 'MapLibre' | 'darkMatter' |
 export interface MapStyleValue {
     name: string;
     style: any;
+    thumbnail: string;
 }

@@ -4,8 +4,8 @@
         <mat-card-title-group>
             <mat-card-title>{{ country().name.common }}</mat-card-title>
             <mat-card-subtitle>{{ country().region }}</mat-card-subtitle>
-            <img mat-card-md-image [src]="country().flags.png" 
-            [style.height]="'70px'" 
+            <img mat-card-md-image [attr.src]="country().flags.png"
+            [style.height]="'70px'"
             [style.margin-left]="'0.5rem'"
             [alt]="'Flag of ' + country().name.common">
         </mat-card-title-group>

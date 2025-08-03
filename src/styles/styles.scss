@@ -11,6 +11,7 @@ html {
   @include map.init();
   @include map.borderRadius();
   @include map.customBtn();
+  @include map.customZoomControl();
 }
 
 body {

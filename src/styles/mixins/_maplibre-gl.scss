@@ -1,9 +1,9 @@
 @mixin init(
   $ctr-shadow-color:rgba(0, 0, 0, 0.1),
   $ctr-bkg-color: #fff,
-  $ctr-border-radius: 4px,
-  $ctr-btn-height: 2.5rem,
-  $ctr-btn-width: 2.5rem,
+  $ctr-border-radius: var(--mdc-fab-small-container-shape),
+  $ctr-btn-height: 2.2rem,
+  $ctr-btn-width: 2.2rem,
 ) {
   .maplibregl-map {
     font: 12px/20px Helvetica Neue, Arial, Helvetica, sans-serif;
@@ -816,10 +816,10 @@
 }
 
 @mixin borderRadius(
-  $var:var(--mdc-fab-small-container-shape)
+  $border-radius:var(--mdc-fab-small-container-shape)
 ) {
   .mgl-map .maplibregl-canvas {
-    border-radius: $var;
+    border-radius: $border-radius;
   }
 }
 
@@ -827,9 +827,9 @@
   $ctr-shadow-color:rgba(0, 0, 0, 0.1),
   $ctr-color: #000,
   $ctr-bkg-color: #fff,
-  $ctr-border-radius: 4px,
-  $ctr-btn-height: 2.5rem,
-  $ctr-btn-width: 2.5rem,
+  $ctr-border-radius: var(--mdc-fab-small-container-shape),
+  $ctr-btn-height: 2.2rem,
+  $ctr-btn-width: 2.2rem,
 ) {
   .map-custom-btn {
     box-shadow: 0 0 0 2px $ctr-shadow-color;
@@ -852,6 +852,25 @@
 
     .map-custom-btn-icon {
       color: $ctr-color;
+    }
+  }
+}
+
+@mixin customZoomControl() {
+  .maplibregl-ctrl.maplibregl-ctrl-group {
+    display: flex;
+    flex-direction: column;
+
+    .maplibregl-ctrl-zoom-in {
+      order: 2;
+    }
+
+    .maplibregl-ctrl-zoom-out {
+      order: 3;
+    }
+
+    .maplibregl-ctrl-compass {
+      order: 1;
     }
   }
 }

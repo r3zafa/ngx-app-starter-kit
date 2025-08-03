@@ -8,11 +8,12 @@
 html {
   color-scheme: dark;
   @include global.custom-theme;
+  @include global.custom-map-style-selector;
   @include twilight-blaze.dark-theme;
 }
 
 /* default twilight-blaze- dark */
-html.dark.twilight-blaze{
+html.dark.twilight-blaze {
   @include twilight-blaze.has-twilight-blaze;
 }
 

@@ -3,7 +3,6 @@ import {
     ControlComponent,
     FullscreenControlDirective,
     GeolocateControlDirective,
-    GlobeControlDirective,
     LayerComponent,
     MapComponent,
     MarkerComponent,
@@ -13,7 +12,6 @@ import {
 } from '@maplibre/ngx-maplibre-gl';
 import {MatIcon} from "@angular/material/icon";
 import {MapZoomService, matIconRecord, MatIconType} from "../../shared";
-import {MatRadioButton, MatRadioGroup} from "@angular/material/radio";
 import {FormsModule} from "@angular/forms";
 import {
     alidadeSmoothMapStyle,
@@ -25,25 +23,41 @@ import {
     positronLightMapStyle
 } from "./map-styles";
 import {LineLayerSpecification} from "maplibre-gl";
-import {
-    MatAnchor,
-    MatButton,
-    MatIconAnchor,
-    MatIconButton,
-    MatMiniFabAnchor,
-    MatMiniFabButton
-} from "@angular/material/button";
-import {MatTooltip} from "@angular/material/tooltip";
-import {MatRipple} from "@angular/material/core";
-import {NgClass} from "@angular/common";
+import {MatIconAnchor} from "@angular/material/button";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
+import {MatCardSmImage} from "@angular/material/card";
+import {maplibreBase64} from "./assets/maplibre.base64";
+import {darkMatterBase64} from "./assets/dark-matter.base64";
+import {alidadeSmoothBase64} from "./assets/alidade-smooth.base64";
+import {outdoorsBase64} from "./assets/outdoors.base64";
+import {positronBase64} from "./assets/positron.base64";
 
 const stylesRecord: Record<MapStyleType, MapStyleValue> = {
-    MapLibre: {name: 'MapLibre', style: mapLibreMapStyle},
-    darkMatter: {name: 'Dark matter', style: darkMatterMapStyle},
-    AlidadeSmooth: {name: 'Alidade Smooth', style: alidadeSmoothMapStyle},
-    Outdoors: {name: 'Outdoors', style: outdoorsMapStyle},
-    positron: {name: 'Positron', style: positronLightMapStyle},
+    MapLibre: {
+        name: 'MapLibre',
+        style: mapLibreMapStyle,
+        thumbnail: maplibreBase64
+    },
+    darkMatter: {
+        name: 'Dark matter',
+        style: darkMatterMapStyle,
+        thumbnail: darkMatterBase64
+    },
+    AlidadeSmooth: {
+        name: 'Alidade Smooth',
+        style: alidadeSmoothMapStyle,
+        thumbnail: alidadeSmoothBase64
+    },
+    Outdoors: {
+        name: 'Outdoors',
+        style: outdoorsMapStyle,
+        thumbnail: outdoorsBase64
+    },
+    positron: {
+        name: 'Positron',
+        style: positronLightMapStyle,
+        thumbnail: positronBase64
+    },
 };
 
 @Component({
@@ -58,26 +72,16 @@ const stylesRecord: Record<MapStyleType, MapStyleValue> = {
         FullscreenControlDirective,
         MarkerComponent,
         MatIcon,
-        MatRadioGroup,
         FormsModule,
-        MatRadioButton,
         ScaleControlDirective,
         GeolocateControlDirective,
-        GlobeControlDirective,
         LayerComponent,
         VectorSourceComponent,
-        MatIconButton,
-        MatTooltip,
-        MatMiniFabButton,
-        MatRipple,
-        MatButton,
-        MatAnchor,
-        MatMiniFabAnchor,
-        NgClass,
         MatIconAnchor,
         MatMenuTrigger,
         MatMenu,
         MatMenuItem,
+        MatCardSmImage,
     ],
 })
 export class NgxAppMapComponent {

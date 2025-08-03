@@ -18,39 +18,62 @@
         </mgl-marker>
     }
 
+
     <mgl-control mglFullscreen></mgl-control>
-    <mgl-control mglNavigation></mgl-control>
     <mgl-control mglGeolocate></mgl-control>
-    <mgl-control mglGlobe></mgl-control>
-    <mgl-control mglScale position="bottom-right"></mgl-control>
     <mgl-control>
-        <a class="map-custom-btn" mat-icon-button aria-label="countries border" matTooltip="countries border"
+        <a class="map-custom-btn" mat-icon-button aria-label="countries border" title="countries border"
            (click)="toggleBorder()">
-            @if (borderVisible()) {
+            @if (!borderVisible()) {
                 <mat-icon class="map-custom-btn-icon">{{ icon.border_clear }}</mat-icon>
             } @else {
                 <mat-icon class="map-custom-btn-icon">{{ icon.border_outer }}</mat-icon>
             }
         </a>
     </mgl-control>
+    <mgl-control mglNavigation></mgl-control>
 
-    <mgl-control position="bottom-left">
+    <mgl-control position="top-left">
         <!-- Replace the mat-radio-group with this menu implementation -->
-        <a class="map-custom-btn" mat-icon-button [matMenuTriggerFor]="styleMenu" aria-label="Map style"
-           matTooltip="Change map style">
+        <a class="map-custom-btn"
+           mat-icon-button
+           [matMenuTriggerFor]="styleMenu"
+           aria-label="Change map style"
+           title="Change map style">
             <mat-icon class="map-custom-btn-icon">{{ icon.map }}</mat-icon>
         </a>
         <mat-menu #styleMenu="matMenu">
             @for (styleKey of styleKeys; track styleKey) {
-                <button mat-menu-item (click)="changeStyle(styleKey)" [attr.data-cy]="styleKey + '-button'"
+                <button mat-menu-item
+                        class="map-style-select-layout"
+                        (click)="changeStyle(styleKey)"
+                        [attr.data-cy]="styleKey + '-button'"
                         [class.active]="selectedStyle === styleKey">
-                    <mat-icon>
-                        {{ selectedStyle === styleKey ? 'radio_button_checked' : 'radio_button_unchecked' }}
-                    </mat-icon>
-                    <span>{{ styles[styleKey].name }}</span>
+
+
+
+
+                    <span class="map-style-select-layout-text">
+
+                        <mat-icon class="map-style-select-layout-icon" [style.color]="'#fff'">
+                            {{ selectedStyle === styleKey ? 'radio_button_checked' : 'radio_button_unchecked' }}
+                        </mat-icon>
+
+                        {{ styles[styleKey].name }}
+
+                    </span>
+
+                    <img
+                            class="map-style-select-layout-image"
+                            [attr.src]="styles[styleKey].thumbnail"
+                            [attr.alt]="styles[styleKey].name + ' thumbnail'">
+
                 </button>
             }
         </mat-menu>
 
     </mgl-control>
+
+    <mgl-control mglScale></mgl-control>
+
 </mgl-map>
