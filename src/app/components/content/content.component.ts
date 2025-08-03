@@ -1,5 +1,5 @@
 import {RouterOutlet} from '@angular/router';
-import {Component, computed, ViewEncapsulation} from "@angular/core";
+import {ChangeDetectorRef, Component, computed, inject, ViewEncapsulation} from "@angular/core";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDrawer, MatDrawerContainer, MatDrawerContent} from "@angular/material/sidenav";
 import {expandCollapseAnimation, WithSidenavAndIcons} from '../../shared/';
@@ -28,8 +28,17 @@ import {SidenavExpandTogglerComponent} from "../sidenav-expand-toggler/sidenav-e
 })
 export class ContentComponent extends WithSidenavAndIcons {
 
+    cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
     // computed
-    protected pushReverseContentMargin = computed(() => this.opened() ? `-${this.contentMargin()}` : '0');
-    protected pushContentMargin = computed(() => this.opened() ? this.contentMargin() : '0');
+    protected readonly pushReverseContentMargin = computed(() => this.opened() ? `-${this.contentMargin()}` : '0');
+    protected readonly pushContentMargin = computed(() => this.opened() ? this.contentMargin() : '0');
+
+    constructor() {
+        super();
+
+        // Initial state based on screen size
+        this.sidenavService.setOpened(!this.isMobile());
+    }
+
 
 }

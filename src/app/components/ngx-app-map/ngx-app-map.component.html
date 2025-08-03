@@ -1,10 +1,79 @@
-latlng Country :{{ latlng() || 'NA'}}
-latlng Capital :{{ latlngCapital() || 'NA'}}
+<mgl-map class="mgl-map" [style]="currentStyle" [zoom]="[calculatedZoom() || 1]" [center]="latLongReverse()">
 
-<mgl-map [style.width]="'100%'" [style.height]="'50dvh'" [style]="'https://demotiles.maplibre.org/style.json'"
-[zoom]="[4]" [center]="[51,9]">
+    <mgl-layer id="countries-layer" type="line" source="countries" [layout]="layout()"
+               [paint]="{'line-color': 'blue'}" sourceLayer="countries">
+    </mgl-layer>
+    <mgl-vector-source id="countries" [tiles]="['https://demotiles.maplibre.org/tiles/{z}/{x}/{y}.pbf']"/>
 
 
-<mgl-control mglFullscreen></mgl-control>
-<mgl-control mglNavigation></mgl-control>
+    <!-- Capital Marker -->
+    @if (latlngCapital() && capital()?.length) {
+        <mgl-marker [lngLat]="latLongCapitalReverse()!">
+            <section class="location-marker">
+                <mat-icon class="location-marker-icon">{{ icon.place }}</mat-icon>
+                @if (currentStyle.name === 'MapLibre') {
+                    <span class="location-marker-label">{{ capital()?.join(', ') }}</span>
+                }
+            </section>
+        </mgl-marker>
+    }
+
+
+    <mgl-control mglFullscreen></mgl-control>
+    <mgl-control mglGeolocate></mgl-control>
+    <mgl-control>
+        <a class="map-custom-btn" mat-icon-button aria-label="countries border" title="countries border"
+           (click)="toggleBorder()">
+            @if (!borderVisible()) {
+                <mat-icon class="map-custom-btn-icon">{{ icon.border_clear }}</mat-icon>
+            } @else {
+                <mat-icon class="map-custom-btn-icon">{{ icon.border_outer }}</mat-icon>
+            }
+        </a>
+    </mgl-control>
+    <mgl-control mglNavigation></mgl-control>
+
+    <mgl-control position="top-left">
+        <!-- Replace the mat-radio-group with this menu implementation -->
+        <a class="map-custom-btn"
+           mat-icon-button
+           [matMenuTriggerFor]="styleMenu"
+           aria-label="Change map style"
+           title="Change map style">
+            <mat-icon class="map-custom-btn-icon">{{ icon.map }}</mat-icon>
+        </a>
+        <mat-menu #styleMenu="matMenu">
+            @for (styleKey of styleKeys; track styleKey) {
+                <button mat-menu-item
+                        class="map-style-select-layout"
+                        (click)="changeStyle(styleKey)"
+                        [attr.data-cy]="styleKey + '-button'"
+                        [class.active]="selectedStyle === styleKey">
+
+
+
+
+                    <span class="map-style-select-layout-text">
+
+                        <mat-icon class="map-style-select-layout-icon" [style.color]="'#fff'">
+                            {{ selectedStyle === styleKey ? 'radio_button_checked' : 'radio_button_unchecked' }}
+                        </mat-icon>
+
+                        {{ styles[styleKey].name }}
+
+                    </span>
+
+                    <img
+                            class="map-style-select-layout-image"
+                            [attr.src]="styles[styleKey].thumbnail"
+                            [attr.alt]="styles[styleKey].name + ' thumbnail'">
+
+                </button>
+            }
+        </mat-menu>
+
+    </mgl-control>
+
+    <mgl-control mglScale></mgl-control>
+
 </mgl-map>

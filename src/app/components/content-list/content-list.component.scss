@@ -2,7 +2,7 @@
     height: calc(100% - 4.3rem);
     width: 100%;
     gap: 0.5rem;
-    padding: 0.5rem;
+    padding: 0.3rem;
     overflow: auto;
     display: flex;
     flex-direction: column;
@@ -61,6 +61,6 @@
     gap: 0.1rem;
 
     .collapsed {
-      font-size: 0.65rem;
+      font-size: 0.7rem;
     }
   }

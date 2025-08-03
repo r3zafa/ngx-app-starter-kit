@@ -1,16 +1,13 @@
 @let selection = countriesStore.selectedCountryWithDetails();
 @let dataSource = countriesStore.selectedCountryTableDataSource();
 
-<div mat-dialog-title>
-  {{ selection?.name.common }}
-  <span class="dialog-title-flag-emoji">
-    {{ selection?.flag }}
-  </span>
+<div mat-dialog-title class="dialog-title">
+    {{ selection?.name.common }} {{ selection?.flag }}
 
   @if (countriesStore.errorDetails()) {
   <mat-card class="error-card" appearance="outlined">
     <mat-card-content class="error-content">
-      {{ countriesStore.errorDetails() }} kk
+      {{ countriesStore.errorDetails() }}
     </mat-card-content>
   </mat-card>
   }
@@ -31,18 +28,17 @@
 <div mat-dialog-content class="dialog-content-flex">
 
   @if(selectedToggle === 'map') {
-
-  <ngx-app-map
-    [latlng]="selection.latlng" 
-    [latlngCapital]="selection?.capitalInfo.latlng" />
-
+      <ngx-app-map [capital]="selection.capital"
+                   [area]="selection.area"
+                   [latlng]="selection.latlng"
+                   [latlngCapital]="selection?.capitalInfo.latlng"/>
   } @else {
   <section class="dialog-content-tab-flex">
     <div class="dialog-flag-grid">
       <div class="flag-column-flex">
         <p>National flag</p>
         @if(selection?.flags?.png.length) {
-        <img [style.height]="'100px'" [src]="selection.flags.png" [alt]="'Flag of ' + selection?.name.common"
+            <img [style.height]="'100px'" [attr.src]="selection.flags.png" [alt]="'Flag of ' + selection?.name.common"
           class="flag-icon">
         } @else {
         NA
@@ -82,7 +78,7 @@
   }
 </div>
 
-<div mat-dialog-actions align="end">
+<div mat-dialog-actions class="dialog-action" align="end">
   @if (countriesStore.loadingDetails()) {
   <mat-spinner diameter="25"></mat-spinner>
   <span class="dialog-loading-text">loading...</span>

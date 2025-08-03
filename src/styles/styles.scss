@@ -1,9 +1,17 @@
 @use "./typography" as typography;
 @use "./theme/index" as themes;
 @use "./components";
+@use "./mixins/maplibre-gl" as map;
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  @include map.init();
+  @include map.borderRadius();
+  @include map.customBtn();
+  @include map.customZoomControl();
 }
 
 body {
