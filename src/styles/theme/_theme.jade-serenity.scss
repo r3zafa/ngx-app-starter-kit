@@ -2,6 +2,7 @@
 @use './theme.utils' as fn;
 @use './theme.jade-serenity.utils' as utils;
 @use './theme.jade-serenity.palettes' as c;
+@use "../mixins/maplibre-gl" as map;
 
 $_rest: (
         secondary: c.palette(secondary),
@@ -19,7 +20,11 @@ $dark-theme: fn.theme-fn(dark, $_primary, $_tertiary);
   @include utils.navbar-theme-js(50, 20);
   @include utils.sidenav-theme-js(98, 70);
   @include utils.mdc-list-item-selected-js(20, 15, 15, 65);
-
+  // map
+  @include map.init($ctr-color: c.color(primary, 40), $ctr-bkg-color: c.color(primary, 100));
+  @include map.icons-color(c.color(primary, 40));
+  @include map.custom-btn-background-color(c.color(primary, 100));
+  @include map.custom-marker-color(c.color(error, 50), c.color(error, 95));
 }
 
 @mixin dark-theme() {
@@ -27,4 +32,9 @@ $dark-theme: fn.theme-fn(dark, $_primary, $_tertiary);
   @include utils.navbar-theme-js(10, 90);
   @include utils.sidenav-theme-js(6, 30);
   @include utils.mdc-list-item-selected-js(80, 80, 80, 25);
+  // map
+  @include map.init($ctr-bkg-color: c.color(primary, 10));
+  @include map.icons-color(c.color(primary, 100));
+  @include map.custom-btn-background-color(c.color(primary, 10));
+  @include map.custom-marker-color(c.color(error, 90), c.color(error, 30));
 }

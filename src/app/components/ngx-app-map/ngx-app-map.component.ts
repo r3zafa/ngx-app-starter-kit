@@ -11,7 +11,7 @@ import {
     VectorSourceComponent
 } from '@maplibre/ngx-maplibre-gl';
 import {MatIcon} from "@angular/material/icon";
-import {MapZoomService, matIconRecord, MatIconType} from "../../shared";
+import {MapZoomService, matIconRecord, MatIconType, ThemeService} from "../../shared";
 import {FormsModule} from "@angular/forms";
 import {
     alidadeSmoothMapStyle,
@@ -25,12 +25,12 @@ import {
 import {LineLayerSpecification} from "maplibre-gl";
 import {MatIconAnchor} from "@angular/material/button";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
-import {MatCardSmImage} from "@angular/material/card";
 import {maplibreBase64} from "./assets/maplibre.base64";
 import {darkMatterBase64} from "./assets/dark-matter.base64";
 import {alidadeSmoothBase64} from "./assets/alidade-smooth.base64";
 import {outdoorsBase64} from "./assets/outdoors.base64";
 import {positronBase64} from "./assets/positron.base64";
+import {NgClass} from "@angular/common";
 
 const stylesRecord: Record<MapStyleType, MapStyleValue> = {
     MapLibre: {
@@ -81,12 +81,14 @@ const stylesRecord: Record<MapStyleType, MapStyleValue> = {
         MatMenuTrigger,
         MatMenu,
         MatMenuItem,
-        MatCardSmImage,
+        NgClass,
+
     ],
 })
 export class NgxAppMapComponent {
     // injects
     private mapZoomService: MapZoomService = inject(MapZoomService);
+    private themeService: ThemeService = inject(ThemeService);
 
     // inputs
     latlng: InputSignal<[number, number] | undefined> = input();
@@ -98,13 +100,13 @@ export class NgxAppMapComponent {
     readonly icon: Record<MatIconType, MatIconType> = matIconRecord;
     readonly styles = stylesRecord;
     readonly styleKeys: MapStyleType[] = Object.keys(stylesRecord) as MapStyleType[];
-
+    readonly isDarkMode = this.themeService.isDarkMode;
     // variables
-    selectedStyle: MapStyleType = 'MapLibre';
-    currentStyle = stylesRecord.MapLibre.style;
+    selectedStyle: MapStyleType = this.themeService.isDarkMode() ? "darkMatter" : 'Outdoors';
+    currentStyle = this.themeService.isDarkMode() ? stylesRecord.darkMatter.style : stylesRecord.Outdoors.style;
 
     // signals
-    readonly borderVisible = signal(false);
+    borderVisible = signal(false);
 
 
     // computed values
