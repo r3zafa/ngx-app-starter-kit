@@ -2063,4 +2063,4 @@ export const mapLibreMapStyle = {
         "maptiler:copyright": "This style was generated on MapTiler Cloud. Usage is governed by the license terms in https://github.com/maplibre/demotiles/blob/gh-pages/LICENSE",
         "openmaptiles:version": "3.x"
     }
-};
+} as const;

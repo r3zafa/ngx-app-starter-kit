@@ -7,13 +7,6 @@
   box-sizing: border-box;
 }
 
-html {
-  @include map.init();
-  @include map.borderRadius();
-  @include map.customBtn();
-  @include map.customZoomControl();
-}
-
 body {
   width: 100dvw;
   height: 100dvh;

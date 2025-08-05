@@ -2834,4 +2834,4 @@ export const darkMatterMapStyle = {
     ],
     "id": "voyager",
     "owner": "Carto"
-}
+} as const;

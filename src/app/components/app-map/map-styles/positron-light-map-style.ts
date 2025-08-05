@@ -5890,4 +5890,4 @@ export const positronLightMapStyle = {
     ],
     "id": "voyager",
     "owner": "Carto"
-}
+} as const;

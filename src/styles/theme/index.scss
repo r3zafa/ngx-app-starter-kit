@@ -2,14 +2,27 @@
 @use './theme.twilight-blaze' as twilight-blaze;
 @use './theme.jade-serenity' as jade-serenity;
 @use './theme.customizations.global' as global;
+@use "../mixins/maplibre-gl" as map;
 
 @include mat.core(); // do not remove
 
 html {
   color-scheme: dark;
-  @include global.custom-theme;
-  @include global.custom-map-style-selector;
-  @include twilight-blaze.dark-theme;
+
+  // map global inits
+  @include map.icons-init();
+  @include map.custom-btn-init();
+  @include map.custom-marker-init();
+  @include map.border-radius();
+  @include map.control-btn-border();
+  @include map.custom-zoom-control();
+
+  // m3 global
+  @include global.custom-theme();
+  @include global.custom-map-style-selector();
+
+  // theme - default
+  @include twilight-blaze.dark-theme();
 }
 
 /* default twilight-blaze- dark */

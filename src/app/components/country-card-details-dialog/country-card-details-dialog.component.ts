@@ -9,7 +9,7 @@ import {CommonModule} from '@angular/common';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {CountriesStore} from '../../stores';
-import {NgxAppMapComponent} from "../ngx-app-map/ngx-app-map.component";
+import {AppMapComponent} from "../app-map/app-map.component";
 
 @Component({
     selector: 'app-country-card-details-dialog',
@@ -24,7 +24,7 @@ import {NgxAppMapComponent} from "../ngx-app-map/ngx-app-map.component";
         MatCardModule,
         MatButtonToggleModule,
         MatIcon,
-        NgxAppMapComponent
+        AppMapComponent
     ],
     templateUrl: './country-card-details-dialog.component.html',
     styleUrl: './country-card-details-dialog.component.scss'

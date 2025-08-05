@@ -1,4 +1,7 @@
-<mgl-map class="mgl-map" [style]="currentStyle" [zoom]="[calculatedZoom() || 1]" [center]="latLongReverse()">
+<mgl-map class="mgl-map"
+         [style]="currentStyle"
+         [zoom]="[calculatedZoom() || 1]"
+         [center]="latLongReverse()">
 
     <mgl-layer id="countries-layer" type="line" source="countries" [layout]="layout()"
                [paint]="{'line-color': 'blue'}" sourceLayer="countries">
@@ -10,9 +13,12 @@
     @if (latlngCapital() && capital()?.length) {
         <mgl-marker [lngLat]="latLongCapitalReverse()!">
             <section class="location-marker">
-                <mat-icon class="location-marker-icon">{{ icon.place }}</mat-icon>
+                <span class="location-marker-icon"></span>
                 @if (currentStyle.name === 'MapLibre') {
-                    <span class="location-marker-label">{{ capital()?.join(', ') }}</span>
+                    <span class="location-marker-label"
+                          [ngClass]="{dark: isDarkMode(), light : !isDarkMode()}">
+                        {{ capital()?.join(', ') }}
+                    </span>
                 }
             </section>
         </mgl-marker>
