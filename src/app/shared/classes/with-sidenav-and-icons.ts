@@ -1,7 +1,7 @@
 import {computed, inject, signal, WritableSignal} from "@angular/core";
 import {Router} from "@angular/router";
-import {routePaths} from "../../app.routes";
 import {ContentListItem, LayoutService, matIconRecord, MatIconType, SidenavService} from "../index";
+import {routePaths} from "../../routes/_routes.constants";
 
 
 export abstract class WithSidenavAndIcons {

@@ -1,64 +1,23 @@
-import { AboutUsComponent, HomeComponent, PageNotFoundComponent } from "./pages";
-import { Routes } from "@angular/router";
-import { PostsComponent } from "./pages/posts/posts.component";
-import { CountriesComponent } from "./pages/countries/countries.component";
-
-export type RoutePath = "root" | "home" | "aboutUs" | "pageNotFound" | "posts" | "countries";
-
-export const routePaths: Record<RoutePath, string> = {
-  root: "",
-  home: "home",
-  aboutUs: "about-us",
-  posts: 'posts',
-  countries: 'countries',
-  pageNotFound: "page-not-found",
-};
-
-export const routeTitles: Record<RoutePath, string> = {
-  root: "App | Home",
-  home: "App | Home",
-  aboutUs: "App | About Us",
-  posts: 'App | Posts',
-  countries: 'App | Countries',
-  pageNotFound: "App | Page Not Found",
-};
+import {Routes} from "@angular/router";
+import {settingsRoute} from "./routes/settings.route";
+import {profileRoute} from "./routes/profile.route";
+import {postsRoute} from "./routes/posts.route";
+import {countriesRoute} from "./routes/countries.route";
+import {aboutUsRoute} from "./routes/about-us.route";
+import {homeRoute} from "./routes/home.route";
+import {rootRoute} from "./routes/root.route";
+import {pageNotFoundRoute} from "./routes/page-not-found.route";
+import {catchAllRoute} from "./routes/catch-all.route";
 
 export const routes: Routes = [
-  {
-    path: routePaths.root,
-    redirectTo: routePaths.home,
-    pathMatch: "full",
-    title: routeTitles.home,
-  },
-  {
-    path: routePaths.home,
-    component: HomeComponent,
-    title: routeTitles.home,
-  },
-  {
-    path: routePaths.aboutUs,
-    component: AboutUsComponent,
-    title: routeTitles.aboutUs,
-  },
-  {
-    path: routePaths.posts,
-    component: PostsComponent,
-    title: routeTitles.posts,
-  },
-  {
-    path: routePaths.countries,
-    component: CountriesComponent,
-    title: routeTitles.countries,
-  },
-  /* ----------------------------- */
-  {
-    path: routePaths.pageNotFound,
-    component: PageNotFoundComponent,
-    title: routeTitles.pageNotFound,
-  },
-  {
-    path: '**',
-    redirectTo: routePaths.pageNotFound,
-    title: routeTitles.pageNotFound,
-  },
+  rootRoute,
+  homeRoute,
+  aboutUsRoute,
+  countriesRoute,
+  postsRoute,
+  profileRoute,
+  settingsRoute,
+  /* -------------- else --------------- */
+  pageNotFoundRoute,
+  catchAllRoute /* should be the last route defined */
 ];
