@@ -1445,4 +1445,4 @@ export const outdoorsMapStyle = {
         "https://tiles.stadiamaps.com/styles/outdoors/sprite", "version":
         8, "zoom":
         11.6
-}
+} as const;

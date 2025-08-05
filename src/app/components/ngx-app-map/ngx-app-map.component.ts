@@ -82,7 +82,6 @@ const stylesRecord: Record<MapStyleType, MapStyleValue> = {
         MatMenu,
         MatMenuItem,
         NgClass,
-
     ],
 })
 export class NgxAppMapComponent {
@@ -137,4 +136,6 @@ export class NgxAppMapComponent {
     toggleBorder() {
         this.borderVisible.update(visible => !visible);
     }
+
+
 }

@@ -1,4 +1,7 @@
-<mgl-map class="mgl-map" [style]="currentStyle" [zoom]="[calculatedZoom() || 1]" [center]="latLongReverse()">
+<mgl-map class="mgl-map"
+         [style]="currentStyle"
+         [zoom]="[calculatedZoom() || 1]"
+         [center]="latLongReverse()">
 
     <mgl-layer id="countries-layer" type="line" source="countries" [layout]="layout()"
                [paint]="{'line-color': 'blue'}" sourceLayer="countries">

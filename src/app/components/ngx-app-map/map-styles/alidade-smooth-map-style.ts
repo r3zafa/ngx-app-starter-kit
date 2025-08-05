@@ -3150,4 +3150,4 @@ export const alidadeSmoothMapStyle = {
     "sprite": "https://tiles.stadiamaps.com/styles/alidade-smooth/sprite",
     "version": 8,
     "zoom": 0.89026415
-}
+} as const;
