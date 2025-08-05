@@ -28,7 +28,7 @@
 <div mat-dialog-content class="dialog-content-flex">
 
   @if(selectedToggle === 'map') {
-      <ngx-app-map [capital]="selection.capital"
+      <app-map [capital]="selection.capital"
                    [area]="selection.area"
                    [latlng]="selection.latlng"
                    [latlngCapital]="selection?.capitalInfo.latlng"/>

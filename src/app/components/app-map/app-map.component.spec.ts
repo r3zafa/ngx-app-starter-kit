@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgxAppMapComponent } from './ngx-app-map.component';
+import { AppMapComponent } from './app-map.component';
 
 describe('MapComponent', () => {
-  let component: NgxAppMapComponent;
-  let fixture: ComponentFixture<NgxAppMapComponent>;
+  let component: AppMapComponent;
+  let fixture: ComponentFixture<AppMapComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NgxAppMapComponent]
+      imports: [AppMapComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NgxAppMapComponent);
+    fixture = TestBed.createComponent(AppMapComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

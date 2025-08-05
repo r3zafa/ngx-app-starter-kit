@@ -1,4 +1,11 @@
 import {Component, computed, inject, input, InputSignal, signal} from '@angular/core';
+import {MatIconAnchor} from "@angular/material/button";
+import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
+import {NgClass} from "@angular/common";
+import {FormsModule} from "@angular/forms";
+import {MatIcon} from "@angular/material/icon";
+// map library
+import {LineLayerSpecification} from "maplibre-gl";
 import {
     ControlComponent,
     FullscreenControlDirective,
@@ -10,61 +17,16 @@ import {
     ScaleControlDirective,
     VectorSourceComponent
 } from '@maplibre/ngx-maplibre-gl';
-import {MatIcon} from "@angular/material/icon";
+// internal imports
 import {MapZoomService, matIconRecord, MatIconType, ThemeService} from "../../shared";
-import {FormsModule} from "@angular/forms";
-import {
-    alidadeSmoothMapStyle,
-    darkMatterMapStyle,
-    mapLibreMapStyle,
-    MapStyleType,
-    MapStyleValue,
-    outdoorsMapStyle,
-    positronLightMapStyle
-} from "./map-styles";
-import {LineLayerSpecification} from "maplibre-gl";
-import {MatIconAnchor} from "@angular/material/button";
-import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
-import {maplibreBase64} from "./assets/maplibre.base64";
-import {darkMatterBase64} from "./assets/dark-matter.base64";
-import {alidadeSmoothBase64} from "./assets/alidade-smooth.base64";
-import {outdoorsBase64} from "./assets/outdoors.base64";
-import {positronBase64} from "./assets/positron.base64";
-import {NgClass} from "@angular/common";
-
-const stylesRecord: Record<MapStyleType, MapStyleValue> = {
-    MapLibre: {
-        name: 'MapLibre',
-        style: mapLibreMapStyle,
-        thumbnail: maplibreBase64
-    },
-    darkMatter: {
-        name: 'Dark matter',
-        style: darkMatterMapStyle,
-        thumbnail: darkMatterBase64
-    },
-    AlidadeSmooth: {
-        name: 'Alidade Smooth',
-        style: alidadeSmoothMapStyle,
-        thumbnail: alidadeSmoothBase64
-    },
-    Outdoors: {
-        name: 'Outdoors',
-        style: outdoorsMapStyle,
-        thumbnail: outdoorsBase64
-    },
-    positron: {
-        name: 'Positron',
-        style: positronLightMapStyle,
-        thumbnail: positronBase64
-    },
-};
+import {mapStylesRecord} from './app-map.constants';
+import {MapStyleType} from "./app-map.interfaces";
 
 @Component({
-  selector: 'ngx-app-map',
+    selector: 'app-map',
   standalone: true,
-  templateUrl: './ngx-app-map.component.html',
-  styleUrls: ['./ngx-app-map.component.scss'],
+    templateUrl: './app-map.component.html',
+    styleUrls: ['./app-map.component.scss'],
     imports: [
         MapComponent,
         ControlComponent,
@@ -84,7 +46,7 @@ const stylesRecord: Record<MapStyleType, MapStyleValue> = {
         NgClass,
     ],
 })
-export class NgxAppMapComponent {
+export class AppMapComponent {
     // injects
     private mapZoomService: MapZoomService = inject(MapZoomService);
     private themeService: ThemeService = inject(ThemeService);
@@ -97,12 +59,12 @@ export class NgxAppMapComponent {
 
     // constants
     readonly icon: Record<MatIconType, MatIconType> = matIconRecord;
-    readonly styles = stylesRecord;
-    readonly styleKeys: MapStyleType[] = Object.keys(stylesRecord) as MapStyleType[];
+    readonly styles = mapStylesRecord;
+    readonly styleKeys: MapStyleType[] = Object.keys(mapStylesRecord) as MapStyleType[];
     readonly isDarkMode = this.themeService.isDarkMode;
     // variables
     selectedStyle: MapStyleType = this.themeService.isDarkMode() ? "darkMatter" : 'Outdoors';
-    currentStyle = this.themeService.isDarkMode() ? stylesRecord.darkMatter.style : stylesRecord.Outdoors.style;
+    currentStyle = this.themeService.isDarkMode() ? mapStylesRecord.darkMatter.style : mapStylesRecord.Outdoors.style;
 
     // signals
     borderVisible = signal(false);
@@ -120,7 +82,7 @@ export class NgxAppMapComponent {
     // methods
     changeStyle(styleKey: MapStyleType): void {
         this.selectedStyle = styleKey;
-        this.currentStyle = stylesRecord[styleKey].style;
+        this.currentStyle = mapStylesRecord[styleKey].style;
     }
 
     /**
@@ -136,6 +98,5 @@ export class NgxAppMapComponent {
     toggleBorder() {
         this.borderVisible.update(visible => !visible);
     }
-
 
 }
