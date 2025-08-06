@@ -18,7 +18,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ngx-app-starter-kit",
+            "outputPath": "dist/",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -29,9 +29,21 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public",
-                "output": "/"
-              }
+                "input": "public/fonts",
+                "output": "/fonts/"
+              },
+              {
+                "glob": "**/*",
+                "input": "public/i18n",
+                "output": "/i18n/"
+              },
+              {
+                "glob": "**/*",
+                "input": "public/icons",
+                "output": "/icons/"
+              },
+              "src/manifest.webmanifest",
+              "src/favicon.ico"
             ],
             "styles": [
               "src/styles/styles.scss"
@@ -48,8 +60,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "1MB",
-                  "maximumError": "2MB"
+                  "maximumWarning": "4MB",
+                  "maximumError": "8MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -58,10 +70,23 @@
                 }
               ],
               "outputHashing": "all",
-              "sourceMap": true,
+              "sourceMap": {
+                "scripts": true,
+                "styles": false,
+                "hidden": true,
+                "vendor": true
+              },
               "namedChunks": false,
-              "optimization": true,
-              "extractLicenses": true
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": true
+                },
+                "fonts": true
+              },
+              "extractLicenses": true,
+              "serviceWorker": "ngsw-config.json"
             },
             "development": {
               "optimization": false,
@@ -70,7 +95,14 @@
             },
             "staging": {
               "sourceMap": true,
-              "optimization": true,
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": true
+                },
+                "fonts": true
+              },
               "outputHashing": "all",
               "extractLicenses": true
             }
