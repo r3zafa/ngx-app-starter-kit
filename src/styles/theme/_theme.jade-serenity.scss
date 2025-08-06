@@ -20,6 +20,8 @@ $dark-theme: fn.theme-fn(dark, $_primary, $_tertiary);
   @include utils.navbar-theme-js(50, 20);
   @include utils.sidenav-theme-js(98, 70);
   @include utils.mdc-list-item-selected-js(20, 15, 15, 65);
+  @include utils.card-hover-js(80);
+
   // map
   @include map.init($ctr-color: c.color(primary, 40), $ctr-bkg-color: c.color(primary, 100));
   @include map.icons-color(c.color(primary, 40));
@@ -32,6 +34,7 @@ $dark-theme: fn.theme-fn(dark, $_primary, $_tertiary);
   @include utils.navbar-theme-js(10, 90);
   @include utils.sidenav-theme-js(6, 30);
   @include utils.mdc-list-item-selected-js(80, 80, 80, 25);
+  @include utils.card-hover-js(10);
   // map
   @include map.init($ctr-bkg-color: c.color(primary, 10));
   @include map.icons-color(c.color(primary, 100));

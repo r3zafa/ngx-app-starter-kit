@@ -21,6 +21,7 @@ $dark-theme: fn.theme-fn(dark, $_primary, $_tertiary);
   @include utils.sidenav-theme-tb(98, 70);
   @include utils.mdc-error-card-tb(90, 25, true);
   @include utils.mdc-list-item-selected-tb(20, 25, 25, 90);
+  @include utils.card-hover-tb(98);
   // map
   @include map.init($ctr-color: c.color(primary, 40), $ctr-bkg-color: c.color(primary, 100));
   @include map.icons-color(c.color(primary, 40));
@@ -37,6 +38,8 @@ $dark-theme: fn.theme-fn(dark, $_primary, $_tertiary);
   @include utils.sidenav-theme-tb(6, 40);
   @include utils.mdc-error-card-tb(20, 70, false);
   @include utils.mdc-list-item-selected-tb(80, 85, 85, 20);
+  @include utils.card-hover-tb(10);
+
   // map
   @include map.init($ctr-bkg-color: c.color(primary, 25));
   @include map.icons-color(c.color(primary, 100));

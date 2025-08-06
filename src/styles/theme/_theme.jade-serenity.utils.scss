@@ -1,49 +1,21 @@
-@use './theme.jade-serenity.palettes' as c;
+@use './theme.utils' as utils;
 
 @mixin navbar-theme-js($shade-drawer, $shade-text) {
-  .mat-toolbar.navbar {
-    --mat-toolbar-container-background-color: #{c.color(primary, $shade-drawer)};
-    --mat-toolbar-container-text-color: #{c.color(primary, $shade-text)};
-    --mdc-icon-button-icon-color: #{c.color(primary, $shade-text)};
-  }
+  @include utils.navbar-theme('jsc', $shade-drawer, $shade-text);
 }
 
 @mixin sidenav-theme-js($shade-bkg, $shade-border, $shade-text: null) {
-  .mat-drawer-container.content {
-    --mat-sidenav-content-background-color: #{c.color(neutral, $shade-bkg)};
-    --mat-sidenav-container-divider-color: #{c.color(primary, $shade-border)};
-
-    @if $shade-text != null {
-      // Use custom text color if provided
-      --mat-sidenav-content-text-color: #{c.color(neutral, $shade-text)};
-    } @else {
-      // Fallback to theme's on-surface color if no shade provided
-      --mat-sidenav-content-text-color: var(--mat-sys-on-surface);
-    }
-  }
+  @include utils.sidenav-theme('jsc', $shade-bkg, $shade-border, $shade-text);
 }
 
-@mixin mdc-error-card-js($shade-bkg, $shade-text, $light-theme:false) {
-  @if ($light-theme) {
-    --mat-text-button-hover-state-layer-opacity: 0.15;
-  }
-
-  .mdc-card.error-card {
-    --mdc-outlined-card-outline-color: #{c.color(error, $shade-bkg)};
-    --mdc-outlined-card-container-color: #{c.color(error, $shade-bkg)};
-
-    .error-content {
-      color: #{c.color(error, $shade-text)};
-    }
-  }
+@mixin mdc-error-card-js($shade-bkg, $shade-text, $light-theme: false) {
+  @include utils.mdc-error-card('jsc', $shade-bkg, $shade-text, $light-theme);
 }
-
 
 @mixin mdc-list-item-selected-js($shade-text, $shade-hover, $shade-focus, $shade-indicator) {
-  .mdc-list-item.content-list-item.selected {
-    --mdc-list-list-item-label-text-color: #{c.color(secondary, $shade-text)};
-    --mdc-list-list-item-hover-label-text-color: #{c.color(secondary, $shade-hover)};
-    --mdc-list-list-item-focus-label-text-color: #{c.color(secondary, $shade-focus)};
-    --mat-list-active-indicator-color: #{c.color(secondary, $shade-indicator)};
-  }
+  @include utils.mdc-list-item-selected('jsc', $shade-text, $shade-hover, $shade-focus, $shade-indicator);
+}
+
+@mixin card-hover-js($shade) {
+  @include utils.card-hover('jsc', $shade);
 }
