@@ -1,0 +1,64 @@
+<div class="album-selection">
+    <input type="file" webkitdirectory (change)="onFilesSelected($event)" style="display:none" #fileInput>
+    <button mat-raised-button (click)="fileInput.click()">Load Albums</button>
+
+    @if (albums() && albums().length > 0) {
+    <div class="album-info">
+        <span>Total Albums: {{ albums().length }}</span>
+    </div>
+    <div class="album-nav">
+        <button mat-raised-button (click)="prevFolder()" [disabled]="selectedAlbumIndex() === 0">
+            Previous Album
+        </button>
+
+        <mat-form-field>
+            <mat-label>Select Album</mat-label>
+            <mat-select [value]="selectedAlbumIndex()" (selectionChange)="onAlbumSelect($event.value)">
+                @for (album of albums(); track album.name; let i = $index) {
+                <mat-option [value]="i">{{ album.name }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button (click)="nextFolder()" [disabled]="selectedAlbumIndex() === albums().length - 1">
+            Next Album
+        </button>
+    </div>
+    }
+</div>
+
+<div class="album-container">
+    @if (selectedAlbum() && currentImageUrl()?.length) {
+            <img src="{{currentImageUrl()}}" alt="Current image" class="album-image">
+    }
+</div>
+
+<div class="navigation-controls">
+    @if (currentImageNavInfo()) {
+    <div class="image-info">
+        <span>{{ currentImageNavInfo().current }} / {{ currentImageNavInfo().total }}</span>
+    </div>
+    }
+
+    <div class="button-group">
+        <button mat-raised-button (click)="goToFirstImage()"
+            [disabled]="!currentImageNavInfo() || currentImageNavInfo().current === 1">
+            First
+        </button>
+
+        <button mat-raised-button (click)="navigateImage(-1)"
+            [disabled]="!currentImageNavInfo() || currentImageNavInfo().current === 1">
+            Previous
+        </button>
+
+        <button mat-raised-button (click)="navigateImage(1)"
+            [disabled]="!currentImageNavInfo() || currentImageNavInfo().current === currentImageNavInfo().total">
+            Next
+        </button>
+
+        <button mat-raised-button (click)="goToLastImage()"
+            [disabled]="!currentImageNavInfo() || currentImageNavInfo().current === currentImageNavInfo().total">
+            Last
+        </button>
+    </div>
+</div>

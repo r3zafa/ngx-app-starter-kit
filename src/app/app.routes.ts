@@ -8,16 +8,18 @@ import {homeRoute} from "./routes/home.route";
 import {rootRoute} from "./routes/root.route";
 import {pageNotFoundRoute} from "./routes/page-not-found.route";
 import {catchAllRoute} from "./routes/catch-all.route";
+import {photoAlbumRoute} from "./routes/photo-album.route";
 
 export const routes: Routes = [
-  rootRoute,
-  homeRoute,
-  aboutUsRoute,
-  countriesRoute,
-  postsRoute,
-  profileRoute,
-  settingsRoute,
-  /* -------------- else --------------- */
-  pageNotFoundRoute,
-  catchAllRoute /* should be the last route defined */
+    rootRoute,
+    homeRoute,
+    aboutUsRoute,
+    countriesRoute,
+    photoAlbumRoute,
+    postsRoute,
+    profileRoute,
+    settingsRoute,
+    /* -------------- else --------------- */
+    pageNotFoundRoute,
+    catchAllRoute /* should be the last route defined */
 ];

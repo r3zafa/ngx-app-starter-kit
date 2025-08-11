@@ -45,6 +45,11 @@ export abstract class WithSidenavAndIcons {
             title: 'Countries',
             route: routePaths.countries,
             icon: this.icon.flag
+        },
+        {
+            title: 'Photos',
+            route: routePaths.photoAlbum,
+            icon: this.icon.photo_library
         }
     ]);
 

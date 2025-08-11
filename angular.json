@@ -25,6 +25,9 @@
               "configs/polyfills.ts"
             ],
             "tsConfig": "./configs/tsconfig.app.json",
+            "allowedCommonJsDependencies": [
+              "maplibre-gl"
+            ],
             "inlineStyleLanguage": "scss",
             "assets": [
               {
@@ -42,8 +45,11 @@
                 "input": "public/icons",
                 "output": "/icons/"
               },
-              "src/manifest.webmanifest",
-              "src/favicon.ico"
+              {
+                "glob": "favicon.ico",
+                "input": "public",
+                "output": "/"
+              }
             ],
             "styles": [
               "src/styles/styles.scss"
@@ -57,6 +63,30 @@
           },
           "configurations": {
             "production": {
+              "serviceWorker": "ngsw-config.json",
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "public/fonts",
+                  "output": "/fonts/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "public/i18n",
+                  "output": "/i18n/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "public/icons",
+                  "output": "/icons/"
+                },
+                {
+                  "glob": "favicon.ico",
+                  "input": "public",
+                  "output": "/"
+                },
+                "src/manifest.webmanifest"
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -85,8 +115,7 @@
                 },
                 "fonts": true
               },
-              "extractLicenses": true,
-              "serviceWorker": "ngsw-config.json"
+              "extractLicenses": true
             },
             "development": {
               "optimization": false,

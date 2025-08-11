@@ -1,10 +1,13 @@
-@if (itemList().length > 0) {
+@let items = itemList();
+@let collapsed = isCollapsed();
+
+@if (items.length > 0) {
     <mat-nav-list class="content-list">
-        @for (item of itemList(); track item) {
+        @for (item of items; track item) {
             <mat-list-item mat-list-item
                            class="content-list-item"
-                           [class.collapsed]="isCollapsed()"
-                           [matTooltip]="isCollapsed() ? item?.title : null"
+                           [class.collapsed]="collapsed"
+                           [matTooltip]="collapsed ? item?.title : null"
                            matTooltipPosition='right'
                            [activated]="isRouteActive(item?.route)"
                            [routerLink]="item?.route"
@@ -13,7 +16,7 @@
 
                 <mat-icon>{{ item?.icon }}</mat-icon>
 
-                <span [class.collapsed]="isCollapsed()">{{ item?.title }}</span>
+                <span [class.collapsed]="collapsed">{{ item?.title }}</span>
 
             </mat-list-item>
         }
